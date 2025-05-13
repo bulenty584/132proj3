@@ -1,0 +1,1 @@
+Type errorjava.lang.NullPointerException: Cannot invoke "Env.MiniJavaClass.getMethodIncludingInherited(String, Env.SymbolTable, boolean)" because "<local6>" is null

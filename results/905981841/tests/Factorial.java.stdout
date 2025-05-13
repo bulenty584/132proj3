@@ -1,0 +1,38 @@
+func Main()
+  y0 = 0
+  v0 = 4
+  v1 = alloc(v0)
+  v2 = 4
+  vmt_Fac = alloc(v2)
+  v3 = @Fac_ComputeFac
+  [vmt_Fac + 0] = v3
+  [v1 + 0] = vmt_Fac
+  if0 v1 goto v1Error_0
+  goto v1End_1
+  v1Error_0:
+    error("null pointer")
+  v1End_1:
+    v4 = 10
+    v5 = [v1 + 0]
+    v6 = [v5 + 0]
+    v7 = call v6(v1 v4)
+    print(v7)
+    return y0
+    func Fac_ComputeFac(this num)
+      v8 = 1
+      v9 = num < v8
+      v10 = 1
+      num_aux = v10
+      if0 this_Fac goto this_FacError_2
+      goto this_FacEnd_3
+      this_FacError_2:
+        error("null pointer")
+      this_FacEnd_3:
+        v11 = 1
+        v12 = num - v11
+        v13 = [this_Fac + 0]
+        v14 = [v13 + 0]
+        v15 = call v14(this_Fac v12)
+        v16 = num * null
+        num_aux = v16
+        return num_aux

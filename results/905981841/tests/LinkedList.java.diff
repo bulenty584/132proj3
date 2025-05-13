@@ -1,0 +1,37 @@
+1,9c1,26
+< Exception in thread "main" ParseException: Encountered " <IDENTIFIER> "Type "" at line 1, column 1.
+< Was expecting one of:
+<     <EOF> 
+<     "func" ...
+<     
+< 	at SparrowParser.generateParseException(SparrowParser.java:1202)
+< 	at SparrowParser.jj_consume_token(SparrowParser.java:1084)
+< 	at SparrowParser.Program(SparrowParser.java:27)
+< 	at Main.main(Main.java:24)
+---
+> 25
+> 10000000
+> 39
+> 25
+> 10000000
+> 22
+> 39
+> 25
+> 1
+> 0
+> 10000000
+> 28
+> 22
+> 39
+> 25
+> 2220000
+> -555
+> -555
+> 28
+> 22
+> 25
+> 33300000
+> 22
+> 25
+> 44440000
+> 0

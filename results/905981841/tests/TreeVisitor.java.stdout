@@ -1,0 +1,1 @@
+Type errorjava.lang.RuntimeException: Argument type mismatch in method accept. Expected Visitor, got MyVisitor

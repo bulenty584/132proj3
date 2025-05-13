@@ -1,0 +1,145 @@
+func Main()
+  y0 = 0
+  v0 = 12
+  v1 = alloc(v0)
+  v2 = 16
+  vmt_BBS = alloc(v2)
+  v3 = @BBS_Print
+  [vmt_BBS + 0] = v3
+  v4 = @BBS_Init
+  [vmt_BBS + 0] = v4
+  v5 = @BBS_Start
+  [vmt_BBS + 0] = v5
+  v6 = @BBS_Sort
+  [vmt_BBS + 0] = v6
+  [v1 + 0] = vmt_BBS
+  if0 v1 goto v1Error_0
+  goto v1End_1
+  v1Error_0:
+    error("null pointer")
+  v1End_1:
+    v7 = 10
+    v8 = [v1 + 0]
+    v9 = [v8 + 8]
+    v10 = call v9(v1 v7)
+    print(v10)
+    return y0
+    func BBS_Start(this sz)
+      if0 this_BBS goto this_BBSError_2
+      goto this_BBSEnd_3
+      this_BBSError_2:
+        error("null pointer")
+      this_BBSEnd_3:
+        v11 = [this_BBS + 0]
+        v12 = [v11 + 4]
+        v13 = call v12(this_BBS sz)
+        aux01 = v13
+        if0 this_BBS goto this_BBSError_4
+        goto this_BBSEnd_5
+        this_BBSError_4:
+          error("null pointer")
+        this_BBSEnd_5:
+          v14 = [this_BBS + 0]
+          v15 = [v14 + 0]
+          v16 = call v15(this_BBS)
+          aux01 = v16
+          v17 = 99999
+          print(v17)
+          if0 this_BBS goto this_BBSError_6
+          goto this_BBSEnd_7
+          this_BBSError_6:
+            error("null pointer")
+          this_BBSEnd_7:
+            v18 = [this_BBS + 0]
+            v19 = [v18 + 12]
+            v20 = call v19(this_BBS)
+            aux01 = v20
+            if0 this_BBS goto this_BBSError_8
+            goto this_BBSEnd_9
+            this_BBSError_8:
+              error("null pointer")
+            this_BBSEnd_9:
+              v21 = [this_BBS + 0]
+              v22 = [v21 + 0]
+              v23 = call v22(this_BBS)
+              aux01 = v23
+              v24 = 0
+              return v24
+            func BBS_Sort(this)
+              v25 = 1
+              v26 = size - v25
+              i = v26
+              v27 = 0
+              v28 = 1
+              v29 = v27 - v28
+              aux02 = v29
+              v30 = aux02 < i
+              v31 = 1
+              j = v31
+              v32 = 1
+              v33 = i + v32
+              v34 = j < null
+              v35 = 1
+              v36 = j - v35
+              aux07 = v36
+              aux04 = null
+              aux05 = null
+              v37 = aux05 < aux04
+              v38 = 1
+              v39 = j - v38
+              aux06 = v39
+              t = null
+              v40 = 0
+              nt = v40
+              v41 = 1
+              v42 = j + v41
+              j = v42
+              v43 = 1
+              v44 = i - v43
+              i = v44
+              v45 = 0
+              return v45
+            func BBS_Print(this)
+              v46 = 0
+              j = v46
+              v47 = j < null
+              print(null)
+              v48 = 1
+              v49 = j + v48
+              j = v49
+              v50 = 0
+              return v50
+            func BBS_Init(this sz)
+              size = sz
+              v51 = sz + 1
+              v52 = v51 * 4
+              v53 = alloc(v52)
+              if0 v53 goto v53Error_10
+              goto v53End_11
+              v53Error_10:
+                error("null pointer")
+              v53End_11:
+                [v53 + 0] = sz
+                number = v53
+                v54 = 0
+                v55 = 20
+                v56 = 1
+                v57 = 7
+                v58 = 2
+                v59 = 12
+                v60 = 3
+                v61 = 18
+                v62 = 4
+                v63 = 2
+                v64 = 5
+                v65 = 11
+                v66 = 6
+                v67 = 6
+                v68 = 7
+                v69 = 9
+                v70 = 8
+                v71 = 19
+                v72 = 9
+                v73 = 5
+                v74 = 0
+                return v74

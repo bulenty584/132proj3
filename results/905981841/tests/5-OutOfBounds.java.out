@@ -1,0 +1,17 @@
+Exception in thread "main" ParseException: Encountered " <INTEGER_LITERAL> "1 "" at line 22, column 17.
+Was expecting one of:
+    <IDENTIFIER> ...
+    <IDENTIFIER> ...
+    <IDENTIFIER> ...
+    <IDENTIFIER> ...
+    <IDENTIFIER> ...
+    
+	at SparrowParser.generateParseException(SparrowParser.java:1202)
+	at SparrowParser.jj_consume_token(SparrowParser.java:1084)
+	at SparrowParser.Identifier(SparrowParser.java:506)
+	at SparrowParser.Add(SparrowParser.java:224)
+	at SparrowParser.Instruction(SparrowParser.java:123)
+	at SparrowParser.Block(SparrowParser.java:84)
+	at SparrowParser.FunctionDeclaration(SparrowParser.java:66)
+	at SparrowParser.Program(SparrowParser.java:23)
+	at Main.main(Main.java:24)

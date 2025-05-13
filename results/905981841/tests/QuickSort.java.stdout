@@ -1,0 +1,182 @@
+func Main()
+  y0 = 0
+  v0 = 12
+  v1 = alloc(v0)
+  v2 = 16
+  vmt_QS = alloc(v2)
+  v3 = @QS_Print
+  [vmt_QS + 0] = v3
+  v4 = @QS_Init
+  [vmt_QS + 0] = v4
+  v5 = @QS_Start
+  [vmt_QS + 0] = v5
+  v6 = @QS_Sort
+  [vmt_QS + 0] = v6
+  [v1 + 0] = vmt_QS
+  if0 v1 goto v1Error_0
+  goto v1End_1
+  v1Error_0:
+    error("null pointer")
+  v1End_1:
+    v7 = 10
+    v8 = [v1 + 0]
+    v9 = [v8 + 8]
+    v10 = call v9(v1 v7)
+    print(v10)
+    return y0
+    func QS_Start(this sz)
+      if0 this_QS goto this_QSError_2
+      goto this_QSEnd_3
+      this_QSError_2:
+        error("null pointer")
+      this_QSEnd_3:
+        v11 = [this_QS + 0]
+        v12 = [v11 + 4]
+        v13 = call v12(this_QS sz)
+        aux01 = v13
+        if0 this_QS goto this_QSError_4
+        goto this_QSEnd_5
+        this_QSError_4:
+          error("null pointer")
+        this_QSEnd_5:
+          v14 = [this_QS + 0]
+          v15 = [v14 + 0]
+          v16 = call v15(this_QS)
+          aux01 = v16
+          v17 = 9999
+          print(v17)
+          v18 = 1
+          v19 = size - v18
+          aux01 = v19
+          if0 this_QS goto this_QSError_6
+          goto this_QSEnd_7
+          this_QSError_6:
+            error("null pointer")
+          this_QSEnd_7:
+            v20 = 0
+            v21 = [this_QS + 0]
+            v22 = [v21 + 12]
+            v23 = call v22(this_QS v20 aux01)
+            aux01 = v23
+            if0 this_QS goto this_QSError_8
+            goto this_QSEnd_9
+            this_QSError_8:
+              error("null pointer")
+            this_QSEnd_9:
+              v24 = [this_QS + 0]
+              v25 = [v24 + 0]
+              v26 = call v25(this_QS)
+              aux01 = v26
+              v27 = 0
+              return v27
+            func QS_Sort(this left right)
+              v28 = 0
+              t = v28
+              v29 = left < right
+              v = null
+              v30 = 1
+              v31 = left - v30
+              i = v31
+              j = right
+              v32 = 1
+              cont01 = v32
+              v33 = 1
+              cont02 = v33
+              v34 = 1
+              v35 = i + v34
+              i = v35
+              aux03 = null
+              v36 = aux03 < v
+              v37 = 1
+              cont02 = v37
+              v38 = 1
+              cont02 = v38
+              v39 = 1
+              cont02 = v39
+              v40 = 1
+              v41 = j - v40
+              j = v41
+              aux03 = null
+              v42 = v < aux03
+              v43 = 1
+              cont02 = v43
+              v44 = 1
+              cont02 = v44
+              t = null
+              v45 = 1
+              v46 = i + v45
+              v47 = j < null
+              v48 = 1
+              cont01 = v48
+              v49 = 1
+              cont01 = v49
+              if0 this_QS goto this_QSError_10
+              goto this_QSEnd_11
+              this_QSError_10:
+                error("null pointer")
+              this_QSEnd_11:
+                v50 = 1
+                v51 = i - v50
+                v52 = [this_QS + 0]
+                v53 = [v52 + 12]
+                v54 = call v53(this_QS left v51)
+                nt = v54
+                if0 this_QS goto this_QSError_12
+                goto this_QSEnd_13
+                this_QSError_12:
+                  error("null pointer")
+                this_QSEnd_13:
+                  v55 = 1
+                  v56 = i + v55
+                  v57 = [this_QS + 0]
+                  v58 = [v57 + 12]
+                  v59 = call v58(this_QS v56 right)
+                  nt = v59
+                  v60 = 0
+                  nt = v60
+                  v61 = 0
+                  return v61
+                func QS_Print(this)
+                  v62 = 0
+                  j = v62
+                  v63 = j < null
+                  print(null)
+                  v64 = 1
+                  v65 = j + v64
+                  j = v65
+                  v66 = 0
+                  return v66
+                func QS_Init(this sz)
+                  size = sz
+                  v67 = sz + 1
+                  v68 = v67 * 4
+                  v69 = alloc(v68)
+                  if0 v69 goto v69Error_14
+                  goto v69End_15
+                  v69Error_14:
+                    error("null pointer")
+                  v69End_15:
+                    [v69 + 0] = sz
+                    number = v69
+                    v70 = 0
+                    v71 = 20
+                    v72 = 1
+                    v73 = 7
+                    v74 = 2
+                    v75 = 12
+                    v76 = 3
+                    v77 = 18
+                    v78 = 4
+                    v79 = 2
+                    v80 = 5
+                    v81 = 11
+                    v82 = 6
+                    v83 = 6
+                    v84 = 7
+                    v85 = 9
+                    v86 = 8
+                    v87 = 19
+                    v88 = 9
+                    v89 = 5
+                    v90 = 0
+                    return v90
