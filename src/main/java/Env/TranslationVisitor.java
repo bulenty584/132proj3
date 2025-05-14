@@ -65,7 +65,19 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         return base + "_" + (labelCounter++);
     }
 
+    private boolean isThisAlias(String name) {
+        return name.startsWith("this_$");
+    }
+
     private void emitError(String ptr, String labelBase) {
+        if (this.isThisAlias(ptr)){
+            ptr = "this";
+        }
+
+        if (this.isThisAlias(labelBase)){
+            labelBase = "this";
+        }
+
         String errorLabel = freshLabel(labelBase + "Error");
         String endLabel = freshLabel(labelBase + "End");
     
@@ -418,12 +430,13 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String vmtLabel = "vmt_" + className;
         emit(vmtLabel + " = alloc(" + methodSizeVal + ")");
 
+        int size = 0;
         for (String method : cls.methods.keySet()){
-            int size = 0;
             String methodNum = freshTemp("v");
             String methodName = "@" + cls.getName() + "_" + method;
             emit(methodNum + " = " + methodName);
             emit("[" + vmtLabel + " + " + size * 4 + "] = " + methodNum);
+            size++;
         }
 
         emit("[" + _ret + " + 0] = " + vmtLabel);
@@ -439,6 +452,10 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         emitError(obj, obj);
 
         String objType = this.getTypeOfIdentifier(obj, this.currentClass, this.currentMethod);
+
+        if (this.isThisAlias(obj)){
+            obj = "this";
+        }
 
         MiniJavaClass targetClass = this.table.classMap.get(objType);
         MiniJavaClass oldClass = this.currentClass;
@@ -526,8 +543,8 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
     public String visit(ThisExpression n, Void argu) {
         String _ret=null;
         _ret = this.currentClass.getName();
-        this.tempVarTypes.put("this_"+_ret, _ret);
-        return "this_"+_ret;
+        this.tempVarTypes.put("this_$"+_ret, _ret);
+        return "this_$"+_ret;
     }
 
 

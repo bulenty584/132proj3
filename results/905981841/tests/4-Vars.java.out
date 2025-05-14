@@ -1,8 +1,3 @@
-Exception in thread "main" java.lang.RuntimeException: Error: v7 = call v6(v1)
-Wrong argument type in Call
-	at sparrow.visitor.Interpreter.visit(Interpreter.java:382)
-	at sparrow.Call.accept(Call.java:19)
-	at sparrow.visitor.Interpreter.stepUntilReturn(Interpreter.java:34)
-	at sparrow.visitor.Interpreter.visit(Interpreter.java:97)
-	at sparrow.Program.accept(Program.java:15)
-	at Main.main(Main.java:35)
+12
+15
+27

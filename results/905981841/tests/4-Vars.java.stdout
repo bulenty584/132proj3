@@ -7,7 +7,7 @@ func Main()
   v3 = @A_helper
   [vmt_A + 0] = v3
   v4 = @A_run
-  [vmt_A + 0] = v4
+  [vmt_A + 4] = v4
   [v1 + 0] = vmt_A
   if0 v1 goto v1Error_0
   goto v1End_1
@@ -20,25 +20,25 @@ func Main()
     print(v7)
     return y0
     func A_run(this)
-      if0 this_A goto this_AError_2
-      goto this_AEnd_3
-      this_AError_2:
+      if0 this goto thisError_2
+      goto thisEnd_3
+      thisError_2:
         error("null pointer")
-      this_AEnd_3:
+      thisEnd_3:
         v8 = 12
-        v9 = [this_A + 0]
+        v9 = [this + 0]
         v10 = [v9 + 0]
-        v11 = call v10(this_A v8)
+        v11 = call v10(this v8)
         a = v11
-        if0 this_A goto this_AError_4
-        goto this_AEnd_5
-        this_AError_4:
+        if0 this goto thisError_4
+        goto thisEnd_5
+        thisError_4:
           error("null pointer")
-        this_AEnd_5:
+        thisEnd_5:
           v12 = 15
-          v13 = [this_A + 0]
+          v13 = [this + 0]
           v14 = [v13 + 0]
-          v15 = call v14(this_A v12)
+          v15 = call v14(this v12)
           b = v15
           v16 = a + b
           return v16

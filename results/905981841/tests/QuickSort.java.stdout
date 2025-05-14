@@ -7,11 +7,11 @@ func Main()
   v3 = @QS_Print
   [vmt_QS + 0] = v3
   v4 = @QS_Init
-  [vmt_QS + 0] = v4
+  [vmt_QS + 4] = v4
   v5 = @QS_Start
-  [vmt_QS + 0] = v5
+  [vmt_QS + 8] = v5
   v6 = @QS_Sort
-  [vmt_QS + 0] = v6
+  [vmt_QS + 12] = v6
   [v1 + 0] = vmt_QS
   if0 v1 goto v1Error_0
   goto v1End_1
@@ -25,47 +25,47 @@ func Main()
     print(v10)
     return y0
     func QS_Start(this sz)
-      if0 this_QS goto this_QSError_2
-      goto this_QSEnd_3
-      this_QSError_2:
+      if0 this goto thisError_2
+      goto thisEnd_3
+      thisError_2:
         error("null pointer")
-      this_QSEnd_3:
-        v11 = [this_QS + 0]
+      thisEnd_3:
+        v11 = [this + 0]
         v12 = [v11 + 4]
-        v13 = call v12(this_QS sz)
+        v13 = call v12(this sz)
         aux01 = v13
-        if0 this_QS goto this_QSError_4
-        goto this_QSEnd_5
-        this_QSError_4:
+        if0 this goto thisError_4
+        goto thisEnd_5
+        thisError_4:
           error("null pointer")
-        this_QSEnd_5:
-          v14 = [this_QS + 0]
+        thisEnd_5:
+          v14 = [this + 0]
           v15 = [v14 + 0]
-          v16 = call v15(this_QS)
+          v16 = call v15(this)
           aux01 = v16
           v17 = 9999
           print(v17)
           v18 = 1
           v19 = size - v18
           aux01 = v19
-          if0 this_QS goto this_QSError_6
-          goto this_QSEnd_7
-          this_QSError_6:
+          if0 this goto thisError_6
+          goto thisEnd_7
+          thisError_6:
             error("null pointer")
-          this_QSEnd_7:
+          thisEnd_7:
             v20 = 0
-            v21 = [this_QS + 0]
+            v21 = [this + 0]
             v22 = [v21 + 12]
-            v23 = call v22(this_QS v20 aux01)
+            v23 = call v22(this v20 aux01)
             aux01 = v23
-            if0 this_QS goto this_QSError_8
-            goto this_QSEnd_9
-            this_QSError_8:
+            if0 this goto thisError_8
+            goto thisEnd_9
+            thisError_8:
               error("null pointer")
-            this_QSEnd_9:
-              v24 = [this_QS + 0]
+            thisEnd_9:
+              v24 = [this + 0]
               v25 = [v24 + 0]
-              v26 = call v25(this_QS)
+              v26 = call v25(this)
               aux01 = v26
               v27 = 0
               return v27
@@ -110,27 +110,27 @@ func Main()
               cont01 = v48
               v49 = 1
               cont01 = v49
-              if0 this_QS goto this_QSError_10
-              goto this_QSEnd_11
-              this_QSError_10:
+              if0 this goto thisError_10
+              goto thisEnd_11
+              thisError_10:
                 error("null pointer")
-              this_QSEnd_11:
+              thisEnd_11:
                 v50 = 1
                 v51 = i - v50
-                v52 = [this_QS + 0]
+                v52 = [this + 0]
                 v53 = [v52 + 12]
-                v54 = call v53(this_QS left v51)
+                v54 = call v53(this left v51)
                 nt = v54
-                if0 this_QS goto this_QSError_12
-                goto this_QSEnd_13
-                this_QSError_12:
+                if0 this goto thisError_12
+                goto thisEnd_13
+                thisError_12:
                   error("null pointer")
-                this_QSEnd_13:
+                thisEnd_13:
                   v55 = 1
                   v56 = i + v55
-                  v57 = [this_QS + 0]
+                  v57 = [this + 0]
                   v58 = [v57 + 12]
-                  v59 = call v58(this_QS v56 right)
+                  v59 = call v58(this v56 right)
                   nt = v59
                   v60 = 0
                   nt = v60

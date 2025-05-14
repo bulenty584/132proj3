@@ -23,16 +23,16 @@ func Main()
       v9 = num < v8
       v10 = 1
       num_aux = v10
-      if0 this_Fac goto this_FacError_2
-      goto this_FacEnd_3
-      this_FacError_2:
+      if0 this goto thisError_2
+      goto thisEnd_3
+      thisError_2:
         error("null pointer")
-      this_FacEnd_3:
+      thisEnd_3:
         v11 = 1
         v12 = num - v11
-        v13 = [this_Fac + 0]
+        v13 = [this + 0]
         v14 = [v13 + 0]
-        v15 = call v14(this_Fac v12)
+        v15 = call v14(this v12)
         v16 = num * null
         num_aux = v16
         return num_aux

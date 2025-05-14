@@ -7,11 +7,11 @@ func Main()
   v3 = @BBS_Print
   [vmt_BBS + 0] = v3
   v4 = @BBS_Init
-  [vmt_BBS + 0] = v4
+  [vmt_BBS + 4] = v4
   v5 = @BBS_Start
-  [vmt_BBS + 0] = v5
+  [vmt_BBS + 8] = v5
   v6 = @BBS_Sort
-  [vmt_BBS + 0] = v6
+  [vmt_BBS + 12] = v6
   [v1 + 0] = vmt_BBS
   if0 v1 goto v1Error_0
   goto v1End_1
@@ -25,43 +25,43 @@ func Main()
     print(v10)
     return y0
     func BBS_Start(this sz)
-      if0 this_BBS goto this_BBSError_2
-      goto this_BBSEnd_3
-      this_BBSError_2:
+      if0 this goto thisError_2
+      goto thisEnd_3
+      thisError_2:
         error("null pointer")
-      this_BBSEnd_3:
-        v11 = [this_BBS + 0]
+      thisEnd_3:
+        v11 = [this + 0]
         v12 = [v11 + 4]
-        v13 = call v12(this_BBS sz)
+        v13 = call v12(this sz)
         aux01 = v13
-        if0 this_BBS goto this_BBSError_4
-        goto this_BBSEnd_5
-        this_BBSError_4:
+        if0 this goto thisError_4
+        goto thisEnd_5
+        thisError_4:
           error("null pointer")
-        this_BBSEnd_5:
-          v14 = [this_BBS + 0]
+        thisEnd_5:
+          v14 = [this + 0]
           v15 = [v14 + 0]
-          v16 = call v15(this_BBS)
+          v16 = call v15(this)
           aux01 = v16
           v17 = 99999
           print(v17)
-          if0 this_BBS goto this_BBSError_6
-          goto this_BBSEnd_7
-          this_BBSError_6:
+          if0 this goto thisError_6
+          goto thisEnd_7
+          thisError_6:
             error("null pointer")
-          this_BBSEnd_7:
-            v18 = [this_BBS + 0]
+          thisEnd_7:
+            v18 = [this + 0]
             v19 = [v18 + 12]
-            v20 = call v19(this_BBS)
+            v20 = call v19(this)
             aux01 = v20
-            if0 this_BBS goto this_BBSError_8
-            goto this_BBSEnd_9
-            this_BBSError_8:
+            if0 this goto thisError_8
+            goto thisEnd_9
+            thisError_8:
               error("null pointer")
-            this_BBSEnd_9:
-              v21 = [this_BBS + 0]
+            thisEnd_9:
+              v21 = [this + 0]
               v22 = [v21 + 0]
-              v23 = call v22(this_BBS)
+              v23 = call v22(this)
               aux01 = v23
               v24 = 0
               return v24

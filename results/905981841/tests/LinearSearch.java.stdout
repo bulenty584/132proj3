@@ -7,11 +7,11 @@ func Main()
   v3 = @LS_Print
   [vmt_LS + 0] = v3
   v4 = @LS_Init
-  [vmt_LS + 0] = v4
+  [vmt_LS + 4] = v4
   v5 = @LS_Start
-  [vmt_LS + 0] = v5
+  [vmt_LS + 8] = v5
   v6 = @LS_Search
-  [vmt_LS + 0] = v6
+  [vmt_LS + 12] = v6
   [v1 + 0] = vmt_LS
   if0 v1 goto v1Error_0
   goto v1End_1
@@ -25,65 +25,65 @@ func Main()
     print(v10)
     return y0
     func LS_Start(this sz)
-      if0 this_LS goto this_LSError_2
-      goto this_LSEnd_3
-      this_LSError_2:
+      if0 this goto thisError_2
+      goto thisEnd_3
+      thisError_2:
         error("null pointer")
-      this_LSEnd_3:
-        v11 = [this_LS + 0]
+      thisEnd_3:
+        v11 = [this + 0]
         v12 = [v11 + 4]
-        v13 = call v12(this_LS sz)
+        v13 = call v12(this sz)
         aux01 = v13
-        if0 this_LS goto this_LSError_4
-        goto this_LSEnd_5
-        this_LSError_4:
+        if0 this goto thisError_4
+        goto thisEnd_5
+        thisError_4:
           error("null pointer")
-        this_LSEnd_5:
-          v14 = [this_LS + 0]
+        thisEnd_5:
+          v14 = [this + 0]
           v15 = [v14 + 0]
-          v16 = call v15(this_LS)
+          v16 = call v15(this)
           aux02 = v16
           v17 = 9999
           print(v17)
-          if0 this_LS goto this_LSError_6
-          goto this_LSEnd_7
-          this_LSError_6:
+          if0 this goto thisError_6
+          goto thisEnd_7
+          thisError_6:
             error("null pointer")
-          this_LSEnd_7:
+          thisEnd_7:
             v18 = 8
-            v19 = [this_LS + 0]
+            v19 = [this + 0]
             v20 = [v19 + 12]
-            v21 = call v20(this_LS v18)
+            v21 = call v20(this v18)
             print(v21)
-            if0 this_LS goto this_LSError_8
-            goto this_LSEnd_9
-            this_LSError_8:
+            if0 this goto thisError_8
+            goto thisEnd_9
+            thisError_8:
               error("null pointer")
-            this_LSEnd_9:
+            thisEnd_9:
               v22 = 12
-              v23 = [this_LS + 0]
+              v23 = [this + 0]
               v24 = [v23 + 12]
-              v25 = call v24(this_LS v22)
+              v25 = call v24(this v22)
               print(v25)
-              if0 this_LS goto this_LSError_10
-              goto this_LSEnd_11
-              this_LSError_10:
+              if0 this goto thisError_10
+              goto thisEnd_11
+              thisError_10:
                 error("null pointer")
-              this_LSEnd_11:
+              thisEnd_11:
                 v26 = 17
-                v27 = [this_LS + 0]
+                v27 = [this + 0]
                 v28 = [v27 + 12]
-                v29 = call v28(this_LS v26)
+                v29 = call v28(this v26)
                 print(v29)
-                if0 this_LS goto this_LSError_12
-                goto this_LSEnd_13
-                this_LSError_12:
+                if0 this goto thisError_12
+                goto thisEnd_13
+                thisError_12:
                   error("null pointer")
-                this_LSEnd_13:
+                thisEnd_13:
                   v30 = 50
-                  v31 = [this_LS + 0]
+                  v31 = [this + 0]
                   v32 = [v31 + 12]
-                  v33 = call v32(this_LS v30)
+                  v33 = call v32(this v30)
                   print(v33)
                   v34 = 55
                   return v34
