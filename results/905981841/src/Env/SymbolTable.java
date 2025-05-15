@@ -64,11 +64,11 @@ public class SymbolTable {
 
     public boolean isTypeCompatible(Variable actual, Variable expected) {
 
-        if (actual.type == expected.type) return true;
+        if (actual.type.equals(expected.type)) return true;
     
 
-        MiniJavaClass actualClass = classMap.get(actual.name);
-        MiniJavaClass expectedClass = classMap.get(expected.name);
+        MiniJavaClass actualClass = classMap.get(actual.type);
+        MiniJavaClass expectedClass = classMap.get(expected.type);
     
         if (actualClass == null || expectedClass == null) {
             return false; // at least one is not a class → incompatible

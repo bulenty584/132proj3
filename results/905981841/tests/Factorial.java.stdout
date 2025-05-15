@@ -24,12 +24,24 @@ v1End_3:
   print(v7)
   return y0
 func Fac_ComputeFac(this num)
-  if0 null goto else_5
   v8 = 1
   v9 = num < v8
-  goto ifend_6
-  else_5:
+  if0 v9 goto else_4
   v10 = 1
   num_aux = v10
-  ifend_6:
+  goto ifend_5
+  else_4:
+  if0 this goto thisError_6
+  goto thisEnd_7
+thisError_6:
+  error("null pointer")
+thisEnd_7:
+  v11 = 1
+  v12 = num - v11
+  v13 = [this + 0]
+  v14 = [v13 + 0]
+  v15 = call v14(this v12)
+  v16 = num * v15
+  num_aux = v16
+  ifend_5:
   return num_aux

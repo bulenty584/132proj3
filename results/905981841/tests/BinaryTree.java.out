@@ -1,2 +1,26 @@
---- Error (Explicit) ---
-Cannot invoke "value.Value.toString()" because the return value of "sparrow.visitor.Interpreter.access(token.Identifier)" is null
+16
+100000000
+8
+16
+4
+8
+12
+14
+16
+20
+24
+28
+1
+1
+1
+0
+1
+4
+8
+14
+16
+20
+24
+28
+0
+0

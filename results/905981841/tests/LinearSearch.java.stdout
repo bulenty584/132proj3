@@ -95,118 +95,156 @@ thisEnd_15:
 func LS_Print(this)
   v35 = 1
   j = v35
-  v36 = j < size
-  v37 = [number + 0]
-  v39 = 1
-  v40 = 0
-  v38 = v40 - v39
-  v41 = 4
-  v42 = v38 < j
-  v43 = j < v37
-  v44 = v42 * v43
-  if0 v44 goto v44Error_16
-  goto v44End_17
-v44Error_16:
+  whileStart_16:
+  v36 = [this + 8]
+  v37 = j < v36
+  if0 v37 goto whileEnd_18
+  whileBody_17:
+    v38 = [this + 4]
+    v39 = [v38 + 0]
+    v40 = 4
+    v41 = 1
+    v42 = 0
+    v43 = v42 - v41
+    v44 = v43 < j
+    v45 = j < v39
+    v46 = v44 * v45
+    if0 v46 goto v46Error_19
+    goto v46End_20
+v46Error_19:
   error("array index out of bounds")
-v44End_17:
-  v45 = j * v41
-  v46 = v45 + v41
-  v47 = number + v46
-  v48 = [v47 + 0]
-  print(v48)
-  v49 = 1
-  v50 = j + v49
-  j = v50
-  v51 = 0
-  return v51
-func LS_Search(this num)
-  v52 = 1
+v46End_20:
+  v47 = j * v40
+  v48 = v47 + v40
+  v49 = v38 + v48
+  v50 = [v49 + 0]
+  print(v50)
+  v51 = 1
+  v52 = j + v51
   j = v52
-  v53 = 0
-  ls01 = v53
-  v54 = 0
-  ifound = v54
-  v55 = j < size
-  v56 = [number + 0]
-  v58 = 1
-  v59 = 0
-  v57 = v59 - v58
-  v60 = 4
-  v61 = v57 < j
-  v62 = j < v56
-  v63 = v61 * v62
-  if0 v63 goto v63Error_18
-  goto v63End_19
-v63Error_18:
+  goto whileStart_16
+  whileEnd_18:
+    v53 = 0
+    return v53
+func LS_Search(this num)
+  v54 = 1
+  j = v54
+  v55 = 0
+  ls01 = v55
+  v56 = 0
+  ifound = v56
+  whileStart_21:
+  v57 = [this + 8]
+  v58 = j < v57
+  if0 v58 goto whileEnd_23
+  whileBody_22:
+    v59 = [this + 4]
+    v60 = [v59 + 0]
+    v61 = 4
+    v62 = 1
+    v63 = 0
+    v64 = v63 - v62
+    v65 = v64 < j
+    v66 = j < v60
+    v67 = v65 * v66
+    if0 v67 goto v67Error_24
+    goto v67End_25
+v67Error_24:
   error("array index out of bounds")
-v63End_19:
-  v64 = j * v60
-  v65 = v64 + v60
-  v66 = number + v65
-  v67 = [v66 + 0]
-  aux01 = v67
-  v68 = 1
-  v69 = num + v68
-  aux02 = v69
-  if0 null goto else_21
-  v70 = aux01 < num
-  goto ifend_22
-  else_21:
-  v71 = 0
-  nt = v71
-  ifend_22:
+v67End_25:
+  v68 = j * v61
+  v69 = v68 + v61
+  v70 = v59 + v69
+  v71 = [v70 + 0]
+  aux01 = v71
   v72 = 1
-  v73 = j + v72
-  j = v73
-  return ifound
+  v73 = num + v72
+  aux02 = v73
+  v74 = aux01 < num
+  if0 v74 goto else_26
+  v75 = 0
+  nt = v75
+  goto ifend_27
+  else_26:
+  v76 = aux01 < aux02
+  v78 = 1
+  v77 = v78
+  v79 = v77 - v76
+  if0 v79 goto else_28
+  v80 = 0
+  nt = v80
+  goto ifend_29
+  else_28:
+  v81 = 1
+  ls01 = v81
+  v82 = 1
+  ifound = v82
+  v83 = [this + 8]
+  j = v83
+  ifend_29:
+  ifend_27:
+  v84 = 1
+  v85 = j + v84
+  j = v85
+  goto whileStart_21
+  whileEnd_23:
+    return ifound
 func LS_Init(this sz)
-  size = sz
-  v75 = 1
-  v74 = sz + v75
-  v77 = 4
-  v76 = v74 * v77
-  v78 = alloc(v76)
-  if0 v78 goto v78Error_23
-  goto v78End_24
-v78Error_23:
+  [this + 8] = sz
+  v87 = 1
+  v86 = sz + v87
+  v89 = 4
+  v88 = v86 * v89
+  v90 = alloc(v88)
+  if0 v90 goto v90Error_30
+  goto v90End_31
+v90Error_30:
   error("null pointer")
-v78End_24:
-  [v78 + 0] = sz
-  number = v78
-  v79 = 1
-  j = v79
-  v80 = 1
-  v81 = size + v80
-  k = v81
-  v82 = j < size
-  v83 = 2
-  v84 = v83 * j
-  aux01 = v84
-  v85 = 3
-  v86 = k - v85
-  aux02 = v86
-  v87 = aux01 + aux02
-  v88 = [number + 0]
-  v89 = 0
-  v90 = v89 < j
-  v91 = j < v88
-  v92 = v90 * v91
-  if0 v92 goto v92Error_25
-  goto v92End_26
-v92Error_25:
+v90End_31:
+  [v90 + 0] = sz
+  [this + 4] = v90
+  v91 = 1
+  j = v91
+  v92 = [this + 8]
+  v93 = 1
+  v94 = v92 + v93
+  k = v94
+  whileStart_32:
+  v95 = [this + 8]
+  v96 = j < v95
+  if0 v96 goto whileEnd_34
+  whileBody_33:
+    v97 = 2
+    v98 = v97 * j
+    aux01 = v98
+    v99 = 3
+    v100 = k - v99
+    aux02 = v100
+    v101 = [this + 4]
+    v102 = aux01 + aux02
+    v103 = [v101 + 0]
+    v104 = 0
+    v105 = 1
+    v106 = v104 - v105
+    v107 = j < v103
+    v108 = v106 * v107
+    if0 v108 goto v108Error_35
+    goto v108End_36
+v108Error_35:
   error("array index out of bounds")
-v92End_26:
-  v94 = 1
-  v93 = jv94
-  v96 = 4
-  v95 = v93 * v96
-  v97 = number + v95
-  [v97 + 0] = v87
-  v98 = 1
-  v99 = j + v98
-  j = v99
-  v100 = 1
-  v101 = k - v100
-  k = v101
-  v102 = 0
-  return v102
+v108End_36:
+  v109 = 4
+  v110 = j * v109
+  v111 = v110 + v109
+  v112 = v101 + v111
+  [v112 + 0] = v102
+  v113 = 1
+  v114 = j + v113
+  j = v114
+  v115 = 1
+  v116 = k - v115
+  k = v116
+  goto whileStart_32
+  whileEnd_34:
+    v117 = 0
+    return v117

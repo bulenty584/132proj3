@@ -73,13 +73,20 @@ public class MiniJavaClass {
         return true; // Successfully added
     }
 
-    public String getFieldType(List<Variable> fields, String fieldName) {
+    public String getFieldType(String fieldName) {
         for (Variable field : this.fields) {
             if (field.name.equals(fieldName)) {
                 return field.type;
             }
         }
         return null;
+    }
+
+    public int getFieldOffset(String field){
+        if (this.fieldOffsets.get(field) == null){
+            return -1;
+        }
+        return this.fieldOffsets.get(field);
     }
 
     public MiniJavaMethod getMethod(String methodName){
@@ -134,6 +141,18 @@ public class MiniJavaClass {
         return null;
     }
 
+    public MiniJavaClass getMethodOwner(String methodName, SymbolTable table) {
+        MiniJavaClass current = this;
+        while (current != null) {
+            if (current.methods.containsKey(methodName)) {
+                return current;
+            }
+            current = current.getParent();
+        }
+        return null;
+    }
+    
+
     public void buildVtable(){
         if (this.parent != null){
             this.parent.buildVtable();
@@ -147,7 +166,10 @@ public class MiniJavaClass {
             //override parent
             if (this.vtableIndices.containsKey(methodName)){
                 int offset = vtableIndices.get(methodName);
-                int slot = (offset - 4) / 4;
+                int slot = offset;
+                if (offset != 0){
+                    slot = (offset - 4) / 4;
+                }
                 this.vtable.set(slot, label);
 
             } else{

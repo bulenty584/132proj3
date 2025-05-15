@@ -1,9 +1,43 @@
-Exception in thread "main" ParseException: Encountered " <IDENTIFIER> "Type "" at line 1, column 1.
-Was expecting one of:
-    <EOF> 
-    "func" ...
-    
-	at SparrowParser.generateParseException(SparrowParser.java:1202)
-	at SparrowParser.jj_consume_token(SparrowParser.java:1084)
-	at SparrowParser.Program(SparrowParser.java:27)
-	at Main.main(Main.java:25)
+16
+100000000
+4
+8
+12
+14
+16
+20
+24
+28
+100000000
+50000000
+333
+333
+333
+28
+24
+333
+20
+16
+333
+333
+333
+14
+12
+8
+333
+4
+100000000
+1
+1
+1
+0
+1
+4
+8
+14
+16
+20
+24
+28
+0
+0
