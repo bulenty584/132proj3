@@ -211,40 +211,40 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
         // Load array length
         String length = freshTemp("v");
-        emit(length + " = [" + array + " + 0]");
+        this.emit(length + " = [" + array + " + 0]");
 
         // Check index >= 0
         String zero = freshTemp("v");
-        emit(zero + " = 0");
+        this.emit(zero + " = 0");
         String one = freshTemp("v");
-        emit(one + " = 1");
+        this.emit(one + " = 1");
         String indexCheck = freshTemp("v");
-        emit(indexCheck + " = " + zero + " - " + one);
+        this.emit(indexCheck + " = " + zero + " - " + one);
 
         String isInBounds = freshTemp("v");
-        emit(isInBounds + " = " + index + " < " + length);
+        this.emit(isInBounds + " = " + index + " < " + length);
 
         String isValid = freshTemp("v");
-        emit(isValid + " = " + indexCheck + " * " + isInBounds);
+        this.emit(isValid + " = " + indexCheck + " * " + isInBounds);
 
-        emitError(isValid, isValid, 1);
+        this.emitError(isValid, isValid, 1);
 
         String wordSize = freshTemp("v");
-        emit(wordSize + " = 4");
+        this.emit(wordSize + " = 4");
         
         String byteOffset = freshTemp("v");
-        emit(byteOffset + " = " + index + " * " + wordSize);
+        this.emit(byteOffset + " = " + index + " * " + wordSize);
         
         String baseOffset = freshTemp("v");
-        emit(baseOffset + " = " + byteOffset + " + " + wordSize);
+        this.emit(baseOffset + " = " + byteOffset + " + " + wordSize);
         
 
         // Compute address: arr + offset
         String targetAddr = freshTemp("v");
-        emit(targetAddr + " = " + array + " + " + baseOffset);
+        this.emit(targetAddr + " = " + array + " + " + baseOffset);
 
         // Write value
-        emit("[" + targetAddr + " + 0] = " + value);
+        this.emit("[" + targetAddr + " + 0] = " + value);
 
         return null;
     }
@@ -326,12 +326,12 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
             }
         }
 
+        //check local or param
         if (isLocalOrParam) {
-            emit(id + " = " + expr); // ✅ local or param
+            this.emit(id + " = " + expr); 
         } else {
-            // Must be a field — get its offset and emit field store
             int offset = currentClass.getFieldOffset(id);
-            emit("[this + " + offset + "] = " + expr);
+            this.emit("[this + " + offset + "] = " + expr);
         }
 
         return id;
@@ -363,6 +363,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
     @Override
     public String visit(AndExpression n, Void argu) {
         String _ret=null;
+        
         // Evaluate left and right expressions
         String left = n.f0.accept(this, argu);
         String right = n.f2.accept(this, argu);
@@ -452,7 +453,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         this.tempVarTypes.put(_ret, TypeConstants.INT);
 
         // Add check
-        emitError(_ret, _ret, 0);
+        this.emitError(_ret, _ret, 0);
 
         // Store length at [arr + 0]
         this.emit("[" + _ret + " + 0] = " + len);
@@ -492,7 +493,7 @@ public String visit(Identifier n, Void argu) {
 
     if (offset != -1 && fieldType != null){
         String temp = freshTemp("v");
-        emit(temp + " = [this + " + offset + "]");
+        this.emit(temp + " = [this + " + offset + "]");
         tempVarTypes.put(temp, fieldType);
 
         return temp;
@@ -522,7 +523,7 @@ public String visit(Identifier n, Void argu) {
             params.add(param.name);
         }
 
-        emit("func " + className + "_" + methodName + "(" + String.join(" ", params) + ")");
+        this.emit("func " + className + "_" + methodName + "(" + String.join(" ", params) + ")");
         indentLevel++;
 
         for (Node stmt : n.f8.nodes) {
@@ -530,7 +531,7 @@ public String visit(Identifier n, Void argu) {
         }
 
         String returnExpr = n.f10.accept(this, argu);
-        emit("return " + returnExpr);
+        this.emit("return " + returnExpr);
 
         this.currentMethod = oldCurrentMethod;
         return _ret;
@@ -544,12 +545,10 @@ public String visit(Identifier n, Void argu) {
         // Load length = [array + 0]
         String length = freshTemp("v");
         this.emit(length + " = [" + array + " + 0]");
-    
-        // wordSize = 4
+
         String wordSize = freshTemp("v");
         this.emit(wordSize + " = 4");
-    
-        // Create constants: 0 and 1
+
         String one = freshTemp("v");
         String zero = freshTemp("v");
         this.emit(one + " = 1");
@@ -570,16 +569,13 @@ public String visit(Identifier n, Void argu) {
         this.emit(checkBoth + " = " + checkLower + " * " + checkUpper);
     
         this.emitError(checkBoth, checkBoth, 1);
-    
-        // Offset = index * wordSize
+
         String offset = freshTemp("v");
         this.emit(offset + " = " + index + " * " + wordSize);
-    
-        // Total offset = offset + wordSize (to skip length)
+
         String totalOffset = freshTemp("v");
         this.emit(totalOffset + " = " + offset + " + " + wordSize);
-    
-        // Address = array + totalOffset
+
         String address = freshTemp("v");
         this.emit(address + " = " + array + " + " + totalOffset);
     
@@ -607,32 +603,32 @@ public String visit(Identifier n, Void argu) {
 
         int sizeInBytes = 4 + totalFieldCount * 4;
         String sizeVal = freshTemp("v");
-        emit(sizeVal + " = " + sizeInBytes);
+        this.emit(sizeVal + " = " + sizeInBytes);
         this.tempVarTypes.put(sizeVal, TypeConstants.INT);
 
         //Allocate fields table
         _ret = freshTemp("v");
-        emit(_ret + " = alloc(" + sizeVal + ")");
+        this.emit(_ret + " = alloc(" + sizeVal + ")");
 
         int methodCount = cls.methods.size();
         int methodsSize = methodCount * 4;
         String methodSizeVal = freshTemp("v");
-        emit(methodSizeVal + " = " + methodsSize);
+        this.emit(methodSizeVal + " = " + methodsSize);
         this.tempVarTypes.put(_ret, className);
 
         String vmtLabel = "vmt_" + className;
-        emit(vmtLabel + " = alloc(" + methodSizeVal + ")");
+        this.emit(vmtLabel + " = alloc(" + methodSizeVal + ")");
 
         int size = 0;
         for (String method : cls.vtable){
             String methodNum = freshTemp("v");
-            emit(methodNum + " = " + method);
-            emit("[" + vmtLabel + " + " + (size * 4) + "] = " + methodNum);
+            this.emit(methodNum + " = " + method);
+            this.emit("[" + vmtLabel + " + " + (size * 4) + "] = " + methodNum);
             size++;
         }
-        emit("[" + _ret + " + 0] = " + vmtLabel);
+        this.emit("[" + _ret + " + 0] = " + vmtLabel);
 
-        emitError(_ret, _ret, 0);
+        this.emitError(_ret, _ret, 0);
         return _ret;
     }
 
@@ -641,7 +637,7 @@ public String visit(Identifier n, Void argu) {
 
         String _ret=null;
         String obj = n.f0.accept(this, argu);
-        emitError(obj, obj, 0);
+        this.emitError(obj, obj, 0);
 
         String objType = this.getTypeOfIdentifier(obj, this.currentClass, this.currentMethod);
         if (this.isThisAlias(obj)){
@@ -682,11 +678,11 @@ public String visit(Identifier n, Void argu) {
 
         int offset = targetClass.vtableIndices.get(methodName);
         String vtable = freshTemp("v");
-        emit(vtable + " = [" + obj + " + 0]");
+        this.emit(vtable + " = [" + obj + " + 0]");
         this.tempVarTypes.put(vtable, TypeConstants.INT);
 
         String fnPtr = freshTemp("v");
-        emit(fnPtr + " = [" + vtable + " + " + offset + "]");
+        this.emit(fnPtr + " = [" + vtable + " + " + offset + "]");
         this.tempVarTypes.put(fnPtr, TypeConstants.INT);
 
         //call method
@@ -698,7 +694,7 @@ public String visit(Identifier n, Void argu) {
         callArgs.addAll(argTemps);
 
         _ret = freshTemp("v");
-        emit(_ret + " = call " + fnPtr + "(" + String.join(" ", callArgs) + ")");
+        this.emit(_ret + " = call " + fnPtr + "(" + String.join(" ", callArgs) + ")");
         this.tempVarTypes.put(_ret, this.currentMethod.getReturnType().type);
 
         this.currentClass = oldClass;
@@ -721,17 +717,17 @@ public String visit(Identifier n, Void argu) {
         // If exprVal is a field or alias, load its value into a temp
         if (!exprVal.startsWith("v") && !Character.isDigit(exprVal.charAt(0))) {
             String loaded = freshTemp("v");
-            emit(loaded + " = " + exprVal);
+            this.emit(loaded + " = " + exprVal);
             exprVal = loaded;
         }
 
         String one = freshTemp("v");
         String literalOne = freshTemp("v");
         this.emit(literalOne + " = 1");
-        emit(one + " = " + literalOne);
+        this.emit(one + " = " + literalOne);
 
         String result = freshTemp("v");
-        emit(result + " = " + one + " - " + exprVal);
+        this.emit(result + " = " + one + " - " + exprVal);
         tempVarTypes.put(result, TypeConstants.BOOLEAN);
 
         return result;
@@ -798,20 +794,18 @@ public String visit(Identifier n, Void argu) {
         String startLabel = freshLabel("whileStart");
         String bodyLabel = freshLabel("whileBody");
         String endLabel = freshLabel("whileEnd");
-        emit(startLabel + ":");
+        this.emit(startLabel + ":");
 
         _ret = n.f2.accept(this, argu);
-        emit("if0 " + _ret + " goto " + endLabel);
+        this.emit("if0 " + _ret + " goto " + endLabel);
 
-        // Body
-        emit(bodyLabel + ":");
+        this.emit(bodyLabel + ":");
         indentLevel++;
         n.f4.accept(this, argu);
 
-        // Loop back
-        emit("goto " + startLabel);
+        this.emit("goto " + startLabel);
 
-        emit(endLabel + ":");
+        this.emit(endLabel + ":");
         indentLevel++;
 
         return null;
