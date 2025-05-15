@@ -9,16 +9,21 @@ func Main()
   [v1 + 0] = vmt_A
   if0 v1 goto v1Error_0
   goto v1End_1
-  v1Error_0:
-    error("null pointer")
-  v1End_1:
-    v4 = [v1 + 0]
-    v5 = [v4 + 0]
-    v6 = call v5(v1)
-    print(v6)
-    return y0
-    func A_run(this)
-      v7 = 42
-      print(v7)
-      v8 = 99
-      return v8
+v1Error_0:
+  error("null pointer")
+v1End_1:
+  if0 v1 goto v1Error_2
+  goto v1End_3
+v1Error_2:
+  error("null pointer")
+v1End_3:
+  v4 = [v1 + 0]
+  v5 = [v4 + 0]
+  v6 = call v5(v1)
+  print(v6)
+  return y0
+func A_run(this)
+  v7 = 42
+  print(v7)
+  v8 = 99
+  return v8

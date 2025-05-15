@@ -11,41 +11,46 @@ func Main()
   [v1 + 0] = vmt_A
   if0 v1 goto v1Error_0
   goto v1End_1
-  v1Error_0:
-    error("null pointer")
-  v1End_1:
-    v5 = [v1 + 0]
-    v6 = [v5 + 4]
-    v7 = call v6(v1)
-    print(v7)
-    return y0
-    func A_run(this)
-      if0 this goto thisError_2
-      goto thisEnd_3
-      thisError_2:
-        error("null pointer")
-      thisEnd_3:
-        v8 = 12
-        v9 = [this + 0]
-        v10 = [v9 + 0]
-        v11 = call v10(this v8)
-        a = v11
-        if0 this goto thisError_4
-        goto thisEnd_5
-        thisError_4:
-          error("null pointer")
-        thisEnd_5:
-          v12 = 15
-          v13 = [this + 0]
-          v14 = [v13 + 0]
-          v15 = call v14(this v12)
-          b = v15
-          v16 = a + b
-          return v16
-        func A_helper(this param)
-          x = param
-          v17 = 1
-          v18 = param + v17
-          param = v18
-          print(x)
-          return x
+v1Error_0:
+  error("null pointer")
+v1End_1:
+  if0 v1 goto v1Error_2
+  goto v1End_3
+v1Error_2:
+  error("null pointer")
+v1End_3:
+  v5 = [v1 + 0]
+  v6 = [v5 + 4]
+  v7 = call v6(v1)
+  print(v7)
+  return y0
+func A_run(this)
+  if0 this goto thisError_4
+  goto thisEnd_5
+thisError_4:
+  error("null pointer")
+thisEnd_5:
+  v8 = 12
+  v9 = [this + 0]
+  v10 = [v9 + 0]
+  v11 = call v10(this v8)
+  a = v11
+  if0 this goto thisError_6
+  goto thisEnd_7
+thisError_6:
+  error("null pointer")
+thisEnd_7:
+  v12 = 15
+  v13 = [this + 0]
+  v14 = [v13 + 0]
+  v15 = call v14(this v12)
+  b = v15
+  v16 = a + b
+  return v16
+func A_helper(this param)
+  x = param
+  v17 = 1
+  v18 = param + v17
+  param = v18
+  print(x)
+  return x

@@ -7,7 +7,10 @@ import java.util.List;
 import minijava.syntaxtree.AllocationExpression;
 import minijava.syntaxtree.AndExpression;
 import minijava.syntaxtree.ArrayAllocationExpression;
+import minijava.syntaxtree.ArrayAssignmentStatement;
+import minijava.syntaxtree.ArrayLookup;
 import minijava.syntaxtree.AssignmentStatement;
+import minijava.syntaxtree.BracketExpression;
 import minijava.syntaxtree.ClassDeclaration;
 import minijava.syntaxtree.ClassExtendsDeclaration;
 import minijava.syntaxtree.CompareExpression;
@@ -17,12 +20,14 @@ import minijava.syntaxtree.ExpressionRest;
 import minijava.syntaxtree.FalseLiteral;
 import minijava.syntaxtree.Goal;
 import minijava.syntaxtree.Identifier;
+import minijava.syntaxtree.IfStatement;
 import minijava.syntaxtree.IntegerLiteral;
 import minijava.syntaxtree.MainClass;
 import minijava.syntaxtree.MessageSend;
 import minijava.syntaxtree.MethodDeclaration;
 import minijava.syntaxtree.MinusExpression;
 import minijava.syntaxtree.Node;
+import minijava.syntaxtree.NotExpression;
 import minijava.syntaxtree.PlusExpression;
 import minijava.syntaxtree.PrimaryExpression;
 import minijava.syntaxtree.PrintStatement;
@@ -65,11 +70,11 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         return base + "_" + (labelCounter++);
     }
 
-    private boolean isThisAlias(String name) {
+    private boolean isThisAlias(String name) throws RuntimeException{
         return name.startsWith("this_$");
     }
 
-    private void emitError(String ptr, String labelBase) {
+    private void emitError(String ptr, String labelBase, int type) {
         if (this.isThisAlias(ptr)){
             ptr = "this";
         }
@@ -83,9 +88,11 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
     
         this.emit("if0 " + ptr + " goto " + errorLabel);
         this.emit("goto " + endLabel);
+        indentLevel = 0;
         this.emit(errorLabel + ":");
         indentLevel++;
-        this.emit("error(\"null pointer\")");
+        if (type == 0) this.emit("error(\"null pointer\")");
+        else if (type == 1) this.emit("error(\"array index out of bounds\")");
         indentLevel--;
         this.emit(endLabel + ":");
         indentLevel++;
@@ -173,10 +180,6 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         this.currentMethod = mainMethod;
 
         // loop through statements
-
-        for (Node _node : n.f14.nodes){
-            _ret = _node.accept(this, argu);
-        }
         for (Node _node : n.f15.nodes){
             _ret = _node.accept(this, argu);
         }
@@ -185,6 +188,52 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
         return _ret;
     }
+
+    @Override
+    public String visit(ArrayAssignmentStatement n, Void argu) {
+        String array = n.f0.f0.toString();
+        String index = n.f2.accept(this, argu);
+        String value = n.f5.accept(this, argu);
+
+        // Load array length
+        String length = freshTemp("v");
+        emit(length + " = [" + array + " + 0]");
+
+        // Check index >= 0
+        String zero = freshTemp("v");
+        emit(zero + " = 0");
+
+        String isNonNegative = freshTemp("v");
+        emit(isNonNegative + " = " + zero + " < " + index);
+
+        String isInBounds = freshTemp("v");
+        emit(isInBounds + " = " + index + " < " + length);
+
+        String isValid = freshTemp("v");
+        emit(isValid + " = " + isNonNegative + " * " + isInBounds);
+
+        emitError(isValid, isValid, 1);
+
+        String indexPlus1 = freshTemp("v");
+        String right1 = freshTemp("v");
+        this.emit(right1 + " = 1");
+        emit(indexPlus1 + " = " + index + right1);
+
+        String byteOffset = freshTemp("v");
+        String right4 = freshTemp("v");
+        this.emit(right4 + " = 4");
+        emit(byteOffset + " = " + indexPlus1 + " * " + right4);
+
+        // Compute address: arr + offset
+        String targetAddr = freshTemp("v");
+        emit(targetAddr + " = " + array + " + " + byteOffset);
+
+        // Write value
+        emit("[" + targetAddr + " + 0] = " + value);
+
+        return null;
+    }
+
 
     /**
     * f0 -> "class"
@@ -202,10 +251,6 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String classId = n.f1.accept(this, argu);
         MiniJavaClass classToAdd = this.table.classMap.get(classId);
         this.currentClass = classToAdd;
-
-        for (Node _node : n.f3.nodes){
-            _ret = _node.accept(this, argu);
-        }
 
         // run through MethodDeclarations
         for (Node f4 : n.f4.nodes){
@@ -244,6 +289,10 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String _ret=null;
         String id = n.f0.f0.toString();
         String expr = n.f2.accept(this, argu);
+        if (isThisAlias(expr)){
+            expr = "this";
+        }
+        _ret = id;
         this.emit(id + " = " + expr);
         return _ret;
     }
@@ -252,6 +301,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
     public String visit(PrintStatement n, Void argu) {
         String _ret=null;
         _ret = n.f2.accept(this, argu);
+        if (_ret == null) System.out.println(_ret);
         this.emit("print(" + _ret + ")");
         return _ret;
     }
@@ -347,11 +397,15 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         // Evaluate length expression
         String len = n.f3.accept(this, argu);
         String plusOne = freshTemp("v");
-        this.emit(plusOne + " = " + len + " + 1");
+        String rightOne = freshTemp("v");
+        this.emit(rightOne + " = 1");
+        this.emit(plusOne + " = " + len + " + " + rightOne);
         this.tempVarTypes.put(plusOne, TypeConstants.INT);
 
         String totalSize = freshTemp("v");
-        this.emit(totalSize + " = " + plusOne + " * 4");
+        String rightFour = freshTemp("v");
+        this.emit(rightFour + " = 4");
+        this.emit(totalSize + " = " + plusOne + " * " + rightFour);
         this.tempVarTypes.put(totalSize, TypeConstants.INT);
 
         _ret = freshTemp("v");
@@ -359,7 +413,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         this.tempVarTypes.put(_ret, TypeConstants.INT);
 
         // Add check
-        emitError(_ret, _ret);
+        emitError(_ret, _ret, 0);
 
         // Store length at [arr + 0]
         this.emit("[" + _ret + " + 0] = " + len);
@@ -369,17 +423,29 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
     @Override
     public String visit(Identifier n, Void argu) {
-        return n.f0.toString();
-    }
+        String name = n.f0.toString();
+
+        // Look up the variable in the current method scope
+        String type = getTypeOfIdentifier(name, this.currentClass, this.currentMethod);
+
+        // Track its type in the tempVarTypes (only if not already present)
+        if (!tempVarTypes.containsKey(name)) {
+            tempVarTypes.put(name, type);
+        }
+
+        return name;
+    }   
 
 
     @Override
     public String visit(MethodDeclaration n, Void argu) {
         String _ret=null;
+        this.indentLevel = 0;
         String methodName = n.f2.f0.toString();
         MiniJavaMethod expectedMethod = this.currentClass.getMethodIncludingInherited(methodName, this.table, true);
-        MiniJavaMethod oldCurrentMethod = this.currentClass.currentMethod;
-        this.currentClass.currentMethod = expectedMethod;
+        MiniJavaMethod oldCurrentMethod = this.currentMethod;
+        this.currentMethod = expectedMethod;
+
 
         String className = this.currentClass.getName();
         List<String> params = new ArrayList<>();
@@ -400,9 +466,62 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
         indentLevel--;
 
-        this.currentClass.currentMethod = oldCurrentMethod;
+        this.currentMethod = oldCurrentMethod;
         return _ret;
     }
+
+    @Override
+    public String visit(ArrayLookup n, Void argu) {
+        String array = n.f0.accept(this, argu);
+        String index = n.f2.accept(this, argu);
+
+        // Load array length from arr[0]
+        String length = freshTemp("v");
+        this.emit(length + " = [" + array + " + 0]");
+
+        // Create constants: -1 and 4
+        String minusOne = freshTemp("v");
+        String rightOne = freshTemp("v");
+        String zero = freshTemp("v");
+        this.emit(rightOne + " = 1");
+        this.emit(zero + " = 0");
+        this.emit(minusOne + " = " + zero + " - " + rightOne);
+
+        String wordSize = freshTemp("v");
+        this.emit(wordSize + " = 4");
+
+        // Check: -1 < index
+        String checkLower = freshTemp("v");
+        this.emit(checkLower + " = " + minusOne + " < " + index);
+
+        // Check: index < length
+        String checkUpper = freshTemp("v");
+        this.emit(checkUpper + " = " + index + " < " + length);
+
+        // Combine both checks: AND
+        String checkBoth = freshTemp("v");
+        this.emit(checkBoth + " = " + checkLower + " * " + checkUpper);
+
+        this.emitError(checkBoth, checkBoth, 1);
+
+        // Compute indexOffset = index * wordSize
+        String offset = freshTemp("v");
+        this.emit(offset + " = " + index + " * " + wordSize);
+
+        // Compute final address = array + offset + wordSize (to skip length)
+        String baseOffset = freshTemp("v");
+        this.emit(baseOffset + " = " + offset + " + " + wordSize);
+
+        String address = freshTemp("v");
+        this.emit(address + " = " + array + " + " + baseOffset);
+
+        // Load the actual array value from computed address
+        String result = freshTemp("v");
+        this.emit(result + " = [" + address + " + 0]");
+
+        return result;
+    }
+
 
     @Override
     public String visit(AllocationExpression n, Void argu) {
@@ -419,7 +538,6 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         //Allocate fields table
         _ret = freshTemp("v");
         emit(_ret + " = alloc(" + sizeVal + ")");
-        this.tempVarTypes.put(_ret, className);
 
         int methodCount = cls.methods.size();
         int methodsSize = methodCount * 4;
@@ -438,9 +556,9 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
             emit("[" + vmtLabel + " + " + size * 4 + "] = " + methodNum);
             size++;
         }
-
         emit("[" + _ret + " + 0] = " + vmtLabel);
 
+        emitError(_ret, _ret, 0);
         return _ret;
     }
 
@@ -449,24 +567,17 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
         String _ret=null;
         String obj = n.f0.accept(this, argu);
-        emitError(obj, obj);
+        emitError(obj, obj, 0);
 
         String objType = this.getTypeOfIdentifier(obj, this.currentClass, this.currentMethod);
-
         if (this.isThisAlias(obj)){
             obj = "this";
         }
 
         MiniJavaClass targetClass = this.table.classMap.get(objType);
         MiniJavaClass oldClass = this.currentClass;
-        this.currentClass = targetClass;
 
         String methodName = n.f2.f0.toString();
-        MiniJavaMethod method = targetClass.getMethodIncludingInherited(methodName, this.table, false);
-
-        MiniJavaMethod oldMethod = targetClass.currentMethod;
-        targetClass.currentMethod = method;
-
         List<String> argTemps = new ArrayList<>();
         if (n.f4 != null) {
             ExpressionList exprList = (ExpressionList) n.f4.node;
@@ -479,7 +590,11 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
             }
         }
 
-        int offset = targetClass.vtableIndices.get(methodName);  // assumes buildVtable() was run
+        MiniJavaMethod method = targetClass.getMethodIncludingInherited(methodName, this.table, false);
+        MiniJavaMethod oldMethod = this.currentMethod;
+        this.currentMethod = method;
+
+        int offset = targetClass.vtableIndices.get(methodName);
         String vtable = freshTemp("v");
         emit(vtable + " = [" + obj + " + 0]");
         this.tempVarTypes.put(vtable, TypeConstants.INT);
@@ -495,19 +610,35 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
         _ret = freshTemp("v");
         emit(_ret + " = call " + fnPtr + "(" + String.join(" ", callArgs) + ")");
-        this.tempVarTypes.put(_ret, TypeConstants.INT);
+        this.tempVarTypes.put(_ret, this.currentMethod.getReturnType().type);
 
-        //cleanup
-        targetClass.currentMethod = oldMethod;
         this.currentClass = oldClass;
+        this.currentMethod = oldMethod;
 
         return _ret;
     }
 
+    @Override
+    public String visit(BracketExpression n, Void argu) {
+        String _ret=null;
+        _ret = n.f1.accept(this, argu);
+        return _ret;
+    }
 
+    @Override
+    public String visit(NotExpression n, Void argu) {
+        String exprVal = n.f1.accept(this, argu); // Visit inner expression
+        String one = freshTemp("v");
+        String literalOne = freshTemp("v");
+        this.emit(literalOne + " = 1");
+        emit(one + " = " + literalOne);
 
+        String result = freshTemp("v");
+        emit(result + " = " + one + " - " + exprVal);
+        tempVarTypes.put(result, TypeConstants.BOOLEAN);
 
-
+        return result;
+    }
 
 
     @Override
@@ -525,7 +656,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String _ret=null;
         _ret = freshTemp("v");
         this.tempVarTypes.put(_ret, TypeConstants.BOOLEAN);
-        this.emit(_ret + " = 1");
+        this.emit(_ret + " = 0");
         return _ret;
     }
 
@@ -545,6 +676,22 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         _ret = this.currentClass.getName();
         this.tempVarTypes.put("this_$"+_ret, _ret);
         return "this_$"+_ret;
+    }
+
+    @Override 
+    public String visit(IfStatement n, Void argu){
+        String _ret=null;
+        _ret = n.f2.accept(this, argu);
+        String elseLabel = freshLabel("else");
+        String endLabel = freshLabel("ifend");
+
+        this.emit("if0 " + _ret + " goto " + elseLabel);
+        n.f4.accept(this, argu);  // then branch
+        this.emit("goto " + endLabel);
+        this.emit(elseLabel + ":");
+        n.f6.accept(this, argu);  // else branch
+        this.emit(endLabel + ":");
+        return _ret;
     }
 
 

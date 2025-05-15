@@ -1,13 +1,6 @@
-1,9c1,26
-< Exception in thread "main" ParseException: Encountered " <IDENTIFIER> "Type "" at line 1, column 1.
-< Was expecting one of:
-<     <EOF> 
-<     "func" ...
-<     
-< 	at SparrowParser.generateParseException(SparrowParser.java:1202)
-< 	at SparrowParser.jj_consume_token(SparrowParser.java:1084)
-< 	at SparrowParser.Program(SparrowParser.java:27)
-< 	at Main.main(Main.java:24)
+1,2c1,26
+< --- Error (Explicit) ---
+< Cannot invoke "value.Value.toString()" because the return value of "sparrow.visitor.Interpreter.access(token.Identifier)" is null
 ---
 > 16
 > 100000000

@@ -9,27 +9,68 @@ func Main()
   [v1 + 0] = vmt_A
   if0 v1 goto v1Error_0
   goto v1End_1
-  v1Error_0:
-    error("null pointer")
-  v1End_1:
-    v4 = [v1 + 0]
-    v5 = [v4 + 0]
-    v6 = call v5(v1)
-    print(v6)
-    return y0
-    func A_run(this)
-      v7 = 20
-      v8 = v7 + 1
-      v9 = v8 * 4
-      v10 = alloc(v9)
-      if0 v10 goto v10Error_2
-      goto v10End_3
-      v10Error_2:
-        error("null pointer")
-      v10End_3:
-        [v10 + 0] = v7
-        a = v10
-        v11 = 10
-        print(null)
-        v12 = 40
-        return null
+v1Error_0:
+  error("null pointer")
+v1End_1:
+  if0 v1 goto v1Error_2
+  goto v1End_3
+v1Error_2:
+  error("null pointer")
+v1End_3:
+  v4 = [v1 + 0]
+  v5 = [v4 + 0]
+  v6 = call v5(v1)
+  print(v6)
+  return y0
+func A_run(this)
+  v7 = 20
+  v9 = 1
+  v8 = v7 + v9
+  v11 = 4
+  v10 = v8 * v11
+  v12 = alloc(v10)
+  if0 v12 goto v12Error_4
+  goto v12End_5
+v12Error_4:
+  error("null pointer")
+v12End_5:
+  [v12 + 0] = v7
+  a = v12
+  v13 = 10
+  v14 = [a + 0]
+  v16 = 1
+  v17 = 0
+  v15 = v17 - v16
+  v18 = 4
+  v19 = v15 < v13
+  v20 = v13 < v14
+  v21 = v19 * v20
+  if0 v21 goto v21Error_6
+  goto v21End_7
+v21Error_6:
+  error("array index out of bounds")
+v21End_7:
+  v22 = v13 * v18
+  v23 = v22 + v18
+  v24 = a + v23
+  v25 = [v24 + 0]
+  print(v25)
+  v26 = 40
+  v27 = [a + 0]
+  v29 = 1
+  v30 = 0
+  v28 = v30 - v29
+  v31 = 4
+  v32 = v28 < v26
+  v33 = v26 < v27
+  v34 = v32 * v33
+  if0 v34 goto v34Error_8
+  goto v34End_9
+v34Error_8:
+  error("array index out of bounds")
+v34End_9:
+  v35 = v26 * v31
+  v36 = v35 + v31
+  v37 = a + v36
+  v38 = [v37 + 0]
+  return v38

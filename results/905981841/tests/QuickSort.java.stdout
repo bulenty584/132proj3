@@ -15,168 +15,559 @@ func Main()
   [v1 + 0] = vmt_QS
   if0 v1 goto v1Error_0
   goto v1End_1
-  v1Error_0:
-    error("null pointer")
-  v1End_1:
-    v7 = 10
-    v8 = [v1 + 0]
-    v9 = [v8 + 8]
-    v10 = call v9(v1 v7)
-    print(v10)
-    return y0
-    func QS_Start(this sz)
-      if0 this goto thisError_2
-      goto thisEnd_3
-      thisError_2:
-        error("null pointer")
-      thisEnd_3:
-        v11 = [this + 0]
-        v12 = [v11 + 4]
-        v13 = call v12(this sz)
-        aux01 = v13
-        if0 this goto thisError_4
-        goto thisEnd_5
-        thisError_4:
-          error("null pointer")
-        thisEnd_5:
-          v14 = [this + 0]
-          v15 = [v14 + 0]
-          v16 = call v15(this)
-          aux01 = v16
-          v17 = 9999
-          print(v17)
-          v18 = 1
-          v19 = size - v18
-          aux01 = v19
-          if0 this goto thisError_6
-          goto thisEnd_7
-          thisError_6:
-            error("null pointer")
-          thisEnd_7:
-            v20 = 0
-            v21 = [this + 0]
-            v22 = [v21 + 12]
-            v23 = call v22(this v20 aux01)
-            aux01 = v23
-            if0 this goto thisError_8
-            goto thisEnd_9
-            thisError_8:
-              error("null pointer")
-            thisEnd_9:
-              v24 = [this + 0]
-              v25 = [v24 + 0]
-              v26 = call v25(this)
-              aux01 = v26
-              v27 = 0
-              return v27
-            func QS_Sort(this left right)
-              v28 = 0
-              t = v28
-              v29 = left < right
-              v = null
-              v30 = 1
-              v31 = left - v30
-              i = v31
-              j = right
-              v32 = 1
-              cont01 = v32
-              v33 = 1
-              cont02 = v33
-              v34 = 1
-              v35 = i + v34
-              i = v35
-              aux03 = null
-              v36 = aux03 < v
-              v37 = 1
-              cont02 = v37
-              v38 = 1
-              cont02 = v38
-              v39 = 1
-              cont02 = v39
-              v40 = 1
-              v41 = j - v40
-              j = v41
-              aux03 = null
-              v42 = v < aux03
-              v43 = 1
-              cont02 = v43
-              v44 = 1
-              cont02 = v44
-              t = null
-              v45 = 1
-              v46 = i + v45
-              v47 = j < null
-              v48 = 1
-              cont01 = v48
-              v49 = 1
-              cont01 = v49
-              if0 this goto thisError_10
-              goto thisEnd_11
-              thisError_10:
-                error("null pointer")
-              thisEnd_11:
-                v50 = 1
-                v51 = i - v50
-                v52 = [this + 0]
-                v53 = [v52 + 12]
-                v54 = call v53(this left v51)
-                nt = v54
-                if0 this goto thisError_12
-                goto thisEnd_13
-                thisError_12:
-                  error("null pointer")
-                thisEnd_13:
-                  v55 = 1
-                  v56 = i + v55
-                  v57 = [this + 0]
-                  v58 = [v57 + 12]
-                  v59 = call v58(this v56 right)
-                  nt = v59
-                  v60 = 0
-                  nt = v60
-                  v61 = 0
-                  return v61
-                func QS_Print(this)
-                  v62 = 0
-                  j = v62
-                  v63 = j < null
-                  print(null)
-                  v64 = 1
-                  v65 = j + v64
-                  j = v65
-                  v66 = 0
-                  return v66
-                func QS_Init(this sz)
-                  size = sz
-                  v67 = sz + 1
-                  v68 = v67 * 4
-                  v69 = alloc(v68)
-                  if0 v69 goto v69Error_14
-                  goto v69End_15
-                  v69Error_14:
-                    error("null pointer")
-                  v69End_15:
-                    [v69 + 0] = sz
-                    number = v69
-                    v70 = 0
-                    v71 = 20
-                    v72 = 1
-                    v73 = 7
-                    v74 = 2
-                    v75 = 12
-                    v76 = 3
-                    v77 = 18
-                    v78 = 4
-                    v79 = 2
-                    v80 = 5
-                    v81 = 11
-                    v82 = 6
-                    v83 = 6
-                    v84 = 7
-                    v85 = 9
-                    v86 = 8
-                    v87 = 19
-                    v88 = 9
-                    v89 = 5
-                    v90 = 0
-                    return v90
+v1Error_0:
+  error("null pointer")
+v1End_1:
+  if0 v1 goto v1Error_2
+  goto v1End_3
+v1Error_2:
+  error("null pointer")
+v1End_3:
+  v7 = 10
+  v8 = [v1 + 0]
+  v9 = [v8 + 8]
+  v10 = call v9(v1 v7)
+  print(v10)
+  return y0
+func QS_Start(this sz)
+  if0 this goto thisError_4
+  goto thisEnd_5
+thisError_4:
+  error("null pointer")
+thisEnd_5:
+  v11 = [this + 0]
+  v12 = [v11 + 4]
+  v13 = call v12(this sz)
+  aux01 = v13
+  if0 this goto thisError_6
+  goto thisEnd_7
+thisError_6:
+  error("null pointer")
+thisEnd_7:
+  v14 = [this + 0]
+  v15 = [v14 + 0]
+  v16 = call v15(this)
+  aux01 = v16
+  v17 = 9999
+  print(v17)
+  v18 = 1
+  v19 = size - v18
+  aux01 = v19
+  if0 this goto thisError_8
+  goto thisEnd_9
+thisError_8:
+  error("null pointer")
+thisEnd_9:
+  v20 = 0
+  v21 = [this + 0]
+  v22 = [v21 + 12]
+  v23 = call v22(this v20 aux01)
+  aux01 = v23
+  if0 this goto thisError_10
+  goto thisEnd_11
+thisError_10:
+  error("null pointer")
+thisEnd_11:
+  v24 = [this + 0]
+  v25 = [v24 + 0]
+  v26 = call v25(this)
+  aux01 = v26
+  v27 = 0
+  return v27
+func QS_Sort(this left right)
+  v28 = 0
+  t = v28
+  if0 null goto else_13
+  v29 = left < right
+  goto ifend_14
+  else_13:
+  v30 = [number + 0]
+  v32 = 1
+  v33 = 0
+  v31 = v33 - v32
+  v34 = 4
+  v35 = v31 < right
+  v36 = right < v30
+  v37 = v35 * v36
+  if0 v37 goto v37Error_15
+  goto v37End_16
+v37Error_15:
+  error("array index out of bounds")
+v37End_16:
+  v38 = right * v34
+  v39 = v38 + v34
+  v40 = number + v39
+  v41 = [v40 + 0]
+  v = v41
+  v42 = 1
+  v43 = left - v42
+  i = v43
+  j = right
+  v44 = 1
+  cont01 = v44
+  v45 = 1
+  cont02 = v45
+  v46 = 1
+  v47 = i + v46
+  i = v47
+  v48 = [number + 0]
+  v50 = 1
+  v51 = 0
+  v49 = v51 - v50
+  v52 = 4
+  v53 = v49 < i
+  v54 = i < v48
+  v55 = v53 * v54
+  if0 v55 goto v55Error_17
+  goto v55End_18
+v55Error_17:
+  error("array index out of bounds")
+v55End_18:
+  v56 = i * v52
+  v57 = v56 + v52
+  v58 = number + v57
+  v59 = [v58 + 0]
+  aux03 = v59
+  if0 null goto else_20
+  v60 = aux03 < v
+  goto ifend_21
+  else_20:
+  v61 = 0
+  cont02 = v61
+  ifend_21:
+  v62 = 1
+  cont02 = v62
+  v63 = 1
+  v64 = j - v63
+  j = v64
+  v65 = [number + 0]
+  v67 = 1
+  v68 = 0
+  v66 = v68 - v67
+  v69 = 4
+  v70 = v66 < j
+  v71 = j < v65
+  v72 = v70 * v71
+  if0 v72 goto v72Error_22
+  goto v72End_23
+v72Error_22:
+  error("array index out of bounds")
+v72End_23:
+  v73 = j * v69
+  v74 = v73 + v69
+  v75 = number + v74
+  v76 = [v75 + 0]
+  aux03 = v76
+  if0 null goto else_25
+  v77 = v < aux03
+  goto ifend_26
+  else_25:
+  v78 = 0
+  cont02 = v78
+  ifend_26:
+  v79 = [number + 0]
+  v81 = 1
+  v82 = 0
+  v80 = v82 - v81
+  v83 = 4
+  v84 = v80 < i
+  v85 = i < v79
+  v86 = v84 * v85
+  if0 v86 goto v86Error_27
+  goto v86End_28
+v86Error_27:
+  error("array index out of bounds")
+v86End_28:
+  v87 = i * v83
+  v88 = v87 + v83
+  v89 = number + v88
+  v90 = [v89 + 0]
+  t = v90
+  v91 = [number + 0]
+  v93 = 1
+  v94 = 0
+  v92 = v94 - v93
+  v95 = 4
+  v96 = v92 < j
+  v97 = j < v91
+  v98 = v96 * v97
+  if0 v98 goto v98Error_29
+  goto v98End_30
+v98Error_29:
+  error("array index out of bounds")
+v98End_30:
+  v99 = j * v95
+  v100 = v99 + v95
+  v101 = number + v100
+  v102 = [v101 + 0]
+  v103 = [number + 0]
+  v104 = 0
+  v105 = v104 < i
+  v106 = i < v103
+  v107 = v105 * v106
+  if0 v107 goto v107Error_31
+  goto v107End_32
+v107Error_31:
+  error("array index out of bounds")
+v107End_32:
+  v109 = 1
+  v108 = iv109
+  v111 = 4
+  v110 = v108 * v111
+  v112 = number + v110
+  [v112 + 0] = v102
+  v113 = [number + 0]
+  v114 = 0
+  v115 = v114 < j
+  v116 = j < v113
+  v117 = v115 * v116
+  if0 v117 goto v117Error_33
+  goto v117End_34
+v117Error_33:
+  error("array index out of bounds")
+v117End_34:
+  v119 = 1
+  v118 = jv119
+  v121 = 4
+  v120 = v118 * v121
+  v122 = number + v120
+  [v122 + 0] = t
+  if0 null goto else_36
+  v123 = 1
+  v124 = i + v123
+  v125 = j < v124
+  goto ifend_37
+  else_36:
+  v126 = 0
+  cont01 = v126
+  ifend_37:
+  v127 = [number + 0]
+  v129 = 1
+  v130 = 0
+  v128 = v130 - v129
+  v131 = 4
+  v132 = v128 < i
+  v133 = i < v127
+  v134 = v132 * v133
+  if0 v134 goto v134Error_38
+  goto v134End_39
+v134Error_38:
+  error("array index out of bounds")
+v134End_39:
+  v135 = i * v131
+  v136 = v135 + v131
+  v137 = number + v136
+  v138 = [v137 + 0]
+  v139 = [number + 0]
+  v140 = 0
+  v141 = v140 < j
+  v142 = j < v139
+  v143 = v141 * v142
+  if0 v143 goto v143Error_40
+  goto v143End_41
+v143Error_40:
+  error("array index out of bounds")
+v143End_41:
+  v145 = 1
+  v144 = jv145
+  v147 = 4
+  v146 = v144 * v147
+  v148 = number + v146
+  [v148 + 0] = v138
+  v149 = [number + 0]
+  v151 = 1
+  v152 = 0
+  v150 = v152 - v151
+  v153 = 4
+  v154 = v150 < right
+  v155 = right < v149
+  v156 = v154 * v155
+  if0 v156 goto v156Error_42
+  goto v156End_43
+v156Error_42:
+  error("array index out of bounds")
+v156End_43:
+  v157 = right * v153
+  v158 = v157 + v153
+  v159 = number + v158
+  v160 = [v159 + 0]
+  v161 = [number + 0]
+  v162 = 0
+  v163 = v162 < i
+  v164 = i < v161
+  v165 = v163 * v164
+  if0 v165 goto v165Error_44
+  goto v165End_45
+v165Error_44:
+  error("array index out of bounds")
+v165End_45:
+  v167 = 1
+  v166 = iv167
+  v169 = 4
+  v168 = v166 * v169
+  v170 = number + v168
+  [v170 + 0] = v160
+  v171 = [number + 0]
+  v172 = 0
+  v173 = v172 < right
+  v174 = right < v171
+  v175 = v173 * v174
+  if0 v175 goto v175Error_46
+  goto v175End_47
+v175Error_46:
+  error("array index out of bounds")
+v175End_47:
+  v177 = 1
+  v176 = rightv177
+  v179 = 4
+  v178 = v176 * v179
+  v180 = number + v178
+  [v180 + 0] = t
+  if0 this goto thisError_48
+  goto thisEnd_49
+thisError_48:
+  error("null pointer")
+thisEnd_49:
+  v181 = 1
+  v182 = i - v181
+  v183 = [this + 0]
+  v184 = [v183 + 12]
+  v185 = call v184(this left v182)
+  nt = v185
+  if0 this goto thisError_50
+  goto thisEnd_51
+thisError_50:
+  error("null pointer")
+thisEnd_51:
+  v186 = 1
+  v187 = i + v186
+  v188 = [this + 0]
+  v189 = [v188 + 12]
+  v190 = call v189(this v187 right)
+  nt = v190
+  ifend_14:
+  v191 = 0
+  return v191
+func QS_Print(this)
+  v192 = 0
+  j = v192
+  v193 = j < size
+  v194 = [number + 0]
+  v196 = 1
+  v197 = 0
+  v195 = v197 - v196
+  v198 = 4
+  v199 = v195 < j
+  v200 = j < v194
+  v201 = v199 * v200
+  if0 v201 goto v201Error_52
+  goto v201End_53
+v201Error_52:
+  error("array index out of bounds")
+v201End_53:
+  v202 = j * v198
+  v203 = v202 + v198
+  v204 = number + v203
+  v205 = [v204 + 0]
+  print(v205)
+  v206 = 1
+  v207 = j + v206
+  j = v207
+  v208 = 0
+  return v208
+func QS_Init(this sz)
+  size = sz
+  v210 = 1
+  v209 = sz + v210
+  v212 = 4
+  v211 = v209 * v212
+  v213 = alloc(v211)
+  if0 v213 goto v213Error_54
+  goto v213End_55
+v213Error_54:
+  error("null pointer")
+v213End_55:
+  [v213 + 0] = sz
+  number = v213
+  v214 = 0
+  v215 = 20
+  v216 = [number + 0]
+  v217 = 0
+  v218 = v217 < v214
+  v219 = v214 < v216
+  v220 = v218 * v219
+  if0 v220 goto v220Error_56
+  goto v220End_57
+v220Error_56:
+  error("array index out of bounds")
+v220End_57:
+  v222 = 1
+  v221 = v214v222
+  v224 = 4
+  v223 = v221 * v224
+  v225 = number + v223
+  [v225 + 0] = v215
+  v226 = 1
+  v227 = 7
+  v228 = [number + 0]
+  v229 = 0
+  v230 = v229 < v226
+  v231 = v226 < v228
+  v232 = v230 * v231
+  if0 v232 goto v232Error_58
+  goto v232End_59
+v232Error_58:
+  error("array index out of bounds")
+v232End_59:
+  v234 = 1
+  v233 = v226v234
+  v236 = 4
+  v235 = v233 * v236
+  v237 = number + v235
+  [v237 + 0] = v227
+  v238 = 2
+  v239 = 12
+  v240 = [number + 0]
+  v241 = 0
+  v242 = v241 < v238
+  v243 = v238 < v240
+  v244 = v242 * v243
+  if0 v244 goto v244Error_60
+  goto v244End_61
+v244Error_60:
+  error("array index out of bounds")
+v244End_61:
+  v246 = 1
+  v245 = v238v246
+  v248 = 4
+  v247 = v245 * v248
+  v249 = number + v247
+  [v249 + 0] = v239
+  v250 = 3
+  v251 = 18
+  v252 = [number + 0]
+  v253 = 0
+  v254 = v253 < v250
+  v255 = v250 < v252
+  v256 = v254 * v255
+  if0 v256 goto v256Error_62
+  goto v256End_63
+v256Error_62:
+  error("array index out of bounds")
+v256End_63:
+  v258 = 1
+  v257 = v250v258
+  v260 = 4
+  v259 = v257 * v260
+  v261 = number + v259
+  [v261 + 0] = v251
+  v262 = 4
+  v263 = 2
+  v264 = [number + 0]
+  v265 = 0
+  v266 = v265 < v262
+  v267 = v262 < v264
+  v268 = v266 * v267
+  if0 v268 goto v268Error_64
+  goto v268End_65
+v268Error_64:
+  error("array index out of bounds")
+v268End_65:
+  v270 = 1
+  v269 = v262v270
+  v272 = 4
+  v271 = v269 * v272
+  v273 = number + v271
+  [v273 + 0] = v263
+  v274 = 5
+  v275 = 11
+  v276 = [number + 0]
+  v277 = 0
+  v278 = v277 < v274
+  v279 = v274 < v276
+  v280 = v278 * v279
+  if0 v280 goto v280Error_66
+  goto v280End_67
+v280Error_66:
+  error("array index out of bounds")
+v280End_67:
+  v282 = 1
+  v281 = v274v282
+  v284 = 4
+  v283 = v281 * v284
+  v285 = number + v283
+  [v285 + 0] = v275
+  v286 = 6
+  v287 = 6
+  v288 = [number + 0]
+  v289 = 0
+  v290 = v289 < v286
+  v291 = v286 < v288
+  v292 = v290 * v291
+  if0 v292 goto v292Error_68
+  goto v292End_69
+v292Error_68:
+  error("array index out of bounds")
+v292End_69:
+  v294 = 1
+  v293 = v286v294
+  v296 = 4
+  v295 = v293 * v296
+  v297 = number + v295
+  [v297 + 0] = v287
+  v298 = 7
+  v299 = 9
+  v300 = [number + 0]
+  v301 = 0
+  v302 = v301 < v298
+  v303 = v298 < v300
+  v304 = v302 * v303
+  if0 v304 goto v304Error_70
+  goto v304End_71
+v304Error_70:
+  error("array index out of bounds")
+v304End_71:
+  v306 = 1
+  v305 = v298v306
+  v308 = 4
+  v307 = v305 * v308
+  v309 = number + v307
+  [v309 + 0] = v299
+  v310 = 8
+  v311 = 19
+  v312 = [number + 0]
+  v313 = 0
+  v314 = v313 < v310
+  v315 = v310 < v312
+  v316 = v314 * v315
+  if0 v316 goto v316Error_72
+  goto v316End_73
+v316Error_72:
+  error("array index out of bounds")
+v316End_73:
+  v318 = 1
+  v317 = v310v318
+  v320 = 4
+  v319 = v317 * v320
+  v321 = number + v319
+  [v321 + 0] = v311
+  v322 = 9
+  v323 = 5
+  v324 = [number + 0]
+  v325 = 0
+  v326 = v325 < v322
+  v327 = v322 < v324
+  v328 = v326 * v327
+  if0 v328 goto v328Error_74
+  goto v328End_75
+v328Error_74:
+  error("array index out of bounds")
+v328End_75:
+  v330 = 1
+  v329 = v322v330
+  v332 = 4
+  v331 = v329 * v332
+  v333 = number + v331
+  [v333 + 0] = v323
+  v334 = 0
+  return v334

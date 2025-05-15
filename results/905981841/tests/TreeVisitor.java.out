@@ -6,4 +6,4 @@ Was expecting one of:
 	at SparrowParser.generateParseException(SparrowParser.java:1202)
 	at SparrowParser.jj_consume_token(SparrowParser.java:1084)
 	at SparrowParser.Program(SparrowParser.java:27)
-	at Main.main(Main.java:24)
+	at Main.main(Main.java:25)

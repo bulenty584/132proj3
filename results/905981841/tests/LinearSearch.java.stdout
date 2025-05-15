@@ -15,145 +15,198 @@ func Main()
   [v1 + 0] = vmt_LS
   if0 v1 goto v1Error_0
   goto v1End_1
-  v1Error_0:
-    error("null pointer")
-  v1End_1:
-    v7 = 10
-    v8 = [v1 + 0]
-    v9 = [v8 + 8]
-    v10 = call v9(v1 v7)
-    print(v10)
-    return y0
-    func LS_Start(this sz)
-      if0 this goto thisError_2
-      goto thisEnd_3
-      thisError_2:
-        error("null pointer")
-      thisEnd_3:
-        v11 = [this + 0]
-        v12 = [v11 + 4]
-        v13 = call v12(this sz)
-        aux01 = v13
-        if0 this goto thisError_4
-        goto thisEnd_5
-        thisError_4:
-          error("null pointer")
-        thisEnd_5:
-          v14 = [this + 0]
-          v15 = [v14 + 0]
-          v16 = call v15(this)
-          aux02 = v16
-          v17 = 9999
-          print(v17)
-          if0 this goto thisError_6
-          goto thisEnd_7
-          thisError_6:
-            error("null pointer")
-          thisEnd_7:
-            v18 = 8
-            v19 = [this + 0]
-            v20 = [v19 + 12]
-            v21 = call v20(this v18)
-            print(v21)
-            if0 this goto thisError_8
-            goto thisEnd_9
-            thisError_8:
-              error("null pointer")
-            thisEnd_9:
-              v22 = 12
-              v23 = [this + 0]
-              v24 = [v23 + 12]
-              v25 = call v24(this v22)
-              print(v25)
-              if0 this goto thisError_10
-              goto thisEnd_11
-              thisError_10:
-                error("null pointer")
-              thisEnd_11:
-                v26 = 17
-                v27 = [this + 0]
-                v28 = [v27 + 12]
-                v29 = call v28(this v26)
-                print(v29)
-                if0 this goto thisError_12
-                goto thisEnd_13
-                thisError_12:
-                  error("null pointer")
-                thisEnd_13:
-                  v30 = 50
-                  v31 = [this + 0]
-                  v32 = [v31 + 12]
-                  v33 = call v32(this v30)
-                  print(v33)
-                  v34 = 55
-                  return v34
-                func LS_Print(this)
-                  v35 = 1
-                  j = v35
-                  v36 = j < null
-                  print(null)
-                  v37 = 1
-                  v38 = j + v37
-                  j = v38
-                  v39 = 0
-                  return v39
-                func LS_Search(this num)
-                  v40 = 1
-                  j = v40
-                  v41 = 1
-                  ls01 = v41
-                  v42 = 0
-                  ifound = v42
-                  v43 = j < null
-                  aux01 = null
-                  v44 = 1
-                  v45 = num + v44
-                  aux02 = v45
-                  v46 = aux01 < num
-                  v47 = 0
-                  nt = v47
-                  v48 = aux01 < aux02
-                  v49 = 0
-                  nt = v49
-                  v50 = 1
-                  ls01 = v50
-                  v51 = 1
-                  ifound = v51
-                  j = size
-                  v52 = 1
-                  v53 = j + v52
-                  j = v53
-                  return ifound
-                func LS_Init(this sz)
-                  size = sz
-                  v54 = sz + 1
-                  v55 = v54 * 4
-                  v56 = alloc(v55)
-                  if0 v56 goto v56Error_14
-                  goto v56End_15
-                  v56Error_14:
-                    error("null pointer")
-                  v56End_15:
-                    [v56 + 0] = sz
-                    number = v56
-                    v57 = 1
-                    j = v57
-                    v58 = 1
-                    v59 = size + v58
-                    k = v59
-                    v60 = j < null
-                    v61 = 2
-                    v62 = v61 * j
-                    aux01 = v62
-                    v63 = 3
-                    v64 = k - v63
-                    aux02 = v64
-                    v65 = aux01 + aux02
-                    v66 = 1
-                    v67 = j + v66
-                    j = v67
-                    v68 = 1
-                    v69 = k - v68
-                    k = v69
-                    v70 = 0
-                    return v70
+v1Error_0:
+  error("null pointer")
+v1End_1:
+  if0 v1 goto v1Error_2
+  goto v1End_3
+v1Error_2:
+  error("null pointer")
+v1End_3:
+  v7 = 10
+  v8 = [v1 + 0]
+  v9 = [v8 + 8]
+  v10 = call v9(v1 v7)
+  print(v10)
+  return y0
+func LS_Start(this sz)
+  if0 this goto thisError_4
+  goto thisEnd_5
+thisError_4:
+  error("null pointer")
+thisEnd_5:
+  v11 = [this + 0]
+  v12 = [v11 + 4]
+  v13 = call v12(this sz)
+  aux01 = v13
+  if0 this goto thisError_6
+  goto thisEnd_7
+thisError_6:
+  error("null pointer")
+thisEnd_7:
+  v14 = [this + 0]
+  v15 = [v14 + 0]
+  v16 = call v15(this)
+  aux02 = v16
+  v17 = 9999
+  print(v17)
+  if0 this goto thisError_8
+  goto thisEnd_9
+thisError_8:
+  error("null pointer")
+thisEnd_9:
+  v18 = 8
+  v19 = [this + 0]
+  v20 = [v19 + 12]
+  v21 = call v20(this v18)
+  print(v21)
+  if0 this goto thisError_10
+  goto thisEnd_11
+thisError_10:
+  error("null pointer")
+thisEnd_11:
+  v22 = 12
+  v23 = [this + 0]
+  v24 = [v23 + 12]
+  v25 = call v24(this v22)
+  print(v25)
+  if0 this goto thisError_12
+  goto thisEnd_13
+thisError_12:
+  error("null pointer")
+thisEnd_13:
+  v26 = 17
+  v27 = [this + 0]
+  v28 = [v27 + 12]
+  v29 = call v28(this v26)
+  print(v29)
+  if0 this goto thisError_14
+  goto thisEnd_15
+thisError_14:
+  error("null pointer")
+thisEnd_15:
+  v30 = 50
+  v31 = [this + 0]
+  v32 = [v31 + 12]
+  v33 = call v32(this v30)
+  print(v33)
+  v34 = 55
+  return v34
+func LS_Print(this)
+  v35 = 1
+  j = v35
+  v36 = j < size
+  v37 = [number + 0]
+  v39 = 1
+  v40 = 0
+  v38 = v40 - v39
+  v41 = 4
+  v42 = v38 < j
+  v43 = j < v37
+  v44 = v42 * v43
+  if0 v44 goto v44Error_16
+  goto v44End_17
+v44Error_16:
+  error("array index out of bounds")
+v44End_17:
+  v45 = j * v41
+  v46 = v45 + v41
+  v47 = number + v46
+  v48 = [v47 + 0]
+  print(v48)
+  v49 = 1
+  v50 = j + v49
+  j = v50
+  v51 = 0
+  return v51
+func LS_Search(this num)
+  v52 = 1
+  j = v52
+  v53 = 0
+  ls01 = v53
+  v54 = 0
+  ifound = v54
+  v55 = j < size
+  v56 = [number + 0]
+  v58 = 1
+  v59 = 0
+  v57 = v59 - v58
+  v60 = 4
+  v61 = v57 < j
+  v62 = j < v56
+  v63 = v61 * v62
+  if0 v63 goto v63Error_18
+  goto v63End_19
+v63Error_18:
+  error("array index out of bounds")
+v63End_19:
+  v64 = j * v60
+  v65 = v64 + v60
+  v66 = number + v65
+  v67 = [v66 + 0]
+  aux01 = v67
+  v68 = 1
+  v69 = num + v68
+  aux02 = v69
+  if0 null goto else_21
+  v70 = aux01 < num
+  goto ifend_22
+  else_21:
+  v71 = 0
+  nt = v71
+  ifend_22:
+  v72 = 1
+  v73 = j + v72
+  j = v73
+  return ifound
+func LS_Init(this sz)
+  size = sz
+  v75 = 1
+  v74 = sz + v75
+  v77 = 4
+  v76 = v74 * v77
+  v78 = alloc(v76)
+  if0 v78 goto v78Error_23
+  goto v78End_24
+v78Error_23:
+  error("null pointer")
+v78End_24:
+  [v78 + 0] = sz
+  number = v78
+  v79 = 1
+  j = v79
+  v80 = 1
+  v81 = size + v80
+  k = v81
+  v82 = j < size
+  v83 = 2
+  v84 = v83 * j
+  aux01 = v84
+  v85 = 3
+  v86 = k - v85
+  aux02 = v86
+  v87 = aux01 + aux02
+  v88 = [number + 0]
+  v89 = 0
+  v90 = v89 < j
+  v91 = j < v88
+  v92 = v90 * v91
+  if0 v92 goto v92Error_25
+  goto v92End_26
+v92Error_25:
+  error("array index out of bounds")
+v92End_26:
+  v94 = 1
+  v93 = jv94
+  v96 = 4
+  v95 = v93 * v96
+  v97 = number + v95
+  [v97 + 0] = v87
+  v98 = 1
+  v99 = j + v98
+  j = v99
+  v100 = 1
+  v101 = k - v100
+  k = v101
+  v102 = 0
+  return v102
