@@ -166,10 +166,7 @@ public class MiniJavaClass {
             //override parent
             if (this.vtableIndices.containsKey(methodName)){
                 int offset = vtableIndices.get(methodName);
-                int slot = offset;
-                if (offset != 0){
-                    slot = (offset - 4) / 4;
-                }
+                int slot = offset / 4;
                 this.vtable.set(slot, label);
 
             } else{

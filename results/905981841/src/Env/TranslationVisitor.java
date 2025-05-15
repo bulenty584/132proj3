@@ -326,10 +326,10 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
             }
         }
 
+        //check local or param
         if (isLocalOrParam) {
-            this.emit(id + " = " + expr); // ✅ local or param
+            this.emit(id + " = " + expr); 
         } else {
-            // Must be a field — get its offset and this.emit field store
             int offset = currentClass.getFieldOffset(id);
             this.emit("[this + " + offset + "] = " + expr);
         }
@@ -363,6 +363,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
     @Override
     public String visit(AndExpression n, Void argu) {
         String _ret=null;
+        
         // Evaluate left and right expressions
         String left = n.f0.accept(this, argu);
         String right = n.f2.accept(this, argu);
@@ -544,12 +545,10 @@ public String visit(Identifier n, Void argu) {
         // Load length = [array + 0]
         String length = freshTemp("v");
         this.emit(length + " = [" + array + " + 0]");
-    
-        // wordSize = 4
+
         String wordSize = freshTemp("v");
         this.emit(wordSize + " = 4");
-    
-        // Create constants: 0 and 1
+
         String one = freshTemp("v");
         String zero = freshTemp("v");
         this.emit(one + " = 1");
@@ -570,16 +569,13 @@ public String visit(Identifier n, Void argu) {
         this.emit(checkBoth + " = " + checkLower + " * " + checkUpper);
     
         this.emitError(checkBoth, checkBoth, 1);
-    
-        // Offset = index * wordSize
+
         String offset = freshTemp("v");
         this.emit(offset + " = " + index + " * " + wordSize);
-    
-        // Total offset = offset + wordSize (to skip length)
+
         String totalOffset = freshTemp("v");
         this.emit(totalOffset + " = " + offset + " + " + wordSize);
-    
-        // Address = array + totalOffset
+
         String address = freshTemp("v");
         this.emit(address + " = " + array + " + " + totalOffset);
     
@@ -614,7 +610,7 @@ public String visit(Identifier n, Void argu) {
         _ret = freshTemp("v");
         this.emit(_ret + " = alloc(" + sizeVal + ")");
 
-        int methodCount = cls.methods.size();
+        int methodCount = cls.vtable.size();
         int methodsSize = methodCount * 4;
         String methodSizeVal = freshTemp("v");
         this.emit(methodSizeVal + " = " + methodsSize);
@@ -803,12 +799,10 @@ public String visit(Identifier n, Void argu) {
         _ret = n.f2.accept(this, argu);
         this.emit("if0 " + _ret + " goto " + endLabel);
 
-        // Body
         this.emit(bodyLabel + ":");
         indentLevel++;
         n.f4.accept(this, argu);
 
-        // Loop back
         this.emit("goto " + startLabel);
 
         this.emit(endLabel + ":");

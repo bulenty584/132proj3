@@ -610,7 +610,7 @@ public String visit(Identifier n, Void argu) {
         _ret = freshTemp("v");
         this.emit(_ret + " = alloc(" + sizeVal + ")");
 
-        int methodCount = cls.methods.size();
+        int methodCount = cls.vtable.size();
         int methodsSize = methodCount * 4;
         String methodSizeVal = freshTemp("v");
         this.emit(methodSizeVal + " = " + methodsSize);

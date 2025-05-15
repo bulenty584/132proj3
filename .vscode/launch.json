@@ -9,7 +9,7 @@
             "name": "J2S",
             "request": "launch",
             "mainClass": "J2S",
-            "args": "< ./testcases/hw3/TreeVisitor.java"
+            "args": "< ./testcases/hw3/Main.java | java -jar misc/sparrow.jar s"
         }
     ]
 }

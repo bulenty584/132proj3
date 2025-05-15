@@ -29,6 +29,7 @@ public class J2S {
             }
             
         } catch (Exception e){
+            System.out.println(e);
             System.out.println("Type error" + e);
         }
     }
