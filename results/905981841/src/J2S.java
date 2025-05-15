@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 import Env.SymbolTableVisitor;
 import Env.TranslationVisitor;
-import Env.TypeCheckVisitor;
 import minijava.MiniJavaParser;
 import minijava.syntaxtree.Goal;
 
@@ -18,8 +17,8 @@ public class J2S {
             SymbolTableVisitor symbolTableVisitor = new SymbolTableVisitor();
             goal.accept(symbolTableVisitor, null);
             //symbolTableVisitor.getTable().print();
-            TypeCheckVisitor typeCheckVisitor = new TypeCheckVisitor(symbolTableVisitor.getTable());
-            goal.accept(typeCheckVisitor, null);
+            // TypeCheckVisitor typeCheckVisitor = new TypeCheckVisitor(symbolTableVisitor.getTable());
+            // goal.accept(typeCheckVisitor, null);
             ArrayList<String> statements = new ArrayList<>();
             TranslationVisitor translationVisitor = new TranslationVisitor(symbolTableVisitor.getTable());
             goal.accept(translationVisitor, null);
