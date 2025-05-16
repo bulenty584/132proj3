@@ -19,6 +19,7 @@ class Variable {
 public class MiniJavaClass {
     private final String className;
     private MiniJavaClass parent = null;
+    private boolean vTableBuilt = false;
 
     public List<Variable> fields = new LinkedList<Variable>(); // fieldName → type
     public HashMap<String, MiniJavaMethod> methods;
@@ -100,40 +101,6 @@ public class MiniJavaClass {
             MiniJavaMethod method = current.methods.get(methodName);
     
             if (method != null) {
-                if (checkingMethodOverride && current.getParent() != null) {
-                    MiniJavaMethod parentMethod = current.getParent().getMethodIncludingInherited(methodName, table, false);
-                    if (parentMethod != null) {
-                        // Check parameter count
-                        if (parentMethod.parameters.size() != method.parameters.size()) {
-                            throw new RuntimeException("Cannot overload methods: different parameter count for method '" + methodName + "'");
-                        }
-    
-                        Iterator<Variable> childIter = method.parameters.iterator();
-                        Iterator<Variable> parentIter = parentMethod.parameters.iterator();
-
-                        //check actual parameters
-                        while (childIter.hasNext() && parentIter.hasNext()) {
-                            Variable childParam = childIter.next();
-                            Variable parentParam = parentIter.next();
-                            if (!childParam.type.equals(parentParam.type)) {
-                                throw new RuntimeException("Cannot overload methods: parameter type mismatch in method '" + methodName + "'");
-                            }
-                        }
-
-                        // If one iterator still has elements, the number of parameters mismatch
-                        if (childIter.hasNext() || parentIter.hasNext()) {
-                            throw new RuntimeException("Cannot overload methods: different parameter count for method '" + methodName + "'");
-                        }
-
-    
-                        // Check return type: child return type must be equal to actual type of parent return type
-                        Variable parentReturn = parentMethod.getReturnType();
-                        Variable childReturn = method.getReturnType();
-                        if (!childReturn.type.equals(parentReturn.type)) {
-                            throw new RuntimeException("Cannot override method '" + methodName + "' with incompatible return type.");
-                        }
-                    }
-                }
                 return method;
             }
             current = current.getParent();

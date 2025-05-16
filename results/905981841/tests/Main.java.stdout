@@ -1,174 +1,47 @@
 func Main()
   y0 = 0
-  v0 = 52
+  v0 = 4
   v1 = alloc(v0)
-  v2 = 32
-  vmt_C = alloc(v2)
-  v3 = @A_printA
-  [vmt_C + 0] = v3
-  v4 = @A_initA
-  [vmt_C + 4] = v4
-  v5 = @B_printB
-  [vmt_C + 8] = v5
-  v6 = @B_initB
-  [vmt_C + 12] = v6
-  v7 = @A_printA
-  [vmt_C + 16] = v7
-  v8 = @A_initA
-  [vmt_C + 20] = v8
-  v9 = @C_printC
-  [vmt_C + 24] = v9
-  v10 = @C_initC
-  [vmt_C + 28] = v10
-  [v1 + 0] = vmt_C
+  v2 = 16
+  vmt_Z = alloc(v2)
+  v3 = @B_f
+  [vmt_Z + 0] = v3
+  v4 = @B_g
+  [vmt_Z + 4] = v4
+  v5 = @A_f
+  [vmt_Z + 8] = v5
+  v6 = @A_f
+  [vmt_Z + 12] = v6
+  [v1 + 0] = vmt_Z
   if0 v1 goto v1Error_0
   goto v1End_1
 v1Error_0:
   error("null pointer")
 v1End_1:
-  c = v1
-  if0 c goto cError_2
-  goto cEnd_3
-cError_2:
+  a = v1
+  if0 a goto aError_2
+  goto aEnd_3
+aError_2:
   error("null pointer")
-cEnd_3:
-  v11 = 1
-  v12 = 2
-  v13 = 3
-  v14 = 4
-  v15 = 5
-  v16 = 6
-  v17 = 7
-  v18 = [c + 0]
-  v19 = [v18 + 28]
-  v20 = call v19(c v11 v12 v13 v14 v15 v16 v17)
-  _ = v20
-  if0 c goto cError_4
-  goto cEnd_5
-cError_4:
-  error("null pointer")
-cEnd_5:
-  v21 = 8
-  v22 = 9
-  v23 = 10
-  v24 = 11
-  v25 = 12
-  v26 = 13
-  v27 = [c + 0]
-  v28 = [v27 + 12]
-  v29 = call v28(c v21 v22 v23 v24 v25 v26)
-  _ = v29
-  if0 c goto cError_6
-  goto cEnd_7
-cError_6:
-  error("null pointer")
-cEnd_7:
-  v30 = 14
-  v31 = 15
-  v32 = 16
-  v33 = 17
-  v34 = [c + 0]
-  v35 = [v34 + 4]
-  v36 = call v35(c v30 v31 v32 v33)
-  _ = v36
-  if0 c goto cError_8
-  goto cEnd_9
-cError_8:
-  error("null pointer")
-cEnd_9:
-  v37 = [c + 0]
-  v38 = [v37 + 0]
-  v39 = call v38(c)
-  _ = v39
-  v40 = 100
-  print(v40)
-  if0 c goto cError_10
-  goto cEnd_11
-cError_10:
-  error("null pointer")
-cEnd_11:
-  v41 = [c + 0]
-  v42 = [v41 + 8]
-  v43 = call v42(c)
-  _ = v43
-  v44 = 100
-  print(v44)
-  if0 c goto cError_12
-  goto cEnd_13
-cError_12:
-  error("null pointer")
-cEnd_13:
-  v45 = [c + 0]
-  v46 = [v45 + 24]
-  v47 = call v46(c)
-  _ = v47
+aEnd_3:
+  v7 = [a + 0]
+  v8 = [v7 + 0]
+  v9 = call v8(a)
+  print(v9)
   return y0
-func A_initA(this n1 n2 n3 n4)
-  [this + 4] = n1
-  [this + 8] = n2
-  [this + 12] = n3
-  [this + 16] = n4
-  v48 = 0
-  return v48
-func A_printA(this)
-  v49 = [this + 4]
-  print(v49)
-  v50 = [this + 8]
-  print(v50)
-  v51 = [this + 12]
-  print(v51)
-  v52 = [this + 16]
-  print(v52)
-  v53 = 0
-  return v53
-func B_initB(this n1 n2 n3 n4 n5 n6)
-  [this + 20] = n1
-  [this + 8] = n2
-  [this + 24] = n3
-  [this + 16] = n4
-  [this + 4] = n5
-  [this + 12] = n6
-  v54 = 0
-  return v54
-func B_printB(this)
-  v55 = [this + 4]
-  print(v55)
-  v56 = [this + 20]
-  print(v56)
-  v57 = [this + 8]
-  print(v57)
-  v58 = [this + 12]
-  print(v58)
-  v59 = [this + 24]
-  print(v59)
-  v60 = [this + 16]
-  print(v60)
-  v61 = 0
-  return v61
-func C_initC(this n1 n2 n3 n4 n5 n6 n7)
-  [this + 28] = n1
-  [this + 12] = n2
-  [this + 24] = n3
-  [this + 16] = n4
-  [this + 4] = n5
-  [this + 8] = n6
-  [this + 20] = n7
-  v62 = 0
-  return v62
-func C_printC(this)
-  v63 = [this + 4]
-  print(v63)
-  v64 = [this + 20]
-  print(v64)
-  v65 = [this + 28]
-  print(v65)
-  v66 = [this + 8]
-  print(v66)
-  v67 = [this + 12]
-  print(v67)
-  v68 = [this + 24]
-  print(v68)
-  v69 = [this + 16]
-  print(v69)
-  v70 = 0
-  return v70
+func A_f(this)
+  v10 = 1
+  return v10
+func B_f(this)
+  v11 = 2
+  return v11
+func B_g(this)
+  if0 this goto thisError_4
+  goto thisEnd_5
+thisError_4:
+  error("null pointer")
+thisEnd_5:
+  v12 = [this + 0]
+  v13 = [v12 + 0]
+  v14 = call v13(this)
+  return v14

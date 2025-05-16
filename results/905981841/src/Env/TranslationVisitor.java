@@ -8,6 +8,7 @@ import minijava.syntaxtree.AllocationExpression;
 import minijava.syntaxtree.AndExpression;
 import minijava.syntaxtree.ArrayAllocationExpression;
 import minijava.syntaxtree.ArrayAssignmentStatement;
+import minijava.syntaxtree.ArrayLength;
 import minijava.syntaxtree.ArrayLookup;
 import minijava.syntaxtree.AssignmentStatement;
 import minijava.syntaxtree.BracketExpression;
@@ -34,6 +35,7 @@ import minijava.syntaxtree.PrintStatement;
 import minijava.syntaxtree.ThisExpression;
 import minijava.syntaxtree.TimesExpression;
 import minijava.syntaxtree.TrueLiteral;
+import minijava.syntaxtree.VarDeclaration;
 import minijava.syntaxtree.WhileStatement;
 import minijava.visitor.GJDepthFirst;
 
@@ -46,6 +48,8 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
     private int tempCounter = 0;
     private int indentLevel = 0;
     private int labelCounter = 0;
+    private final HashMap<String, String> renamedParams = new HashMap<>();
+
 
     private final HashMap<String, String> tempVarTypes = new HashMap<>();
 
@@ -58,16 +62,16 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         return new String(new char[indentLevel * 2]).replace('\0', ' ');
     }
 
+    private boolean isReservedName(String name) {
+        return name.matches("a([0-9]|1[0-2])") || name.matches("t([0-9]|1[0-2])");
+    }
+
     private void emit(String line) {
         this.lines.add(indent() + line);
     }
 
     private String freshTemp(String letter) {
         return letter + (tempCounter++);
-    }
-
-    private String freshTemp(String letter, int index) {
-        return letter + (index);
     }
 
     private String freshLabel(String base) {
@@ -249,6 +253,25 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         return null;
     }
 
+    @Override
+    public String visit(VarDeclaration n, Void argu) {
+        String _ret = null;
+        String type = n.f0.accept(this, argu);
+        String varName = n.f1.f0.toString();
+
+        _ret = varName;
+        if (isReservedName(varName)) {
+            String sanitized = freshTemp("v");
+            this.renamedParams.put(varName, sanitized);
+            // Optional: emit initialization or comment to track renaming
+            // emit("// renamed reserved var " + varName + " to " + sanitized);
+            _ret = sanitized;
+        }
+
+        return _ret;
+    }
+
+
 
     /**
     * f0 -> "class"
@@ -307,6 +330,10 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         
         if (isThisAlias(expr)) {
             expr = "this";
+        } if (isReservedName(expr)) {
+            String new_expr = freshTemp("v");
+            emit(new_expr + " = " + expr); 
+            expr = new_expr;
         }
 
         // First, check if id is a local or parameter
@@ -363,18 +390,45 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
     @Override
     public String visit(AndExpression n, Void argu) {
         String _ret=null;
-        
-        // Evaluate left and right expressions
-        String left = n.f0.accept(this, argu);
-        String right = n.f2.accept(this, argu);
 
-        // Multiply them to simulate '&&'
-        _ret = this.freshTemp("v");
-        this.emit(_ret + " = " + left + " * " + right);
-        this.tempVarTypes.put(_ret, TypeConstants.BOOLEAN);
+        String left = n.f0.accept(this, argu);
+        _ret = freshTemp("v");
+        String falseLabel = freshLabel("and_false");
+        String endLabel = freshLabel("and_end");
+
+        this.emit("if0 " + left + " goto " + falseLabel);
+
+        String right = n.f2.accept(this, argu);
+        this.emit("if0 " + right + " goto " + falseLabel);
+
+        this.emit(_ret + " = 1");
+        this.emit("goto " + endLabel);
+
+        this.emit(falseLabel + ":");
+        this.emit(_ret + " = 0");
+
+        this.emit(endLabel + ":");
+
+        tempVarTypes.put(_ret, TypeConstants.BOOLEAN);
+        return _ret;
+    }
+
+    @Override
+    public String visit(ArrayLength n, Void argu) {
+        String _ret = null;
+
+        String array = n.f0.accept(this, argu);
+
+        this.emitError(array, array, 0);
+
+        _ret  = freshTemp("v");
+        this.emit(_ret + " = [" + array + " + 0]");
+        this.tempVarTypes.put(_ret, TypeConstants.INT);
 
         return _ret;
     }
+
+
 
     @Override
     public String visit(CompareExpression n, Void argu) {
@@ -465,6 +519,10 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 public String visit(Identifier n, Void argu) {
     String name = n.f0.toString();
 
+    if (renamedParams.containsKey(name)) {
+        return renamedParams.get(name);
+    }
+
     // First check if it's a local var or parameter
     for (Variable v : currentMethod.localVars) {
         if (v.name.equals(name)) {
@@ -501,6 +559,13 @@ public String visit(Identifier n, Void argu) {
 
     if (this.table.classMap.get(name) != null) return name;
 
+    String sanitized;
+    if (isReservedName(name)) {
+        sanitized = freshTemp("v");
+        emit(sanitized + " = " + name); 
+        return sanitized;
+    }
+
     return name;
 }
 
@@ -514,23 +579,39 @@ public String visit(Identifier n, Void argu) {
         MiniJavaMethod expectedMethod = this.currentClass.getMethodIncludingInherited(methodName, this.table, true);
         MiniJavaMethod oldCurrentMethod = this.currentMethod;
         this.currentMethod = expectedMethod;
+        renamedParams.clear();
 
 
         String className = this.currentClass.getName();
         List<String> params = new ArrayList<>();
         params.add("this");
+        List<String> sanitizeLines = new ArrayList<>();
         for (Variable param : expectedMethod.parameters) {
-            params.add(param.name);
+            String name = param.name;
+            if (isReservedName(name)) {
+                String temp = freshTemp("v");
+                sanitizeLines.add(temp + " = " + name);
+                renamedParams.put(name, temp);
+                params.add(temp);
+            } else{
+                params.add(name);
+            }
         }
+        
 
         this.emit("func " + className + "_" + methodName + "(" + String.join(" ", params) + ")");
         indentLevel++;
+
+        for (String s : sanitizeLines) {
+            emit(s);
+        }
 
         for (Node stmt : n.f8.nodes) {
             stmt.accept(this, argu);
         }
 
         String returnExpr = n.f10.accept(this, argu);
+
         this.emit("return " + returnExpr);
 
         this.currentMethod = oldCurrentMethod;
@@ -642,6 +723,10 @@ public String visit(Identifier n, Void argu) {
         String objType = this.getTypeOfIdentifier(obj, this.currentClass, this.currentMethod);
         if (this.isThisAlias(obj)){
             obj = "this";
+        } else if (isReservedName(obj)) {
+            String tmp = freshTemp("v");
+            emit(tmp + " = " + obj);
+            obj = tmp;
         }
 
         MiniJavaClass targetClass = this.table.classMap.get(objType);
@@ -655,6 +740,10 @@ public String visit(Identifier n, Void argu) {
                 String arg1 = exprList.f0.accept(this, argu);
                     if (isThisAlias(arg1)){
                         arg1 = "this";
+                    } else if (isReservedName(arg1)) {
+                        String tmp = freshTemp("v");
+                        emit(tmp + " = " + arg1);
+                        arg1 = tmp;
                     }
                 argTemps.add(arg1);
                 for (Node node : exprList.f1.nodes) {
@@ -662,6 +751,10 @@ public String visit(Identifier n, Void argu) {
                     String arg = rest.f1.accept(this, argu);
                     if (isThisAlias(arg)){
                         arg = "this";
+                    } else if (isReservedName(arg)) {
+                        String tmp = freshTemp("v");
+                        emit(tmp + " = " + arg);
+                        arg = tmp;
                     }
                     argTemps.add(arg);
                 }
@@ -676,6 +769,9 @@ public String visit(Identifier n, Void argu) {
         MiniJavaMethod oldMethod = this.currentMethod;
         this.currentMethod = method;
 
+        if (!targetClass.vtableIndices.containsKey(methodName)) {
+            System.err.println("Method " + methodName + " not in vtable for class " + targetClass.getName());
+        }
         int offset = targetClass.vtableIndices.get(methodName);
         String vtable = freshTemp("v");
         this.emit(vtable + " = [" + obj + " + 0]");
@@ -687,9 +783,6 @@ public String visit(Identifier n, Void argu) {
 
         //call method
         List<String> callArgs = new ArrayList<>();
-        if (this.isThisAlias(obj)){
-            obj = "this";
-        }
         callArgs.add(obj);
         callArgs.addAll(argTemps);
 
