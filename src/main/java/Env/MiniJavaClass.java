@@ -2,7 +2,6 @@ package Env;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
@@ -20,6 +19,7 @@ public class MiniJavaClass {
     private final String className;
     private MiniJavaClass parent = null;
     private boolean vTableBuilt = false;
+    static public final HashMap<String, String> renamedParams = new HashMap<>();
 
     public List<Variable> fields = new LinkedList<Variable>(); // fieldName → type
     public HashMap<String, MiniJavaMethod> methods;
@@ -107,20 +107,10 @@ public class MiniJavaClass {
         }
         return null;
     }
-
-    public MiniJavaClass getMethodOwner(String methodName, SymbolTable table) {
-        MiniJavaClass current = this;
-        while (current != null) {
-            if (current.methods.containsKey(methodName)) {
-                return current;
-            }
-            current = current.getParent();
-        }
-        return null;
-    }
     
 
     public void buildVtable(){
+        if (this.vTableBuilt) return;
         if (this.parent != null){
             this.parent.buildVtable();
             this.vtable.addAll(this.parent.vtable);
@@ -142,24 +132,44 @@ public class MiniJavaClass {
                 this.vtableIndices.put(methodName, slot * 4);
             }
         }
+
+        this.vTableBuilt = true;
     }
 
-    public void buildFieldOffsets(){
+    public void buildFieldOffsets() {
         int offset = 4;
-
-        if (this.parent != null){
+        int maxOffset = 0;
+        if (this.parent != null) {
             parent.buildFieldOffsets();
-            this.fieldOffsets.putAll(parent.fieldOffsets);
-            offset = 4 + (parent.fieldOffsets.size() * 4);
-        }
+            // Copy only non-shadowed fields
+            for (String name : parent.fieldOffsets.keySet()) {
+                boolean shadowed = false;
+                for (Variable v : this.fields) {
+                    if (v.name.equals(name)) {
+                        shadowed = true;
+                        break;
+                    }
+                }
+                if (!shadowed) {
+                    //System.out.println(name + parent.fieldOffsets.get(name));
+                    this.fieldOffsets.put(name, parent.fieldOffsets.get(name));
+                }
 
-        for (Variable f : this.fields){
-            if (!fieldOffsets.containsKey(f.name)){
-                fieldOffsets.put(f.name, offset);
-                offset += 4;
+                if (maxOffset <= parent.fieldOffsets.get(name)){
+                    maxOffset = parent.getFieldOffset(name);
+                }
             }
         }
+
+        offset = 4 + maxOffset;
+    
+        for (Variable f : this.fields) {
+            //System.out.println(offset);
+            this.fieldOffsets.put(f.name, offset);
+            offset += 4;
+        }
     }
+    
     
 
     public void print() {

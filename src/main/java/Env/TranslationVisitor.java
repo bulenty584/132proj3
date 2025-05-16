@@ -48,10 +48,11 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
     private int tempCounter = 0;
     private int indentLevel = 0;
     private int labelCounter = 0;
-    private final HashMap<String, String> renamedParams = new HashMap<>();
 
 
     private final HashMap<String, String> tempVarTypes = new HashMap<>();
+    private final HashMap<String, String> staticTypes = new HashMap<>();
+
 
 
 
@@ -135,11 +136,24 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         this.table = table;
         this.lines = new ArrayList<>();
 
-        for (String clsName : this.table.classMap.keySet()){
-            MiniJavaClass cls = this.table.classMap.get(clsName);
+        // Fix dummy parents if child class has parent
+        for (String child : this.table.classMap.keySet()) {
+            MiniJavaClass currentParent = this.table.classMap.get(child).getParent();
+
+            if (currentParent != null) {
+                String parentName = currentParent.getName();
+                MiniJavaClass trueParent = this.table.classMap.get(parentName);
+                // Replace the dummy parent with the true parent
+                this.table.classMap.get(child).setParent(trueParent);
+
+            }
+
+            MiniJavaClass cls = this.table.classMap.get(child);
             cls.buildVtable();
             cls.buildFieldOffsets();
         }
+
+        
     }
 
     public ArrayList<String> getLines(){
@@ -262,7 +276,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         _ret = varName;
         if (isReservedName(varName)) {
             String sanitized = freshTemp("v");
-            this.renamedParams.put(varName, sanitized);
+            MiniJavaClass.renamedParams.put(varName, sanitized);
             // Optional: emit initialization or comment to track renaming
             // emit("// renamed reserved var " + varName + " to " + sanitized);
             _ret = sanitized;
@@ -519,8 +533,8 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 public String visit(Identifier n, Void argu) {
     String name = n.f0.toString();
 
-    if (renamedParams.containsKey(name)) {
-        return renamedParams.get(name);
+    if (MiniJavaClass.renamedParams.containsKey(name)) {
+        return MiniJavaClass.renamedParams.get(name);
     }
 
     // First check if it's a local var or parameter
@@ -562,7 +576,6 @@ public String visit(Identifier n, Void argu) {
     String sanitized;
     if (isReservedName(name)) {
         sanitized = freshTemp("v");
-        emit(sanitized + " = " + name); 
         return sanitized;
     }
 
@@ -579,7 +592,7 @@ public String visit(Identifier n, Void argu) {
         MiniJavaMethod expectedMethod = this.currentClass.getMethodIncludingInherited(methodName, this.table, true);
         MiniJavaMethod oldCurrentMethod = this.currentMethod;
         this.currentMethod = expectedMethod;
-        renamedParams.clear();
+        MiniJavaClass.renamedParams.clear();
 
 
         String className = this.currentClass.getName();
@@ -590,10 +603,10 @@ public String visit(Identifier n, Void argu) {
             String name = param.name;
             if (isReservedName(name)) {
                 String temp = freshTemp("v");
-                sanitizeLines.add(temp + " = " + name);
-                renamedParams.put(name, temp);
+                MiniJavaClass.renamedParams.put(name, temp);
                 params.add(temp);
             } else{
+                staticTypes.put(param.name, param.type);
                 params.add(name);
             }
         }
@@ -725,7 +738,6 @@ public String visit(Identifier n, Void argu) {
             obj = "this";
         } else if (isReservedName(obj)) {
             String tmp = freshTemp("v");
-            emit(tmp + " = " + obj);
             obj = tmp;
         }
 
@@ -742,7 +754,6 @@ public String visit(Identifier n, Void argu) {
                         arg1 = "this";
                     } else if (isReservedName(arg1)) {
                         String tmp = freshTemp("v");
-                        emit(tmp + " = " + arg1);
                         arg1 = tmp;
                     }
                 argTemps.add(arg1);
@@ -753,7 +764,6 @@ public String visit(Identifier n, Void argu) {
                         arg = "this";
                     } else if (isReservedName(arg)) {
                         String tmp = freshTemp("v");
-                        emit(tmp + " = " + arg);
                         arg = tmp;
                     }
                     argTemps.add(arg);

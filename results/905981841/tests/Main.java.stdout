@@ -1,47 +1,8 @@
-func Main()
-  y0 = 0
-  v0 = 4
-  v1 = alloc(v0)
-  v2 = 16
-  vmt_Z = alloc(v2)
-  v3 = @B_f
-  [vmt_Z + 0] = v3
-  v4 = @B_g
-  [vmt_Z + 4] = v4
-  v5 = @A_f
-  [vmt_Z + 8] = v5
-  v6 = @A_f
-  [vmt_Z + 12] = v6
-  [v1 + 0] = vmt_Z
-  if0 v1 goto v1Error_0
-  goto v1End_1
-v1Error_0:
-  error("null pointer")
-v1End_1:
-  a = v1
-  if0 a goto aError_2
-  goto aEnd_3
-aError_2:
-  error("null pointer")
-aEnd_3:
-  v7 = [a + 0]
-  v8 = [v7 + 0]
-  v9 = call v8(a)
-  print(v9)
-  return y0
-func A_f(this)
-  v10 = 1
-  return v10
-func B_f(this)
-  v11 = 2
-  return v11
-func B_g(this)
-  if0 this goto thisError_4
-  goto thisEnd_5
-thisError_4:
-  error("null pointer")
-thisEnd_5:
-  v12 = [this + 0]
-  v13 = [v12 + 0]
-  v14 = call v13(this)
-  return v14
+minijava.ParseException: Encountered " "(" "( "" at line 21, column 15.
+Was expecting:
+    ";" ...
+    
+Type errorminijava.ParseException: Encountered " "(" "( "" at line 21, column 15.
+Was expecting:
+    ";" ...
+    
