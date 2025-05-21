@@ -1,5 +1,4 @@
 import java.io.InputStream;
-import java.util.ArrayList;
 
 import Env.SymbolTableVisitor;
 import Env.TranslationVisitor;
@@ -19,7 +18,6 @@ public class J2S {
             //symbolTableVisitor.getTable().print();
             // TypeCheckVisitor typeCheckVisitor = new TypeCheckVisitor(symbolTableVisitor.getTable());
             // goal.accept(typeCheckVisitor, null);
-            ArrayList<String> statements = new ArrayList<>();
             TranslationVisitor translationVisitor = new TranslationVisitor(symbolTableVisitor.getTable());
             goal.accept(translationVisitor, null);
 

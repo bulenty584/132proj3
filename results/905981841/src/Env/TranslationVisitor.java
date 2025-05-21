@@ -1,5 +1,6 @@
 package Env;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,6 +110,10 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
     public String getTypeOfIdentifier(String var, MiniJavaClass cls, MiniJavaMethod method) {
 
+        if (tempVarTypes.containsKey(var)) {
+            return tempVarTypes.get(var);
+        }
+
         for (Variable v : method.localVars) {
             if (v.name.equals(var)) return v.type;
         }
@@ -123,10 +128,6 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
                 return _ret;
             }
             cls = cls.getParent();
-        }
-
-        if (tempVarTypes.containsKey(var)) {
-            return tempVarTypes.get(var);
         }
 
         return _ret;
@@ -149,6 +150,9 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
             }
 
             MiniJavaClass cls = this.table.classMap.get(child);
+            if (cls.getName() == "S"){
+                System.out.println();
+            }
             cls.buildVtable();
             cls.buildFieldOffsets();
         }
@@ -228,37 +232,37 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String value = n.f5.accept(this, argu);
 
         // Load array length
-        String length = freshTemp("v");
+        String length = freshTemp("z");
         this.emit(length + " = [" + array + " + 0]");
 
         // Check index >= 0
-        String zero = freshTemp("v");
+        String zero = freshTemp("z");
         this.emit(zero + " = 0");
-        String one = freshTemp("v");
+        String one = freshTemp("z");
         this.emit(one + " = 1");
-        String indexCheck = freshTemp("v");
+        String indexCheck = freshTemp("z");
         this.emit(indexCheck + " = " + zero + " - " + one);
 
-        String isInBounds = freshTemp("v");
+        String isInBounds = freshTemp("z");
         this.emit(isInBounds + " = " + index + " < " + length);
 
-        String isValid = freshTemp("v");
+        String isValid = freshTemp("z");
         this.emit(isValid + " = " + indexCheck + " * " + isInBounds);
 
         this.emitError(isValid, isValid, 1);
 
-        String wordSize = freshTemp("v");
+        String wordSize = freshTemp("z");
         this.emit(wordSize + " = 4");
         
-        String byteOffset = freshTemp("v");
+        String byteOffset = freshTemp("z");
         this.emit(byteOffset + " = " + index + " * " + wordSize);
         
-        String baseOffset = freshTemp("v");
+        String baseOffset = freshTemp("z");
         this.emit(baseOffset + " = " + byteOffset + " + " + wordSize);
         
 
         // Compute address: arr + offset
-        String targetAddr = freshTemp("v");
+        String targetAddr = freshTemp("z");
         this.emit(targetAddr + " = " + array + " + " + baseOffset);
 
         // Write value
@@ -275,10 +279,8 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
         _ret = varName;
         if (isReservedName(varName)) {
-            String sanitized = freshTemp("v");
-            MiniJavaClass.renamedParams.put(varName, sanitized);
-            // Optional: emit initialization or comment to track renaming
-            // emit("// renamed reserved var " + varName + " to " + sanitized);
+            String sanitized = freshTemp("z");
+            this.currentMethod.renamedParams.put(varName, sanitized);
             _ret = sanitized;
         }
 
@@ -345,7 +347,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         if (isThisAlias(expr)) {
             expr = "this";
         } if (isReservedName(expr)) {
-            String new_expr = freshTemp("v");
+            String new_expr = freshTemp("z");
             emit(new_expr + " = " + expr); 
             expr = new_expr;
         }
@@ -406,7 +408,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String _ret=null;
 
         String left = n.f0.accept(this, argu);
-        _ret = freshTemp("v");
+        _ret = freshTemp("z");
         String falseLabel = freshLabel("and_false");
         String endLabel = freshLabel("and_end");
 
@@ -435,7 +437,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 
         this.emitError(array, array, 0);
 
-        _ret  = freshTemp("v");
+        _ret  = freshTemp("z");
         this.emit(_ret + " = [" + array + " + 0]");
         this.tempVarTypes.put(_ret, TypeConstants.INT);
 
@@ -450,7 +452,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String comp1 = n.f0.accept(this, argu);
         String comp2 = n.f2.accept(this, argu);
 
-        _ret = this.freshTemp("v");
+        _ret = this.freshTemp("z");
         this.emit(_ret + " = " + comp1 + " < " + comp2);
         this.tempVarTypes.put(_ret, TypeConstants.BOOLEAN);
         return _ret;
@@ -462,7 +464,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String comp1 = n.f0.accept(this, argu);
         String comp2 = n.f2.accept(this, argu);
 
-        _ret = this.freshTemp("v");
+        _ret = this.freshTemp("z");
         this.emit(_ret + " = " + comp1 + " + " + comp2);
         this.tempVarTypes.put(_ret, TypeConstants.INT);
         return _ret;
@@ -474,7 +476,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String comp1 = n.f0.accept(this, argu);
         String comp2 = n.f2.accept(this, argu);
 
-        _ret = this.freshTemp("v");
+        _ret = this.freshTemp("z");
         this.emit(_ret + " = " + comp1 + " - " + comp2);
         this.tempVarTypes.put(_ret, TypeConstants.INT);
         return _ret;
@@ -486,7 +488,7 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String comp1 = n.f0.accept(this, argu);
         String comp2 = n.f2.accept(this, argu);
 
-        _ret = this.freshTemp("v");
+        _ret = this.freshTemp("z");
         this.emit(_ret + " = " + comp1 + " * " + comp2);
         this.tempVarTypes.put(_ret, TypeConstants.INT);
         return _ret;
@@ -504,19 +506,19 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
         String _ret=null;
         // Evaluate length expression
         String len = n.f3.accept(this, argu);
-        String plusOne = freshTemp("v");
-        String rightOne = freshTemp("v");
+        String plusOne = freshTemp("z");
+        String rightOne = freshTemp("z");
         this.emit(rightOne + " = 1");
         this.emit(plusOne + " = " + len + " + " + rightOne);
         this.tempVarTypes.put(plusOne, TypeConstants.INT);
 
-        String totalSize = freshTemp("v");
-        String rightFour = freshTemp("v");
+        String totalSize = freshTemp("z");
+        String rightFour = freshTemp("z");
         this.emit(rightFour + " = 4");
         this.emit(totalSize + " = " + plusOne + " * " + rightFour);
         this.tempVarTypes.put(totalSize, TypeConstants.INT);
 
-        _ret = freshTemp("v");
+        _ret = freshTemp("z");
         this.emit(_ret + " = alloc(" + totalSize + ")");
         this.tempVarTypes.put(_ret, TypeConstants.INT);
 
@@ -533,20 +535,20 @@ public class TranslationVisitor extends GJDepthFirst<String, Void>{
 public String visit(Identifier n, Void argu) {
     String name = n.f0.toString();
 
-    if (MiniJavaClass.renamedParams.containsKey(name)) {
-        return MiniJavaClass.renamedParams.get(name);
+    if (this.currentMethod.renamedParams.containsKey(name)) {
+        return this.currentMethod.renamedParams.get(name);
     }
 
     // First check if it's a local var or parameter
     for (Variable v : currentMethod.localVars) {
         if (v.name.equals(name)) {
-            tempVarTypes.putIfAbsent(name, v.type);
+            tempVarTypes.put(name, v.type);
             return name;
         }
     }
     for (Variable p : currentMethod.parameters) {
         if (p.name.equals(name)) {
-            tempVarTypes.putIfAbsent(name, p.type);
+            tempVarTypes.put(name, p.type);
             return name;
         }
     }
@@ -564,19 +566,16 @@ public String visit(Identifier n, Void argu) {
     }
 
     if (offset != -1 && fieldType != null){
-        String temp = freshTemp("v");
+        String temp = freshTemp("z");
         this.emit(temp + " = [this + " + offset + "]");
         tempVarTypes.put(temp, fieldType);
 
         return temp;
     }
 
-    if (this.table.classMap.get(name) != null) return name;
-
-    String sanitized;
-    if (isReservedName(name)) {
-        sanitized = freshTemp("v");
-        return sanitized;
+    if (this.table.classMap.get(name) != null) {
+        tempVarTypes.put(name, name);
+        return name;
     }
 
     return name;
@@ -592,7 +591,7 @@ public String visit(Identifier n, Void argu) {
         MiniJavaMethod expectedMethod = this.currentClass.getMethodIncludingInherited(methodName, this.table, true);
         MiniJavaMethod oldCurrentMethod = this.currentMethod;
         this.currentMethod = expectedMethod;
-        MiniJavaClass.renamedParams.clear();
+        this.currentMethod.renamedParams.clear();
 
 
         String className = this.currentClass.getName();
@@ -602,8 +601,9 @@ public String visit(Identifier n, Void argu) {
         for (Variable param : expectedMethod.parameters) {
             String name = param.name;
             if (isReservedName(name)) {
-                String temp = freshTemp("v");
-                MiniJavaClass.renamedParams.put(name, temp);
+                String temp = freshTemp("z");
+                this.currentMethod.renamedParams.put(name, temp);
+                tempVarTypes.put(temp, param.type);
                 params.add(temp);
             } else{
                 staticTypes.put(param.name, param.type);
@@ -637,44 +637,44 @@ public String visit(Identifier n, Void argu) {
         String index = n.f2.accept(this, argu);
     
         // Load length = [array + 0]
-        String length = freshTemp("v");
+        String length = freshTemp("z");
         this.emit(length + " = [" + array + " + 0]");
 
-        String wordSize = freshTemp("v");
+        String wordSize = freshTemp("z");
         this.emit(wordSize + " = 4");
 
-        String one = freshTemp("v");
-        String zero = freshTemp("v");
+        String one = freshTemp("z");
+        String zero = freshTemp("z");
         this.emit(one + " = 1");
         this.emit(zero + " = 0");
     
         // minusOne = 0 - 1
-        String minusOne = freshTemp("v");
+        String minusOne = freshTemp("z");
         this.emit(minusOne + " = " + zero + " - " + one);
     
         // Bounds check: (-1 < index) && (index < length)
-        String checkLower = freshTemp("v");
+        String checkLower = freshTemp("z");
         this.emit(checkLower + " = " + minusOne + " < " + index);
     
-        String checkUpper = freshTemp("v");
+        String checkUpper = freshTemp("z");
         this.emit(checkUpper + " = " + index + " < " + length);
     
-        String checkBoth = freshTemp("v");
+        String checkBoth = freshTemp("z");
         this.emit(checkBoth + " = " + checkLower + " * " + checkUpper);
     
         this.emitError(checkBoth, checkBoth, 1);
 
-        String offset = freshTemp("v");
+        String offset = freshTemp("z");
         this.emit(offset + " = " + index + " * " + wordSize);
 
-        String totalOffset = freshTemp("v");
+        String totalOffset = freshTemp("z");
         this.emit(totalOffset + " = " + offset + " + " + wordSize);
 
-        String address = freshTemp("v");
+        String address = freshTemp("z");
         this.emit(address + " = " + array + " + " + totalOffset);
     
         // Load result = [address + 0]
-        String result = freshTemp("v");
+        String result = freshTemp("z");
         this.emit(result + " = [" + address + " + 0]");
     
         return result;
@@ -688,25 +688,20 @@ public String visit(Identifier n, Void argu) {
         String className = n.f1.f0.toString();
         MiniJavaClass cls = this.table.classMap.get(className);
 
-        int totalFieldCount = 0;
-        MiniJavaClass cur = cls;
-        while (cur != null) {
-            totalFieldCount += cur.fields.size();
-            cur = cur.getParent();
-        }
+        int totalFieldCount = cls.fieldOffsets.size();
 
         int sizeInBytes = 4 + totalFieldCount * 4;
-        String sizeVal = freshTemp("v");
+        String sizeVal = freshTemp("z");
         this.emit(sizeVal + " = " + sizeInBytes);
         this.tempVarTypes.put(sizeVal, TypeConstants.INT);
 
         //Allocate fields table
-        _ret = freshTemp("v");
+        _ret = freshTemp("z");
         this.emit(_ret + " = alloc(" + sizeVal + ")");
 
         int methodCount = cls.vtable.size();
         int methodsSize = methodCount * 4;
-        String methodSizeVal = freshTemp("v");
+        String methodSizeVal = freshTemp("z");
         this.emit(methodSizeVal + " = " + methodsSize);
         this.tempVarTypes.put(_ret, className);
 
@@ -715,7 +710,7 @@ public String visit(Identifier n, Void argu) {
 
         int size = 0;
         for (String method : cls.vtable){
-            String methodNum = freshTemp("v");
+            String methodNum = freshTemp("z");
             this.emit(methodNum + " = " + method);
             this.emit("[" + vmtLabel + " + " + (size * 4) + "] = " + methodNum);
             size++;
@@ -737,7 +732,7 @@ public String visit(Identifier n, Void argu) {
         if (this.isThisAlias(obj)){
             obj = "this";
         } else if (isReservedName(obj)) {
-            String tmp = freshTemp("v");
+            String tmp = freshTemp("z");
             obj = tmp;
         }
 
@@ -753,7 +748,8 @@ public String visit(Identifier n, Void argu) {
                     if (isThisAlias(arg1)){
                         arg1 = "this";
                     } else if (isReservedName(arg1)) {
-                        String tmp = freshTemp("v");
+                        String tmp = freshTemp("z");
+                        currentMethod.renamedParams.put(arg1, tmp);
                         arg1 = tmp;
                     }
                 argTemps.add(arg1);
@@ -763,7 +759,8 @@ public String visit(Identifier n, Void argu) {
                     if (isThisAlias(arg)){
                         arg = "this";
                     } else if (isReservedName(arg)) {
-                        String tmp = freshTemp("v");
+                        String tmp = freshTemp("z");
+                        currentMethod.renamedParams.put(arg1, tmp);
                         arg = tmp;
                     }
                     argTemps.add(arg);
@@ -783,11 +780,11 @@ public String visit(Identifier n, Void argu) {
             System.err.println("Method " + methodName + " not in vtable for class " + targetClass.getName());
         }
         int offset = targetClass.vtableIndices.get(methodName);
-        String vtable = freshTemp("v");
+        String vtable = freshTemp("z");
         this.emit(vtable + " = [" + obj + " + 0]");
         this.tempVarTypes.put(vtable, TypeConstants.INT);
 
-        String fnPtr = freshTemp("v");
+        String fnPtr = freshTemp("z");
         this.emit(fnPtr + " = [" + vtable + " + " + offset + "]");
         this.tempVarTypes.put(fnPtr, TypeConstants.INT);
 
@@ -796,7 +793,7 @@ public String visit(Identifier n, Void argu) {
         callArgs.add(obj);
         callArgs.addAll(argTemps);
 
-        _ret = freshTemp("v");
+        _ret = freshTemp("z");
         this.emit(_ret + " = call " + fnPtr + "(" + String.join(" ", callArgs) + ")");
         this.tempVarTypes.put(_ret, this.currentMethod.getReturnType().type);
 
@@ -817,19 +814,12 @@ public String visit(Identifier n, Void argu) {
     public String visit(NotExpression n, Void argu) {
         String exprVal = n.f1.accept(this, argu); // Visit inner expression
 
-        // If exprVal is a field or alias, load its value into a temp
-        if (!exprVal.startsWith("v") && !Character.isDigit(exprVal.charAt(0))) {
-            String loaded = freshTemp("v");
-            this.emit(loaded + " = " + exprVal);
-            exprVal = loaded;
-        }
-
-        String one = freshTemp("v");
-        String literalOne = freshTemp("v");
+        String one = freshTemp("z");
+        String literalOne = freshTemp("z");
         this.emit(literalOne + " = 1");
         this.emit(one + " = " + literalOne);
 
-        String result = freshTemp("v");
+        String result = freshTemp("z");
         this.emit(result + " = " + one + " - " + exprVal);
         tempVarTypes.put(result, TypeConstants.BOOLEAN);
 
@@ -840,7 +830,7 @@ public String visit(Identifier n, Void argu) {
     @Override
     public String visit(TrueLiteral n, Void argu) {
         String _ret=null;
-        _ret = freshTemp("v");
+        _ret = freshTemp("z");
         this.tempVarTypes.put(_ret, TypeConstants.BOOLEAN);
         this.emit(_ret + " = 1");
         return _ret;
@@ -850,7 +840,7 @@ public String visit(Identifier n, Void argu) {
     @Override
     public String visit(FalseLiteral n, Void argu) {
         String _ret=null;
-        _ret = freshTemp("v");
+        _ret = freshTemp("z");
         this.tempVarTypes.put(_ret, TypeConstants.BOOLEAN);
         this.emit(_ret + " = 0");
         return _ret;
@@ -860,7 +850,7 @@ public String visit(Identifier n, Void argu) {
     public String visit(IntegerLiteral n, Void argu) {
         String _ret=null;
         _ret = n.f0.toString();
-        String temp = freshTemp("v");
+        String temp = freshTemp("z");
         this.tempVarTypes.put(temp, TypeConstants.INT);
         this.emit(temp + " = " + _ret);
         return temp;
@@ -911,6 +901,6 @@ public String visit(Identifier n, Void argu) {
         this.emit(endLabel + ":");
         indentLevel++;
 
-        return null;
+        return _ret;
     }
 }

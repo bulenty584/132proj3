@@ -19,7 +19,6 @@ public class MiniJavaClass {
     private final String className;
     private MiniJavaClass parent = null;
     private boolean vTableBuilt = false;
-    static public final HashMap<String, String> renamedParams = new HashMap<>();
 
     public List<Variable> fields = new LinkedList<Variable>(); // fieldName → type
     public HashMap<String, MiniJavaMethod> methods;
@@ -37,6 +36,7 @@ public class MiniJavaClass {
 
     public MiniJavaClass(String name, MiniJavaClass parent){
         this.methods = new HashMap<String, MiniJavaMethod>();
+        name = sanitize(name);
         this.className = name;
         this.parent = parent;
     }
@@ -75,26 +75,35 @@ public class MiniJavaClass {
     }
 
     public String getFieldType(String fieldName) {
-        for (Variable field : this.fields) {
-            if (field.name.equals(fieldName)) {
-                return field.type;
+        MiniJavaClass current = this;
+        while (current != null) {
+            for (Variable field : current.fields) {
+                if (field.name.equals(fieldName)) {
+                    return field.type;
+                }
             }
+            current = current.getParent();
         }
         return null;
     }
-
-    public int getFieldOffset(String field){
-        if (this.fieldOffsets.get(field) == null){
-            return -1;
+    
+    public int getFieldOffset(String fieldName) {
+        MiniJavaClass current = this;
+        while (current != null) {
+            String mangled = current.getName() + "_" + fieldName;
+            Integer offset = current.fieldOffsets.get(mangled);
+            if (offset != null) {
+                return offset;
+            }
+            current = current.getParent();
         }
-        return this.fieldOffsets.get(field);
-    }
+        return -1;
+    }    
 
     public MiniJavaMethod getMethod(String methodName){
         return this.methods.get(methodName);
     }
 
-    // Method to return a method or parent method with same method signature (Error checking)
     public MiniJavaMethod getMethodIncludingInherited(String methodName, SymbolTable table, boolean checkingMethodOverride) {
         MiniJavaClass current = this;
         while (current != null) {
@@ -107,6 +116,11 @@ public class MiniJavaClass {
         }
         return null;
     }
+
+    private String sanitize(String name) {
+        return name.replaceAll("[^a-zA-Z0-9_]", "_");
+    }
+    
     
 
     public void buildVtable(){
@@ -118,7 +132,8 @@ public class MiniJavaClass {
         }
         // add to child's vtable
         for (String methodName : this.methods.keySet()){
-            String label = "@" + this.className + "_" + methodName;
+            String _className = sanitize(className);
+            String label = "@" + _className + "_" + methodName;
 
             //override parent
             if (this.vtableIndices.containsKey(methodName)){
@@ -137,35 +152,25 @@ public class MiniJavaClass {
     }
 
     public void buildFieldOffsets() {
-        int offset = 4;
         int maxOffset = 0;
         if (this.parent != null) {
             parent.buildFieldOffsets();
-            // Copy only non-shadowed fields
-            for (String name : parent.fieldOffsets.keySet()) {
-                boolean shadowed = false;
-                for (Variable v : this.fields) {
-                    if (v.name.equals(name)) {
-                        shadowed = true;
-                        break;
-                    }
-                }
-                if (!shadowed) {
-                    //System.out.println(name + parent.fieldOffsets.get(name));
-                    this.fieldOffsets.put(name, parent.fieldOffsets.get(name));
-                }
 
-                if (maxOffset <= parent.fieldOffsets.get(name)){
-                    maxOffset = parent.getFieldOffset(name);
+            for (String name : parent.fieldOffsets.keySet()) {
+                this.fieldOffsets.put(name, parent.fieldOffsets.get(name));
+
+                int parentOffset = parent.fieldOffsets.get(name);
+                if (maxOffset <= parentOffset) {
+                    maxOffset = parentOffset;
                 }
             }
         }
 
-        offset = 4 + maxOffset;
+        int offset = maxOffset + 4;
     
         for (Variable f : this.fields) {
-            //System.out.println(offset);
-            this.fieldOffsets.put(f.name, offset);
+
+            this.fieldOffsets.put(this.getName() + "_"+f.name, offset);
             offset += 4;
         }
     }

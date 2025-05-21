@@ -1,76 +1,76 @@
 func Main()
   y0 = 0
-  v0 = 4
-  v1 = alloc(v0)
-  v2 = 4
-  vmt_A = alloc(v2)
-  v3 = @A_run
-  [vmt_A + 0] = v3
-  [v1 + 0] = vmt_A
-  if0 v1 goto v1Error_0
-  goto v1End_1
-v1Error_0:
+  z0 = 4
+  z1 = alloc(z0)
+  z2 = 4
+  vmt_A = alloc(z2)
+  z3 = @A_run
+  [vmt_A + 0] = z3
+  [z1 + 0] = vmt_A
+  if0 z1 goto z1Error_0
+  goto z1End_1
+z1Error_0:
   error("null pointer")
-v1End_1:
-  if0 v1 goto v1Error_2
-  goto v1End_3
-v1Error_2:
+z1End_1:
+  if0 z1 goto z1Error_2
+  goto z1End_3
+z1Error_2:
   error("null pointer")
-v1End_3:
-  v4 = [v1 + 0]
-  v5 = [v4 + 0]
-  v6 = call v5(v1)
-  print(v6)
+z1End_3:
+  z4 = [z1 + 0]
+  z5 = [z4 + 0]
+  z6 = call z5(z1)
+  print(z6)
   return y0
 func A_run(this)
-  v7 = 20
-  v9 = 1
-  v8 = v7 + v9
-  v11 = 4
-  v10 = v8 * v11
-  v12 = alloc(v10)
-  if0 v12 goto v12Error_4
-  goto v12End_5
-v12Error_4:
+  z7 = 20
+  z9 = 1
+  z8 = z7 + z9
+  z11 = 4
+  z10 = z8 * z11
+  z12 = alloc(z10)
+  if0 z12 goto z12Error_4
+  goto z12End_5
+z12Error_4:
   error("null pointer")
-v12End_5:
-  [v12 + 0] = v7
-  a = v12
-  v13 = 10
-  v14 = [a + 0]
-  v15 = 4
-  v16 = 1
-  v17 = 0
-  v18 = v17 - v16
-  v19 = v18 < v13
-  v20 = v13 < v14
-  v21 = v19 * v20
-  if0 v21 goto v21Error_6
-  goto v21End_7
-v21Error_6:
+z12End_5:
+  [z12 + 0] = z7
+  a = z12
+  z13 = 10
+  z14 = [a + 0]
+  z15 = 4
+  z16 = 1
+  z17 = 0
+  z18 = z17 - z16
+  z19 = z18 < z13
+  z20 = z13 < z14
+  z21 = z19 * z20
+  if0 z21 goto z21Error_6
+  goto z21End_7
+z21Error_6:
   error("array index out of bounds")
-v21End_7:
-  v22 = v13 * v15
-  v23 = v22 + v15
-  v24 = a + v23
-  v25 = [v24 + 0]
-  print(v25)
-  v26 = 40
-  v27 = [a + 0]
-  v28 = 4
-  v29 = 1
-  v30 = 0
-  v31 = v30 - v29
-  v32 = v31 < v26
-  v33 = v26 < v27
-  v34 = v32 * v33
-  if0 v34 goto v34Error_8
-  goto v34End_9
-v34Error_8:
+z21End_7:
+  z22 = z13 * z15
+  z23 = z22 + z15
+  z24 = a + z23
+  z25 = [z24 + 0]
+  print(z25)
+  z26 = 40
+  z27 = [a + 0]
+  z28 = 4
+  z29 = 1
+  z30 = 0
+  z31 = z30 - z29
+  z32 = z31 < z26
+  z33 = z26 < z27
+  z34 = z32 * z33
+  if0 z34 goto z34Error_8
+  goto z34End_9
+z34Error_8:
   error("array index out of bounds")
-v34End_9:
-  v35 = v26 * v28
-  v36 = v35 + v28
-  v37 = a + v36
-  v38 = [v37 + 0]
-  return v38
+z34End_9:
+  z35 = z26 * z28
+  z36 = z35 + z28
+  z37 = a + z36
+  z38 = [z37 + 0]
+  return z38

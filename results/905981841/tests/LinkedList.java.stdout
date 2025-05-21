@@ -1,69 +1,69 @@
 func Main()
   y0 = 0
-  v0 = 4
-  v1 = alloc(v0)
-  v2 = 4
-  vmt_LL = alloc(v2)
-  v3 = @LL_Start
-  [vmt_LL + 0] = v3
-  [v1 + 0] = vmt_LL
-  if0 v1 goto v1Error_0
-  goto v1End_1
-v1Error_0:
+  z0 = 4
+  z1 = alloc(z0)
+  z2 = 4
+  vmt_LL = alloc(z2)
+  z3 = @LL_Start
+  [vmt_LL + 0] = z3
+  [z1 + 0] = vmt_LL
+  if0 z1 goto z1Error_0
+  goto z1End_1
+z1Error_0:
   error("null pointer")
-v1End_1:
-  if0 v1 goto v1Error_2
-  goto v1End_3
-v1Error_2:
+z1End_1:
+  if0 z1 goto z1Error_2
+  goto z1End_3
+z1Error_2:
   error("null pointer")
-v1End_3:
-  v4 = [v1 + 0]
-  v5 = [v4 + 0]
-  v6 = call v5(v1)
-  print(v6)
+z1End_3:
+  z4 = [z1 + 0]
+  z5 = [z4 + 0]
+  z6 = call z5(z1)
+  print(z6)
   return y0
 func Element_Init(this v_Age v_Salary v_Married)
   [this + 4] = v_Age
   [this + 8] = v_Salary
   [this + 12] = v_Married
-  v7 = 1
-  return v7
+  z7 = 1
+  return z7
 func Element_GetAge(this)
-  v8 = [this + 4]
-  return v8
+  z8 = [this + 4]
+  return z8
 func Element_GetSalary(this)
-  v9 = [this + 8]
-  return v9
+  z9 = [this + 8]
+  return z9
 func Element_GetMarried(this)
-  v10 = [this + 12]
-  return v10
+  z10 = [this + 12]
+  return z10
 func Element_Equal(this other)
-  v11 = 1
-  ret_val = v11
+  z11 = 1
+  ret_val = z11
   if0 other goto otherError_4
   goto otherEnd_5
 otherError_4:
   error("null pointer")
 otherEnd_5:
-  v12 = [other + 0]
-  v13 = [v12 + 8]
-  v14 = call v13(other)
-  aux01 = v14
+  z12 = [other + 0]
+  z13 = [z12 + 8]
+  z14 = call z13(other)
+  aux01 = z14
   if0 this goto thisError_6
   goto thisEnd_7
 thisError_6:
   error("null pointer")
 thisEnd_7:
-  v15 = [this + 4]
-  v16 = [this + 0]
-  v17 = [v16 + 20]
-  v18 = call v17(this aux01 v15)
-  v20 = 1
-  v19 = v20
-  v21 = v19 - v18
-  if0 v21 goto else_8
-  v22 = 0
-  ret_val = v22
+  z15 = [this + 4]
+  z16 = [this + 0]
+  z17 = [z16 + 20]
+  z18 = call z17(this aux01 z15)
+  z20 = 1
+  z19 = z20
+  z21 = z19 - z18
+  if0 z21 goto else_8
+  z22 = 0
+  ret_val = z22
   goto ifend_9
   else_8:
   if0 other goto otherError_10
@@ -71,47 +71,47 @@ thisEnd_7:
 otherError_10:
   error("null pointer")
 otherEnd_11:
-  v23 = [other + 0]
-  v24 = [v23 + 0]
-  v25 = call v24(other)
-  aux02 = v25
+  z23 = [other + 0]
+  z24 = [z23 + 0]
+  z25 = call z24(other)
+  aux02 = z25
   if0 this goto thisError_12
   goto thisEnd_13
 thisError_12:
   error("null pointer")
 thisEnd_13:
-  v26 = [this + 8]
-  v27 = [this + 0]
-  v28 = [v27 + 20]
-  v29 = call v28(this aux02 v26)
-  v31 = 1
-  v30 = v31
-  v32 = v30 - v29
-  if0 v32 goto else_14
-  v33 = 0
-  ret_val = v33
+  z26 = [this + 8]
+  z27 = [this + 0]
+  z28 = [z27 + 20]
+  z29 = call z28(this aux02 z26)
+  z31 = 1
+  z30 = z31
+  z32 = z30 - z29
+  if0 z32 goto else_14
+  z33 = 0
+  ret_val = z33
   goto ifend_15
   else_14:
-  v34 = [this + 12]
-  if0 v34 goto else_16
+  z34 = [this + 12]
+  if0 z34 goto else_16
   if0 other goto otherError_18
   goto otherEnd_19
 otherError_18:
   error("null pointer")
 otherEnd_19:
-  v35 = [other + 0]
-  v36 = [v35 + 16]
-  v37 = call v36(other)
-  v39 = 1
-  v38 = v39
-  v40 = v38 - v37
-  if0 v40 goto else_20
-  v41 = 0
-  ret_val = v41
+  z35 = [other + 0]
+  z36 = [z35 + 16]
+  z37 = call z36(other)
+  z39 = 1
+  z38 = z39
+  z40 = z38 - z37
+  if0 z40 goto else_20
+  z41 = 0
+  ret_val = z41
   goto ifend_21
   else_20:
-  v42 = 0
-  nt = v42
+  z42 = 0
+  nt = z42
   ifend_21:
   goto ifend_17
   else_16:
@@ -120,166 +120,165 @@ otherEnd_19:
 otherError_22:
   error("null pointer")
 otherEnd_23:
-  v43 = [other + 0]
-  v44 = [v43 + 16]
-  v45 = call v44(other)
-  if0 v45 goto else_24
-  v46 = 0
-  ret_val = v46
+  z43 = [other + 0]
+  z44 = [z43 + 16]
+  z45 = call z44(other)
+  if0 z45 goto else_24
+  z46 = 0
+  ret_val = z46
   goto ifend_25
   else_24:
-  v47 = 0
-  nt = v47
+  z47 = 0
+  nt = z47
   ifend_25:
   ifend_17:
   ifend_15:
   ifend_9:
   return ret_val
 func Element_Compare(this num1 num2)
-  v48 = 0
-  retval = v48
-  v49 = 1
-  v50 = num2 + v49
-  aux02 = v50
-  v51 = num1 < num2
-  if0 v51 goto else_26
-  v52 = 0
-  retval = v52
+  z48 = 0
+  retval = z48
+  z49 = 1
+  z50 = num2 + z49
+  aux02 = z50
+  z51 = num1 < num2
+  if0 z51 goto else_26
+  z52 = 0
+  retval = z52
   goto ifend_27
   else_26:
-  v53 = num1 < aux02
-  v55 = 1
-  v54 = v55
-  v56 = v54 - v53
-  if0 v56 goto else_28
-  v57 = 0
-  retval = v57
+  z53 = num1 < aux02
+  z55 = 1
+  z54 = z55
+  z56 = z54 - z53
+  if0 z56 goto else_28
+  z57 = 0
+  retval = z57
   goto ifend_29
   else_28:
-  v58 = 1
-  retval = v58
+  z58 = 1
+  retval = z58
   ifend_29:
   ifend_27:
   return retval
 func List_Init(this)
-  v59 = 1
-  [this + 12] = v59
-  v60 = 1
-  return v60
+  z59 = 1
+  [this + 12] = z59
+  z60 = 1
+  return z60
 func List_InitNew(this v_elem v_next v_end)
   [this + 12] = v_end
   [this + 4] = v_elem
   [this + 8] = v_next
-  v61 = 1
-  return v61
+  z61 = 1
+  return z61
 func List_Insert(this new_elem)
   aux03 = this
-  v62 = 16
-  v63 = alloc(v62)
-  v64 = 40
-  vmt_List = alloc(v64)
-  v65 = @List_Delete
-  [vmt_List + 0] = v65
-  v66 = @List_Print
-  [vmt_List + 4] = v66
-  v67 = @List_Init
-  [vmt_List + 8] = v67
-  v68 = @List_GetElem
-  [vmt_List + 12] = v68
-  v69 = @List_GetNext
-  [vmt_List + 16] = v69
-  v70 = @List_SetNext
-  [vmt_List + 20] = v70
-  v71 = @List_Search
-  [vmt_List + 24] = v71
-  v72 = @List_GetEnd
-  [vmt_List + 28] = v72
-  v73 = @List_InitNew
-  [vmt_List + 32] = v73
-  v74 = @List_Insert
-  [vmt_List + 36] = v74
-  [v63 + 0] = vmt_List
-  if0 v63 goto v63Error_30
-  goto v63End_31
-v63Error_30:
+  z62 = 16
+  z63 = alloc(z62)
+  z64 = 40
+  vmt_List = alloc(z64)
+  z65 = @List_Delete
+  [vmt_List + 0] = z65
+  z66 = @List_Print
+  [vmt_List + 4] = z66
+  z67 = @List_Init
+  [vmt_List + 8] = z67
+  z68 = @List_GetElem
+  [vmt_List + 12] = z68
+  z69 = @List_GetNext
+  [vmt_List + 16] = z69
+  z70 = @List_SetNext
+  [vmt_List + 20] = z70
+  z71 = @List_Search
+  [vmt_List + 24] = z71
+  z72 = @List_GetEnd
+  [vmt_List + 28] = z72
+  z73 = @List_InitNew
+  [vmt_List + 32] = z73
+  z74 = @List_Insert
+  [vmt_List + 36] = z74
+  [z63 + 0] = vmt_List
+  if0 z63 goto z63Error_30
+  goto z63End_31
+z63Error_30:
   error("null pointer")
-v63End_31:
-  aux02 = v63
+z63End_31:
+  aux02 = z63
   if0 aux02 goto aux02Error_32
   goto aux02End_33
 aux02Error_32:
   error("null pointer")
 aux02End_33:
-  v75 = 0
-  v76 = [aux02 + 0]
-  v77 = [v76 + 32]
-  v78 = call v77(aux02 new_elem aux03 v75)
-  ret_val = v78
+  z75 = 0
+  z76 = [aux02 + 0]
+  z77 = [z76 + 32]
+  z78 = call z77(aux02 new_elem aux03 z75)
+  ret_val = z78
   return aux02
 func List_SetNext(this v_next)
   [this + 8] = v_next
-  v79 = 1
-  return v79
+  z79 = 1
+  return z79
 func List_Delete(this e)
   my_head = this
-  v80 = 0
-  ret_val = v80
-  v81 = 0
-  v82 = 1
-  v83 = v81 - v82
-  aux04 = v83
+  z80 = 0
+  ret_val = z80
+  z81 = 0
+  z82 = 1
+  z83 = z81 - z82
+  aux04 = z83
   aux01 = this
   prev = this
-  v84 = [this + 12]
-  var_end = v84
-  v85 = [this + 4]
-  var_elem = v85
+  z84 = [this + 12]
+  var_end = z84
+  z85 = [this + 4]
+  var_elem = z85
   whileStart_34:
-  v87 = 1
-  v86 = v87
-  v88 = v86 - var_end
-  if0 v88 goto and_false_37
-  v90 = ret_val
-  v92 = 1
-  v91 = v92
-  v93 = v91 - v90
-  if0 v93 goto and_false_37
-  v89 = 1
+  z87 = 1
+  z86 = z87
+  z88 = z86 - var_end
+  if0 z88 goto and_false_37
+  z91 = 1
+  z90 = z91
+  z92 = z90 - ret_val
+  if0 z92 goto and_false_37
+  z89 = 1
   goto and_end_38
   and_false_37:
-  v89 = 0
+  z89 = 0
   and_end_38:
-  if0 v89 goto whileEnd_36
+  if0 z89 goto whileEnd_36
   whileBody_35:
     if0 e goto eError_39
     goto eEnd_40
 eError_39:
   error("null pointer")
 eEnd_40:
-  v94 = [e + 0]
-  v95 = [v94 + 12]
-  v96 = call v95(e var_elem)
-  if0 v96 goto else_41
-  v97 = 1
-  ret_val = v97
-  v98 = 0
-  v99 = aux04 < v98
-  if0 v99 goto else_43
+  z93 = [e + 0]
+  z94 = [z93 + 12]
+  z95 = call z94(e var_elem)
+  if0 z95 goto else_41
+  z96 = 1
+  ret_val = z96
+  z97 = 0
+  z98 = aux04 < z97
+  if0 z98 goto else_43
   if0 aux01 goto aux01Error_45
   goto aux01End_46
 aux01Error_45:
   error("null pointer")
 aux01End_46:
-  v100 = [aux01 + 0]
-  v101 = [v100 + 16]
-  v102 = call v101(aux01)
-  my_head = v102
+  z99 = [aux01 + 0]
+  z100 = [z99 + 16]
+  z101 = call z100(aux01)
+  my_head = z101
   goto ifend_44
   else_43:
-  v103 = 0
-  v104 = 555
-  v105 = v103 - v104
-  print(v105)
+  z102 = 0
+  z103 = 555
+  z104 = z102 - z103
+  print(z104)
   if0 prev goto prevError_47
   goto prevEnd_48
 prevError_47:
@@ -290,560 +289,559 @@ prevEnd_48:
 aux01Error_49:
   error("null pointer")
 aux01End_50:
-  v106 = [aux01 + 0]
-  v107 = [v106 + 16]
-  v108 = call v107(aux01)
-  v109 = [prev + 0]
-  v110 = [v109 + 20]
-  v111 = call v110(prev v108)
-  aux05 = v111
-  v112 = 0
-  v113 = 555
-  v114 = v112 - v113
-  print(v114)
+  z105 = [aux01 + 0]
+  z106 = [z105 + 16]
+  z107 = call z106(aux01)
+  z108 = [prev + 0]
+  z109 = [z108 + 20]
+  z110 = call z109(prev z107)
+  aux05 = z110
+  z111 = 0
+  z112 = 555
+  z113 = z111 - z112
+  print(z113)
   ifend_44:
   goto ifend_42
   else_41:
-  v115 = 0
-  nt = v115
+  z114 = 0
+  nt = z114
   ifend_42:
-  v116 = ret_val
-  v118 = 1
-  v117 = v118
-  v119 = v117 - v116
-  if0 v119 goto else_51
+  z116 = 1
+  z115 = z116
+  z117 = z115 - ret_val
+  if0 z117 goto else_51
   prev = aux01
   if0 aux01 goto aux01Error_53
   goto aux01End_54
 aux01Error_53:
   error("null pointer")
 aux01End_54:
-  v120 = [aux01 + 0]
-  v121 = [v120 + 16]
-  v122 = call v121(aux01)
-  aux01 = v122
+  z118 = [aux01 + 0]
+  z119 = [z118 + 16]
+  z120 = call z119(aux01)
+  aux01 = z120
   if0 aux01 goto aux01Error_55
   goto aux01End_56
 aux01Error_55:
   error("null pointer")
 aux01End_56:
-  v123 = [aux01 + 0]
-  v124 = [v123 + 28]
-  v125 = call v124(aux01)
-  var_end = v125
+  z121 = [aux01 + 0]
+  z122 = [z121 + 28]
+  z123 = call z122(aux01)
+  var_end = z123
   if0 aux01 goto aux01Error_57
   goto aux01End_58
 aux01Error_57:
   error("null pointer")
 aux01End_58:
-  v126 = [aux01 + 0]
-  v127 = [v126 + 12]
-  v128 = call v127(aux01)
-  var_elem = v128
-  v129 = 1
-  aux04 = v129
+  z124 = [aux01 + 0]
+  z125 = [z124 + 12]
+  z126 = call z125(aux01)
+  var_elem = z126
+  z127 = 1
+  aux04 = z127
   goto ifend_52
   else_51:
-  v130 = 0
-  nt = v130
+  z128 = 0
+  nt = z128
   ifend_52:
   goto whileStart_34
   whileEnd_36:
     return my_head
 func List_Search(this e)
-  v131 = 0
-  int_ret_val = v131
+  z129 = 0
+  int_ret_val = z129
   aux01 = this
-  v132 = [this + 12]
-  var_end = v132
-  v133 = [this + 4]
-  var_elem = v133
+  z130 = [this + 12]
+  var_end = z130
+  z131 = [this + 4]
+  var_elem = z131
   whileStart_59:
-  v135 = 1
-  v134 = v135
-  v136 = v134 - var_end
-  if0 v136 goto whileEnd_61
+  z133 = 1
+  z132 = z133
+  z134 = z132 - var_end
+  if0 z134 goto whileEnd_61
   whileBody_60:
     if0 e goto eError_62
     goto eEnd_63
 eError_62:
   error("null pointer")
 eEnd_63:
-  v137 = [e + 0]
-  v138 = [v137 + 12]
-  v139 = call v138(e var_elem)
-  if0 v139 goto else_64
-  v140 = 1
-  int_ret_val = v140
+  z135 = [e + 0]
+  z136 = [z135 + 12]
+  z137 = call z136(e var_elem)
+  if0 z137 goto else_64
+  z138 = 1
+  int_ret_val = z138
   goto ifend_65
   else_64:
-  v141 = 0
-  nt = v141
+  z139 = 0
+  nt = z139
   ifend_65:
   if0 aux01 goto aux01Error_66
   goto aux01End_67
 aux01Error_66:
   error("null pointer")
 aux01End_67:
-  v142 = [aux01 + 0]
-  v143 = [v142 + 16]
-  v144 = call v143(aux01)
-  aux01 = v144
+  z140 = [aux01 + 0]
+  z141 = [z140 + 16]
+  z142 = call z141(aux01)
+  aux01 = z142
   if0 aux01 goto aux01Error_68
   goto aux01End_69
 aux01Error_68:
   error("null pointer")
 aux01End_69:
-  v145 = [aux01 + 0]
-  v146 = [v145 + 28]
-  v147 = call v146(aux01)
-  var_end = v147
+  z143 = [aux01 + 0]
+  z144 = [z143 + 28]
+  z145 = call z144(aux01)
+  var_end = z145
   if0 aux01 goto aux01Error_70
   goto aux01End_71
 aux01Error_70:
   error("null pointer")
 aux01End_71:
-  v148 = [aux01 + 0]
-  v149 = [v148 + 12]
-  v150 = call v149(aux01)
-  var_elem = v150
+  z146 = [aux01 + 0]
+  z147 = [z146 + 12]
+  z148 = call z147(aux01)
+  var_elem = z148
   goto whileStart_59
   whileEnd_61:
     return int_ret_val
 func List_GetEnd(this)
-  v151 = [this + 12]
-  return v151
+  z149 = [this + 12]
+  return z149
 func List_GetElem(this)
-  v152 = [this + 4]
-  return v152
+  z150 = [this + 4]
+  return z150
 func List_GetNext(this)
-  v153 = [this + 8]
-  return v153
+  z151 = [this + 8]
+  return z151
 func List_Print(this)
   aux01 = this
-  v154 = [this + 12]
-  var_end = v154
-  v155 = [this + 4]
-  var_elem = v155
+  z152 = [this + 12]
+  var_end = z152
+  z153 = [this + 4]
+  var_elem = z153
   whileStart_72:
-  v157 = 1
-  v156 = v157
-  v158 = v156 - var_end
-  if0 v158 goto whileEnd_74
+  z155 = 1
+  z154 = z155
+  z156 = z154 - var_end
+  if0 z156 goto whileEnd_74
   whileBody_73:
     if0 var_elem goto var_elemError_75
     goto var_elemEnd_76
 var_elemError_75:
   error("null pointer")
 var_elemEnd_76:
-  v159 = [var_elem + 0]
-  v160 = [v159 + 8]
-  v161 = call v160(var_elem)
-  print(v161)
+  z157 = [var_elem + 0]
+  z158 = [z157 + 8]
+  z159 = call z158(var_elem)
+  print(z159)
   if0 aux01 goto aux01Error_77
   goto aux01End_78
 aux01Error_77:
   error("null pointer")
 aux01End_78:
-  v162 = [aux01 + 0]
-  v163 = [v162 + 16]
-  v164 = call v163(aux01)
-  aux01 = v164
+  z160 = [aux01 + 0]
+  z161 = [z160 + 16]
+  z162 = call z161(aux01)
+  aux01 = z162
   if0 aux01 goto aux01Error_79
   goto aux01End_80
 aux01Error_79:
   error("null pointer")
 aux01End_80:
-  v165 = [aux01 + 0]
-  v166 = [v165 + 28]
-  v167 = call v166(aux01)
-  var_end = v167
+  z163 = [aux01 + 0]
+  z164 = [z163 + 28]
+  z165 = call z164(aux01)
+  var_end = z165
   if0 aux01 goto aux01Error_81
   goto aux01End_82
 aux01Error_81:
   error("null pointer")
 aux01End_82:
-  v168 = [aux01 + 0]
-  v169 = [v168 + 12]
-  v170 = call v169(aux01)
-  var_elem = v170
+  z166 = [aux01 + 0]
+  z167 = [z166 + 12]
+  z168 = call z167(aux01)
+  var_elem = z168
   goto whileStart_72
   whileEnd_74:
-    v171 = 1
-    return v171
+    z169 = 1
+    return z169
 func LL_Start(this)
-  v172 = 16
-  v173 = alloc(v172)
-  v174 = 40
-  vmt_List = alloc(v174)
-  v175 = @List_Delete
-  [vmt_List + 0] = v175
-  v176 = @List_Print
-  [vmt_List + 4] = v176
-  v177 = @List_Init
-  [vmt_List + 8] = v177
-  v178 = @List_GetElem
-  [vmt_List + 12] = v178
-  v179 = @List_GetNext
-  [vmt_List + 16] = v179
-  v180 = @List_SetNext
-  [vmt_List + 20] = v180
-  v181 = @List_Search
-  [vmt_List + 24] = v181
-  v182 = @List_GetEnd
-  [vmt_List + 28] = v182
-  v183 = @List_InitNew
-  [vmt_List + 32] = v183
-  v184 = @List_Insert
-  [vmt_List + 36] = v184
-  [v173 + 0] = vmt_List
-  if0 v173 goto v173Error_83
-  goto v173End_84
-v173Error_83:
+  z170 = 16
+  z171 = alloc(z170)
+  z172 = 40
+  vmt_List = alloc(z172)
+  z173 = @List_Delete
+  [vmt_List + 0] = z173
+  z174 = @List_Print
+  [vmt_List + 4] = z174
+  z175 = @List_Init
+  [vmt_List + 8] = z175
+  z176 = @List_GetElem
+  [vmt_List + 12] = z176
+  z177 = @List_GetNext
+  [vmt_List + 16] = z177
+  z178 = @List_SetNext
+  [vmt_List + 20] = z178
+  z179 = @List_Search
+  [vmt_List + 24] = z179
+  z180 = @List_GetEnd
+  [vmt_List + 28] = z180
+  z181 = @List_InitNew
+  [vmt_List + 32] = z181
+  z182 = @List_Insert
+  [vmt_List + 36] = z182
+  [z171 + 0] = vmt_List
+  if0 z171 goto z171Error_83
+  goto z171End_84
+z171Error_83:
   error("null pointer")
-v173End_84:
-  last_elem = v173
+z171End_84:
+  last_elem = z171
   if0 last_elem goto last_elemError_85
   goto last_elemEnd_86
 last_elemError_85:
   error("null pointer")
 last_elemEnd_86:
-  v185 = [last_elem + 0]
-  v186 = [v185 + 8]
-  v187 = call v186(last_elem)
-  aux01 = v187
+  z183 = [last_elem + 0]
+  z184 = [z183 + 8]
+  z185 = call z184(last_elem)
+  aux01 = z185
   head = last_elem
   if0 head goto headError_87
   goto headEnd_88
 headError_87:
   error("null pointer")
 headEnd_88:
-  v188 = [head + 0]
-  v189 = [v188 + 8]
-  v190 = call v189(head)
-  aux01 = v190
+  z186 = [head + 0]
+  z187 = [z186 + 8]
+  z188 = call z187(head)
+  aux01 = z188
   if0 head goto headError_89
   goto headEnd_90
 headError_89:
   error("null pointer")
 headEnd_90:
-  v191 = [head + 0]
-  v192 = [v191 + 4]
-  v193 = call v192(head)
-  aux01 = v193
-  v194 = 16
-  v195 = alloc(v194)
-  v196 = 24
-  vmt_Element = alloc(v196)
-  v197 = @Element_GetSalary
-  [vmt_Element + 0] = v197
-  v198 = @Element_Init
-  [vmt_Element + 4] = v198
-  v199 = @Element_GetAge
-  [vmt_Element + 8] = v199
-  v200 = @Element_Equal
-  [vmt_Element + 12] = v200
-  v201 = @Element_GetMarried
-  [vmt_Element + 16] = v201
-  v202 = @Element_Compare
-  [vmt_Element + 20] = v202
-  [v195 + 0] = vmt_Element
-  if0 v195 goto v195Error_91
-  goto v195End_92
-v195Error_91:
+  z189 = [head + 0]
+  z190 = [z189 + 4]
+  z191 = call z190(head)
+  aux01 = z191
+  z192 = 16
+  z193 = alloc(z192)
+  z194 = 24
+  vmt_Element = alloc(z194)
+  z195 = @Element_GetSalary
+  [vmt_Element + 0] = z195
+  z196 = @Element_Init
+  [vmt_Element + 4] = z196
+  z197 = @Element_GetAge
+  [vmt_Element + 8] = z197
+  z198 = @Element_Equal
+  [vmt_Element + 12] = z198
+  z199 = @Element_GetMarried
+  [vmt_Element + 16] = z199
+  z200 = @Element_Compare
+  [vmt_Element + 20] = z200
+  [z193 + 0] = vmt_Element
+  if0 z193 goto z193Error_91
+  goto z193End_92
+z193Error_91:
   error("null pointer")
-v195End_92:
-  el01 = v195
+z193End_92:
+  el01 = z193
   if0 el01 goto el01Error_93
   goto el01End_94
 el01Error_93:
   error("null pointer")
 el01End_94:
-  v203 = 25
-  v204 = 37000
-  v205 = 0
-  v206 = [el01 + 0]
-  v207 = [v206 + 4]
-  v208 = call v207(el01 v203 v204 v205)
-  aux01 = v208
+  z201 = 25
+  z202 = 37000
+  z203 = 0
+  z204 = [el01 + 0]
+  z205 = [z204 + 4]
+  z206 = call z205(el01 z201 z202 z203)
+  aux01 = z206
   if0 head goto headError_95
   goto headEnd_96
 headError_95:
   error("null pointer")
 headEnd_96:
-  v209 = [head + 0]
-  v210 = [v209 + 36]
-  v211 = call v210(head el01)
-  head = v211
+  z207 = [head + 0]
+  z208 = [z207 + 36]
+  z209 = call z208(head el01)
+  head = z209
   if0 head goto headError_97
   goto headEnd_98
 headError_97:
   error("null pointer")
 headEnd_98:
-  v212 = [head + 0]
-  v213 = [v212 + 4]
-  v214 = call v213(head)
-  aux01 = v214
-  v215 = 10000000
-  print(v215)
-  v216 = 16
-  v217 = alloc(v216)
-  v218 = 24
-  vmt_Element = alloc(v218)
-  v219 = @Element_GetSalary
-  [vmt_Element + 0] = v219
-  v220 = @Element_Init
-  [vmt_Element + 4] = v220
-  v221 = @Element_GetAge
-  [vmt_Element + 8] = v221
-  v222 = @Element_Equal
-  [vmt_Element + 12] = v222
-  v223 = @Element_GetMarried
-  [vmt_Element + 16] = v223
-  v224 = @Element_Compare
-  [vmt_Element + 20] = v224
-  [v217 + 0] = vmt_Element
-  if0 v217 goto v217Error_99
-  goto v217End_100
-v217Error_99:
+  z210 = [head + 0]
+  z211 = [z210 + 4]
+  z212 = call z211(head)
+  aux01 = z212
+  z213 = 10000000
+  print(z213)
+  z214 = 16
+  z215 = alloc(z214)
+  z216 = 24
+  vmt_Element = alloc(z216)
+  z217 = @Element_GetSalary
+  [vmt_Element + 0] = z217
+  z218 = @Element_Init
+  [vmt_Element + 4] = z218
+  z219 = @Element_GetAge
+  [vmt_Element + 8] = z219
+  z220 = @Element_Equal
+  [vmt_Element + 12] = z220
+  z221 = @Element_GetMarried
+  [vmt_Element + 16] = z221
+  z222 = @Element_Compare
+  [vmt_Element + 20] = z222
+  [z215 + 0] = vmt_Element
+  if0 z215 goto z215Error_99
+  goto z215End_100
+z215Error_99:
   error("null pointer")
-v217End_100:
-  el01 = v217
+z215End_100:
+  el01 = z215
   if0 el01 goto el01Error_101
   goto el01End_102
 el01Error_101:
   error("null pointer")
 el01End_102:
-  v225 = 39
-  v226 = 42000
-  v227 = 1
-  v228 = [el01 + 0]
-  v229 = [v228 + 4]
-  v230 = call v229(el01 v225 v226 v227)
-  aux01 = v230
+  z223 = 39
+  z224 = 42000
+  z225 = 1
+  z226 = [el01 + 0]
+  z227 = [z226 + 4]
+  z228 = call z227(el01 z223 z224 z225)
+  aux01 = z228
   el02 = el01
   if0 head goto headError_103
   goto headEnd_104
 headError_103:
   error("null pointer")
 headEnd_104:
-  v231 = [head + 0]
-  v232 = [v231 + 36]
-  v233 = call v232(head el01)
-  head = v233
+  z229 = [head + 0]
+  z230 = [z229 + 36]
+  z231 = call z230(head el01)
+  head = z231
   if0 head goto headError_105
   goto headEnd_106
 headError_105:
   error("null pointer")
 headEnd_106:
-  v234 = [head + 0]
-  v235 = [v234 + 4]
-  v236 = call v235(head)
-  aux01 = v236
-  v237 = 10000000
-  print(v237)
-  v238 = 16
-  v239 = alloc(v238)
-  v240 = 24
-  vmt_Element = alloc(v240)
-  v241 = @Element_GetSalary
-  [vmt_Element + 0] = v241
-  v242 = @Element_Init
-  [vmt_Element + 4] = v242
-  v243 = @Element_GetAge
-  [vmt_Element + 8] = v243
-  v244 = @Element_Equal
-  [vmt_Element + 12] = v244
-  v245 = @Element_GetMarried
-  [vmt_Element + 16] = v245
-  v246 = @Element_Compare
-  [vmt_Element + 20] = v246
-  [v239 + 0] = vmt_Element
-  if0 v239 goto v239Error_107
-  goto v239End_108
-v239Error_107:
+  z232 = [head + 0]
+  z233 = [z232 + 4]
+  z234 = call z233(head)
+  aux01 = z234
+  z235 = 10000000
+  print(z235)
+  z236 = 16
+  z237 = alloc(z236)
+  z238 = 24
+  vmt_Element = alloc(z238)
+  z239 = @Element_GetSalary
+  [vmt_Element + 0] = z239
+  z240 = @Element_Init
+  [vmt_Element + 4] = z240
+  z241 = @Element_GetAge
+  [vmt_Element + 8] = z241
+  z242 = @Element_Equal
+  [vmt_Element + 12] = z242
+  z243 = @Element_GetMarried
+  [vmt_Element + 16] = z243
+  z244 = @Element_Compare
+  [vmt_Element + 20] = z244
+  [z237 + 0] = vmt_Element
+  if0 z237 goto z237Error_107
+  goto z237End_108
+z237Error_107:
   error("null pointer")
-v239End_108:
-  el01 = v239
+z237End_108:
+  el01 = z237
   if0 el01 goto el01Error_109
   goto el01End_110
 el01Error_109:
   error("null pointer")
 el01End_110:
-  v247 = 22
-  v248 = 34000
-  v249 = 0
-  v250 = [el01 + 0]
-  v251 = [v250 + 4]
-  v252 = call v251(el01 v247 v248 v249)
-  aux01 = v252
+  z245 = 22
+  z246 = 34000
+  z247 = 0
+  z248 = [el01 + 0]
+  z249 = [z248 + 4]
+  z250 = call z249(el01 z245 z246 z247)
+  aux01 = z250
   if0 head goto headError_111
   goto headEnd_112
 headError_111:
   error("null pointer")
 headEnd_112:
-  v253 = [head + 0]
-  v254 = [v253 + 36]
-  v255 = call v254(head el01)
-  head = v255
+  z251 = [head + 0]
+  z252 = [z251 + 36]
+  z253 = call z252(head el01)
+  head = z253
   if0 head goto headError_113
   goto headEnd_114
 headError_113:
   error("null pointer")
 headEnd_114:
-  v256 = [head + 0]
-  v257 = [v256 + 4]
-  v258 = call v257(head)
-  aux01 = v258
-  v259 = 16
-  v260 = alloc(v259)
-  v261 = 24
-  vmt_Element = alloc(v261)
-  v262 = @Element_GetSalary
-  [vmt_Element + 0] = v262
-  v263 = @Element_Init
-  [vmt_Element + 4] = v263
-  v264 = @Element_GetAge
-  [vmt_Element + 8] = v264
-  v265 = @Element_Equal
-  [vmt_Element + 12] = v265
-  v266 = @Element_GetMarried
-  [vmt_Element + 16] = v266
-  v267 = @Element_Compare
-  [vmt_Element + 20] = v267
-  [v260 + 0] = vmt_Element
-  if0 v260 goto v260Error_115
-  goto v260End_116
-v260Error_115:
+  z254 = [head + 0]
+  z255 = [z254 + 4]
+  z256 = call z255(head)
+  aux01 = z256
+  z257 = 16
+  z258 = alloc(z257)
+  z259 = 24
+  vmt_Element = alloc(z259)
+  z260 = @Element_GetSalary
+  [vmt_Element + 0] = z260
+  z261 = @Element_Init
+  [vmt_Element + 4] = z261
+  z262 = @Element_GetAge
+  [vmt_Element + 8] = z262
+  z263 = @Element_Equal
+  [vmt_Element + 12] = z263
+  z264 = @Element_GetMarried
+  [vmt_Element + 16] = z264
+  z265 = @Element_Compare
+  [vmt_Element + 20] = z265
+  [z258 + 0] = vmt_Element
+  if0 z258 goto z258Error_115
+  goto z258End_116
+z258Error_115:
   error("null pointer")
-v260End_116:
-  el03 = v260
+z258End_116:
+  el03 = z258
   if0 el03 goto el03Error_117
   goto el03End_118
 el03Error_117:
   error("null pointer")
 el03End_118:
-  v268 = 27
-  v269 = 34000
-  v270 = 0
-  v271 = [el03 + 0]
-  v272 = [v271 + 4]
-  v273 = call v272(el03 v268 v269 v270)
-  aux01 = v273
+  z266 = 27
+  z267 = 34000
+  z268 = 0
+  z269 = [el03 + 0]
+  z270 = [z269 + 4]
+  z271 = call z270(el03 z266 z267 z268)
+  aux01 = z271
   if0 head goto headError_119
   goto headEnd_120
 headError_119:
   error("null pointer")
 headEnd_120:
-  v274 = [head + 0]
-  v275 = [v274 + 24]
-  v276 = call v275(head el02)
-  print(v276)
+  z272 = [head + 0]
+  z273 = [z272 + 24]
+  z274 = call z273(head el02)
+  print(z274)
   if0 head goto headError_121
   goto headEnd_122
 headError_121:
   error("null pointer")
 headEnd_122:
-  v277 = [head + 0]
-  v278 = [v277 + 24]
-  v279 = call v278(head el03)
-  print(v279)
-  v280 = 10000000
-  print(v280)
-  v281 = 16
-  v282 = alloc(v281)
-  v283 = 24
-  vmt_Element = alloc(v283)
-  v284 = @Element_GetSalary
-  [vmt_Element + 0] = v284
-  v285 = @Element_Init
-  [vmt_Element + 4] = v285
-  v286 = @Element_GetAge
-  [vmt_Element + 8] = v286
-  v287 = @Element_Equal
-  [vmt_Element + 12] = v287
-  v288 = @Element_GetMarried
-  [vmt_Element + 16] = v288
-  v289 = @Element_Compare
-  [vmt_Element + 20] = v289
-  [v282 + 0] = vmt_Element
-  if0 v282 goto v282Error_123
-  goto v282End_124
-v282Error_123:
+  z275 = [head + 0]
+  z276 = [z275 + 24]
+  z277 = call z276(head el03)
+  print(z277)
+  z278 = 10000000
+  print(z278)
+  z279 = 16
+  z280 = alloc(z279)
+  z281 = 24
+  vmt_Element = alloc(z281)
+  z282 = @Element_GetSalary
+  [vmt_Element + 0] = z282
+  z283 = @Element_Init
+  [vmt_Element + 4] = z283
+  z284 = @Element_GetAge
+  [vmt_Element + 8] = z284
+  z285 = @Element_Equal
+  [vmt_Element + 12] = z285
+  z286 = @Element_GetMarried
+  [vmt_Element + 16] = z286
+  z287 = @Element_Compare
+  [vmt_Element + 20] = z287
+  [z280 + 0] = vmt_Element
+  if0 z280 goto z280Error_123
+  goto z280End_124
+z280Error_123:
   error("null pointer")
-v282End_124:
-  el01 = v282
+z280End_124:
+  el01 = z280
   if0 el01 goto el01Error_125
   goto el01End_126
 el01Error_125:
   error("null pointer")
 el01End_126:
-  v290 = 28
-  v291 = 35000
-  v292 = 0
-  v293 = [el01 + 0]
-  v294 = [v293 + 4]
-  v295 = call v294(el01 v290 v291 v292)
-  aux01 = v295
+  z288 = 28
+  z289 = 35000
+  z290 = 0
+  z291 = [el01 + 0]
+  z292 = [z291 + 4]
+  z293 = call z292(el01 z288 z289 z290)
+  aux01 = z293
   if0 head goto headError_127
   goto headEnd_128
 headError_127:
   error("null pointer")
 headEnd_128:
-  v296 = [head + 0]
-  v297 = [v296 + 36]
-  v298 = call v297(head el01)
-  head = v298
+  z294 = [head + 0]
+  z295 = [z294 + 36]
+  z296 = call z295(head el01)
+  head = z296
   if0 head goto headError_129
   goto headEnd_130
 headError_129:
   error("null pointer")
 headEnd_130:
-  v299 = [head + 0]
-  v300 = [v299 + 4]
-  v301 = call v300(head)
-  aux01 = v301
-  v302 = 2220000
-  print(v302)
+  z297 = [head + 0]
+  z298 = [z297 + 4]
+  z299 = call z298(head)
+  aux01 = z299
+  z300 = 2220000
+  print(z300)
   if0 head goto headError_131
   goto headEnd_132
 headError_131:
   error("null pointer")
 headEnd_132:
-  v303 = [head + 0]
-  v304 = [v303 + 0]
-  v305 = call v304(head el02)
-  head = v305
+  z301 = [head + 0]
+  z302 = [z301 + 0]
+  z303 = call z302(head el02)
+  head = z303
   if0 head goto headError_133
   goto headEnd_134
 headError_133:
   error("null pointer")
 headEnd_134:
-  v306 = [head + 0]
-  v307 = [v306 + 4]
-  v308 = call v307(head)
-  aux01 = v308
-  v309 = 33300000
-  print(v309)
+  z304 = [head + 0]
+  z305 = [z304 + 4]
+  z306 = call z305(head)
+  aux01 = z306
+  z307 = 33300000
+  print(z307)
   if0 head goto headError_135
   goto headEnd_136
 headError_135:
   error("null pointer")
 headEnd_136:
-  v310 = [head + 0]
-  v311 = [v310 + 0]
-  v312 = call v311(head el01)
-  head = v312
+  z308 = [head + 0]
+  z309 = [z308 + 0]
+  z310 = call z309(head el01)
+  head = z310
   if0 head goto headError_137
   goto headEnd_138
 headError_137:
   error("null pointer")
 headEnd_138:
-  v313 = [head + 0]
-  v314 = [v313 + 4]
-  v315 = call v314(head)
-  aux01 = v315
-  v316 = 44440000
-  print(v316)
-  v317 = 0
-  return v317
+  z311 = [head + 0]
+  z312 = [z311 + 4]
+  z313 = call z312(head)
+  aux01 = z313
+  z314 = 44440000
+  print(z314)
+  z315 = 0
+  return z315

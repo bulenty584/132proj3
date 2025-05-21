@@ -1,29 +1,29 @@
 func Main()
   y0 = 0
-  v0 = 4
-  v1 = alloc(v0)
-  v2 = 4
-  vmt_A = alloc(v2)
-  v3 = @A_run
-  [vmt_A + 0] = v3
-  [v1 + 0] = vmt_A
-  if0 v1 goto v1Error_0
-  goto v1End_1
-v1Error_0:
+  z0 = 4
+  z1 = alloc(z0)
+  z2 = 4
+  vmt_A = alloc(z2)
+  z3 = @A_run
+  [vmt_A + 0] = z3
+  [z1 + 0] = vmt_A
+  if0 z1 goto z1Error_0
+  goto z1End_1
+z1Error_0:
   error("null pointer")
-v1End_1:
-  if0 v1 goto v1Error_2
-  goto v1End_3
-v1Error_2:
+z1End_1:
+  if0 z1 goto z1Error_2
+  goto z1End_3
+z1Error_2:
   error("null pointer")
-v1End_3:
-  v4 = [v1 + 0]
-  v5 = [v4 + 0]
-  v6 = call v5(v1)
-  print(v6)
+z1End_3:
+  z4 = [z1 + 0]
+  z5 = [z4 + 0]
+  z6 = call z5(z1)
+  print(z6)
   return y0
 func A_run(this)
-  v7 = 42
-  print(v7)
-  v8 = 99
-  return v8
+  z7 = 42
+  print(z7)
+  z8 = 99
+  return z8

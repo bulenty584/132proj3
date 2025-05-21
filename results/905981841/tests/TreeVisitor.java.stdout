@@ -1,425 +1,425 @@
 func Main()
   y0 = 0
-  v0 = 4
-  v1 = alloc(v0)
-  v2 = 4
-  vmt_TV = alloc(v2)
-  v3 = @TV_Start
-  [vmt_TV + 0] = v3
-  [v1 + 0] = vmt_TV
-  if0 v1 goto v1Error_0
-  goto v1End_1
-v1Error_0:
+  z0 = 4
+  z1 = alloc(z0)
+  z2 = 4
+  vmt_TV = alloc(z2)
+  z3 = @TV_Start
+  [vmt_TV + 0] = z3
+  [z1 + 0] = vmt_TV
+  if0 z1 goto z1Error_0
+  goto z1End_1
+z1Error_0:
   error("null pointer")
-v1End_1:
-  if0 v1 goto v1Error_2
-  goto v1End_3
-v1Error_2:
+z1End_1:
+  if0 z1 goto z1Error_2
+  goto z1End_3
+z1Error_2:
   error("null pointer")
-v1End_3:
-  v4 = [v1 + 0]
-  v5 = [v4 + 0]
-  v6 = call v5(v1)
-  print(v6)
+z1End_3:
+  z4 = [z1 + 0]
+  z5 = [z4 + 0]
+  z6 = call z5(z1)
+  print(z6)
   return y0
 func TV_Start(this)
-  v7 = 28
-  v8 = alloc(v7)
-  v9 = 84
-  vmt_Tree = alloc(v9)
-  v10 = @Tree_Delete
-  [vmt_Tree + 0] = v10
-  v11 = @Tree_SetHas_Left
-  [vmt_Tree + 4] = v11
-  v12 = @Tree_RemoveLeft
-  [vmt_Tree + 8] = v12
-  v13 = @Tree_GetKey
-  [vmt_Tree + 12] = v13
-  v14 = @Tree_SetRight
-  [vmt_Tree + 16] = v14
-  v15 = @Tree_GetLeft
-  [vmt_Tree + 20] = v15
-  v16 = @Tree_GetRight
-  [vmt_Tree + 24] = v16
-  v17 = @Tree_Remove
-  [vmt_Tree + 28] = v17
-  v18 = @Tree_SetLeft
-  [vmt_Tree + 32] = v18
-  v19 = @Tree_Insert
-  [vmt_Tree + 36] = v19
-  v20 = @Tree_accept
-  [vmt_Tree + 40] = v20
-  v21 = @Tree_Print
-  [vmt_Tree + 44] = v21
-  v22 = @Tree_Init
-  [vmt_Tree + 48] = v22
-  v23 = @Tree_GetHas_Right
-  [vmt_Tree + 52] = v23
-  v24 = @Tree_GetHas_Left
-  [vmt_Tree + 56] = v24
-  v25 = @Tree_RemoveRight
-  [vmt_Tree + 60] = v25
-  v26 = @Tree_Search
-  [vmt_Tree + 64] = v26
-  v27 = @Tree_SetKey
-  [vmt_Tree + 68] = v27
-  v28 = @Tree_Compare
-  [vmt_Tree + 72] = v28
-  v29 = @Tree_SetHas_Right
-  [vmt_Tree + 76] = v29
-  v30 = @Tree_RecPrint
-  [vmt_Tree + 80] = v30
-  [v8 + 0] = vmt_Tree
-  if0 v8 goto v8Error_4
-  goto v8End_5
-v8Error_4:
+  z7 = 28
+  z8 = alloc(z7)
+  z9 = 84
+  vmt_Tree = alloc(z9)
+  z10 = @Tree_Delete
+  [vmt_Tree + 0] = z10
+  z11 = @Tree_SetHas_Left
+  [vmt_Tree + 4] = z11
+  z12 = @Tree_RemoveLeft
+  [vmt_Tree + 8] = z12
+  z13 = @Tree_GetKey
+  [vmt_Tree + 12] = z13
+  z14 = @Tree_SetRight
+  [vmt_Tree + 16] = z14
+  z15 = @Tree_GetLeft
+  [vmt_Tree + 20] = z15
+  z16 = @Tree_GetRight
+  [vmt_Tree + 24] = z16
+  z17 = @Tree_Remove
+  [vmt_Tree + 28] = z17
+  z18 = @Tree_SetLeft
+  [vmt_Tree + 32] = z18
+  z19 = @Tree_Insert
+  [vmt_Tree + 36] = z19
+  z20 = @Tree_accept
+  [vmt_Tree + 40] = z20
+  z21 = @Tree_Print
+  [vmt_Tree + 44] = z21
+  z22 = @Tree_Init
+  [vmt_Tree + 48] = z22
+  z23 = @Tree_GetHas_Right
+  [vmt_Tree + 52] = z23
+  z24 = @Tree_GetHas_Left
+  [vmt_Tree + 56] = z24
+  z25 = @Tree_RemoveRight
+  [vmt_Tree + 60] = z25
+  z26 = @Tree_Search
+  [vmt_Tree + 64] = z26
+  z27 = @Tree_SetKey
+  [vmt_Tree + 68] = z27
+  z28 = @Tree_Compare
+  [vmt_Tree + 72] = z28
+  z29 = @Tree_SetHas_Right
+  [vmt_Tree + 76] = z29
+  z30 = @Tree_RecPrint
+  [vmt_Tree + 80] = z30
+  [z8 + 0] = vmt_Tree
+  if0 z8 goto z8Error_4
+  goto z8End_5
+z8Error_4:
   error("null pointer")
-v8End_5:
-  root = v8
+z8End_5:
+  root = z8
   if0 root goto rootError_6
   goto rootEnd_7
 rootError_6:
   error("null pointer")
 rootEnd_7:
-  v31 = 16
-  v32 = [root + 0]
-  v33 = [v32 + 48]
-  v34 = call v33(root v31)
-  ntb = v34
+  z31 = 16
+  z32 = [root + 0]
+  z33 = [z32 + 48]
+  z34 = call z33(root z31)
+  ntb = z34
   if0 root goto rootError_8
   goto rootEnd_9
 rootError_8:
   error("null pointer")
 rootEnd_9:
-  v35 = [root + 0]
-  v36 = [v35 + 44]
-  v37 = call v36(root)
-  ntb = v37
-  v38 = 100000000
-  print(v38)
+  z35 = [root + 0]
+  z36 = [z35 + 44]
+  z37 = call z36(root)
+  ntb = z37
+  z38 = 100000000
+  print(z38)
   if0 root goto rootError_10
   goto rootEnd_11
 rootError_10:
   error("null pointer")
 rootEnd_11:
-  v39 = 8
-  v40 = [root + 0]
-  v41 = [v40 + 36]
-  v42 = call v41(root v39)
-  ntb = v42
+  z39 = 8
+  z40 = [root + 0]
+  z41 = [z40 + 36]
+  z42 = call z41(root z39)
+  ntb = z42
   if0 root goto rootError_12
   goto rootEnd_13
 rootError_12:
   error("null pointer")
 rootEnd_13:
-  v43 = 24
-  v44 = [root + 0]
-  v45 = [v44 + 36]
-  v46 = call v45(root v43)
-  ntb = v46
+  z43 = 24
+  z44 = [root + 0]
+  z45 = [z44 + 36]
+  z46 = call z45(root z43)
+  ntb = z46
   if0 root goto rootError_14
   goto rootEnd_15
 rootError_14:
   error("null pointer")
 rootEnd_15:
-  v47 = 4
-  v48 = [root + 0]
-  v49 = [v48 + 36]
-  v50 = call v49(root v47)
-  ntb = v50
+  z47 = 4
+  z48 = [root + 0]
+  z49 = [z48 + 36]
+  z50 = call z49(root z47)
+  ntb = z50
   if0 root goto rootError_16
   goto rootEnd_17
 rootError_16:
   error("null pointer")
 rootEnd_17:
-  v51 = 12
-  v52 = [root + 0]
-  v53 = [v52 + 36]
-  v54 = call v53(root v51)
-  ntb = v54
+  z51 = 12
+  z52 = [root + 0]
+  z53 = [z52 + 36]
+  z54 = call z53(root z51)
+  ntb = z54
   if0 root goto rootError_18
   goto rootEnd_19
 rootError_18:
   error("null pointer")
 rootEnd_19:
-  v55 = 20
-  v56 = [root + 0]
-  v57 = [v56 + 36]
-  v58 = call v57(root v55)
-  ntb = v58
+  z55 = 20
+  z56 = [root + 0]
+  z57 = [z56 + 36]
+  z58 = call z57(root z55)
+  ntb = z58
   if0 root goto rootError_20
   goto rootEnd_21
 rootError_20:
   error("null pointer")
 rootEnd_21:
-  v59 = 28
-  v60 = [root + 0]
-  v61 = [v60 + 36]
-  v62 = call v61(root v59)
-  ntb = v62
+  z59 = 28
+  z60 = [root + 0]
+  z61 = [z60 + 36]
+  z62 = call z61(root z59)
+  ntb = z62
   if0 root goto rootError_22
   goto rootEnd_23
 rootError_22:
   error("null pointer")
 rootEnd_23:
-  v63 = 14
-  v64 = [root + 0]
-  v65 = [v64 + 36]
-  v66 = call v65(root v63)
-  ntb = v66
+  z63 = 14
+  z64 = [root + 0]
+  z65 = [z64 + 36]
+  z66 = call z65(root z63)
+  ntb = z66
   if0 root goto rootError_24
   goto rootEnd_25
 rootError_24:
   error("null pointer")
 rootEnd_25:
-  v67 = [root + 0]
-  v68 = [v67 + 44]
-  v69 = call v68(root)
-  ntb = v69
-  v70 = 100000000
-  print(v70)
-  v71 = 12
-  v72 = alloc(v71)
-  v73 = 4
-  vmt_MyVisitor = alloc(v73)
-  v74 = @MyVisitor_visit
-  [vmt_MyVisitor + 0] = v74
-  [v72 + 0] = vmt_MyVisitor
-  if0 v72 goto v72Error_26
-  goto v72End_27
-v72Error_26:
+  z67 = [root + 0]
+  z68 = [z67 + 44]
+  z69 = call z68(root)
+  ntb = z69
+  z70 = 100000000
+  print(z70)
+  z71 = 12
+  z72 = alloc(z71)
+  z73 = 4
+  vmt_MyVisitor = alloc(z73)
+  z74 = @MyVisitor_visit
+  [vmt_MyVisitor + 0] = z74
+  [z72 + 0] = vmt_MyVisitor
+  if0 z72 goto z72Error_26
+  goto z72End_27
+z72Error_26:
   error("null pointer")
-v72End_27:
-  v = v72
-  v75 = 50000000
-  print(v75)
+z72End_27:
+  v = z72
+  z75 = 50000000
+  print(z75)
   if0 root goto rootError_28
   goto rootEnd_29
 rootError_28:
   error("null pointer")
 rootEnd_29:
-  v76 = [root + 0]
-  v77 = [v76 + 40]
-  v78 = call v77(root v)
-  nti = v78
-  v79 = 100000000
-  print(v79)
+  z76 = [root + 0]
+  z77 = [z76 + 40]
+  z78 = call z77(root v)
+  nti = z78
+  z79 = 100000000
+  print(z79)
   if0 root goto rootError_30
   goto rootEnd_31
 rootError_30:
   error("null pointer")
 rootEnd_31:
-  v80 = 24
-  v81 = [root + 0]
-  v82 = [v81 + 64]
-  v83 = call v82(root v80)
-  print(v83)
+  z80 = 24
+  z81 = [root + 0]
+  z82 = [z81 + 64]
+  z83 = call z82(root z80)
+  print(z83)
   if0 root goto rootError_32
   goto rootEnd_33
 rootError_32:
   error("null pointer")
 rootEnd_33:
-  v84 = 12
-  v85 = [root + 0]
-  v86 = [v85 + 64]
-  v87 = call v86(root v84)
-  print(v87)
+  z84 = 12
+  z85 = [root + 0]
+  z86 = [z85 + 64]
+  z87 = call z86(root z84)
+  print(z87)
   if0 root goto rootError_34
   goto rootEnd_35
 rootError_34:
   error("null pointer")
 rootEnd_35:
-  v88 = 16
-  v89 = [root + 0]
-  v90 = [v89 + 64]
-  v91 = call v90(root v88)
-  print(v91)
+  z88 = 16
+  z89 = [root + 0]
+  z90 = [z89 + 64]
+  z91 = call z90(root z88)
+  print(z91)
   if0 root goto rootError_36
   goto rootEnd_37
 rootError_36:
   error("null pointer")
 rootEnd_37:
-  v92 = 50
-  v93 = [root + 0]
-  v94 = [v93 + 64]
-  v95 = call v94(root v92)
-  print(v95)
+  z92 = 50
+  z93 = [root + 0]
+  z94 = [z93 + 64]
+  z95 = call z94(root z92)
+  print(z95)
   if0 root goto rootError_38
   goto rootEnd_39
 rootError_38:
   error("null pointer")
 rootEnd_39:
-  v96 = 12
-  v97 = [root + 0]
-  v98 = [v97 + 64]
-  v99 = call v98(root v96)
-  print(v99)
+  z96 = 12
+  z97 = [root + 0]
+  z98 = [z97 + 64]
+  z99 = call z98(root z96)
+  print(z99)
   if0 root goto rootError_40
   goto rootEnd_41
 rootError_40:
   error("null pointer")
 rootEnd_41:
-  v100 = 12
-  v101 = [root + 0]
-  v102 = [v101 + 0]
-  v103 = call v102(root v100)
-  ntb = v103
+  z100 = 12
+  z101 = [root + 0]
+  z102 = [z101 + 0]
+  z103 = call z102(root z100)
+  ntb = z103
   if0 root goto rootError_42
   goto rootEnd_43
 rootError_42:
   error("null pointer")
 rootEnd_43:
-  v104 = [root + 0]
-  v105 = [v104 + 44]
-  v106 = call v105(root)
-  ntb = v106
+  z104 = [root + 0]
+  z105 = [z104 + 44]
+  z106 = call z105(root)
+  ntb = z106
   if0 root goto rootError_44
   goto rootEnd_45
 rootError_44:
   error("null pointer")
 rootEnd_45:
-  v107 = 12
-  v108 = [root + 0]
-  v109 = [v108 + 64]
-  v110 = call v109(root v107)
-  print(v110)
-  v111 = 0
-  return v111
+  z107 = 12
+  z108 = [root + 0]
+  z109 = [z108 + 64]
+  z110 = call z109(root z107)
+  print(z110)
+  z111 = 0
+  return z111
 func Tree_Init(this v_key)
   [this + 12] = v_key
-  v112 = 0
-  [this + 16] = v112
-  v113 = 0
-  [this + 20] = v113
-  v114 = 1
-  return v114
+  z112 = 0
+  [this + 16] = z112
+  z113 = 0
+  [this + 20] = z113
+  z114 = 1
+  return z114
 func Tree_SetRight(this rn)
   [this + 8] = rn
-  v115 = 1
-  return v115
+  z115 = 1
+  return z115
 func Tree_SetLeft(this ln)
   [this + 4] = ln
-  v116 = 1
-  return v116
+  z116 = 1
+  return z116
 func Tree_GetRight(this)
-  v117 = [this + 8]
-  return v117
+  z117 = [this + 8]
+  return z117
 func Tree_GetLeft(this)
-  v118 = [this + 4]
-  return v118
+  z118 = [this + 4]
+  return z118
 func Tree_GetKey(this)
-  v119 = [this + 12]
-  return v119
+  z119 = [this + 12]
+  return z119
 func Tree_SetKey(this v_key)
   [this + 12] = v_key
-  v120 = 1
-  return v120
+  z120 = 1
+  return z120
 func Tree_GetHas_Right(this)
-  v121 = [this + 20]
-  return v121
+  z121 = [this + 20]
+  return z121
 func Tree_GetHas_Left(this)
-  v122 = [this + 16]
-  return v122
+  z122 = [this + 16]
+  return z122
 func Tree_SetHas_Left(this val)
   [this + 16] = val
-  v123 = 1
-  return v123
+  z123 = 1
+  return z123
 func Tree_SetHas_Right(this val)
   [this + 20] = val
-  v124 = 1
-  return v124
+  z124 = 1
+  return z124
 func Tree_Compare(this num1 num2)
-  v125 = 0
-  ntb = v125
-  v126 = 1
-  v127 = num2 + v126
-  nti = v127
-  v128 = num1 < num2
-  if0 v128 goto else_46
-  v129 = 0
-  ntb = v129
+  z125 = 0
+  ntb = z125
+  z126 = 1
+  z127 = num2 + z126
+  nti = z127
+  z128 = num1 < num2
+  if0 z128 goto else_46
+  z129 = 0
+  ntb = z129
   goto ifend_47
   else_46:
-  v130 = num1 < nti
-  v132 = 1
-  v131 = v132
-  v133 = v131 - v130
-  if0 v133 goto else_48
-  v134 = 0
-  ntb = v134
+  z130 = num1 < nti
+  z132 = 1
+  z131 = z132
+  z133 = z131 - z130
+  if0 z133 goto else_48
+  z134 = 0
+  ntb = z134
   goto ifend_49
   else_48:
-  v135 = 1
-  ntb = v135
+  z135 = 1
+  ntb = z135
   ifend_49:
   ifend_47:
   return ntb
 func Tree_Insert(this v_key)
-  v136 = 28
-  v137 = alloc(v136)
-  v138 = 84
-  vmt_Tree = alloc(v138)
-  v139 = @Tree_Delete
-  [vmt_Tree + 0] = v139
-  v140 = @Tree_SetHas_Left
-  [vmt_Tree + 4] = v140
-  v141 = @Tree_RemoveLeft
-  [vmt_Tree + 8] = v141
-  v142 = @Tree_GetKey
-  [vmt_Tree + 12] = v142
-  v143 = @Tree_SetRight
-  [vmt_Tree + 16] = v143
-  v144 = @Tree_GetLeft
-  [vmt_Tree + 20] = v144
-  v145 = @Tree_GetRight
-  [vmt_Tree + 24] = v145
-  v146 = @Tree_Remove
-  [vmt_Tree + 28] = v146
-  v147 = @Tree_SetLeft
-  [vmt_Tree + 32] = v147
-  v148 = @Tree_Insert
-  [vmt_Tree + 36] = v148
-  v149 = @Tree_accept
-  [vmt_Tree + 40] = v149
-  v150 = @Tree_Print
-  [vmt_Tree + 44] = v150
-  v151 = @Tree_Init
-  [vmt_Tree + 48] = v151
-  v152 = @Tree_GetHas_Right
-  [vmt_Tree + 52] = v152
-  v153 = @Tree_GetHas_Left
-  [vmt_Tree + 56] = v153
-  v154 = @Tree_RemoveRight
-  [vmt_Tree + 60] = v154
-  v155 = @Tree_Search
-  [vmt_Tree + 64] = v155
-  v156 = @Tree_SetKey
-  [vmt_Tree + 68] = v156
-  v157 = @Tree_Compare
-  [vmt_Tree + 72] = v157
-  v158 = @Tree_SetHas_Right
-  [vmt_Tree + 76] = v158
-  v159 = @Tree_RecPrint
-  [vmt_Tree + 80] = v159
-  [v137 + 0] = vmt_Tree
-  if0 v137 goto v137Error_50
-  goto v137End_51
-v137Error_50:
+  z136 = 28
+  z137 = alloc(z136)
+  z138 = 84
+  vmt_Tree = alloc(z138)
+  z139 = @Tree_Delete
+  [vmt_Tree + 0] = z139
+  z140 = @Tree_SetHas_Left
+  [vmt_Tree + 4] = z140
+  z141 = @Tree_RemoveLeft
+  [vmt_Tree + 8] = z141
+  z142 = @Tree_GetKey
+  [vmt_Tree + 12] = z142
+  z143 = @Tree_SetRight
+  [vmt_Tree + 16] = z143
+  z144 = @Tree_GetLeft
+  [vmt_Tree + 20] = z144
+  z145 = @Tree_GetRight
+  [vmt_Tree + 24] = z145
+  z146 = @Tree_Remove
+  [vmt_Tree + 28] = z146
+  z147 = @Tree_SetLeft
+  [vmt_Tree + 32] = z147
+  z148 = @Tree_Insert
+  [vmt_Tree + 36] = z148
+  z149 = @Tree_accept
+  [vmt_Tree + 40] = z149
+  z150 = @Tree_Print
+  [vmt_Tree + 44] = z150
+  z151 = @Tree_Init
+  [vmt_Tree + 48] = z151
+  z152 = @Tree_GetHas_Right
+  [vmt_Tree + 52] = z152
+  z153 = @Tree_GetHas_Left
+  [vmt_Tree + 56] = z153
+  z154 = @Tree_RemoveRight
+  [vmt_Tree + 60] = z154
+  z155 = @Tree_Search
+  [vmt_Tree + 64] = z155
+  z156 = @Tree_SetKey
+  [vmt_Tree + 68] = z156
+  z157 = @Tree_Compare
+  [vmt_Tree + 72] = z157
+  z158 = @Tree_SetHas_Right
+  [vmt_Tree + 76] = z158
+  z159 = @Tree_RecPrint
+  [vmt_Tree + 80] = z159
+  [z137 + 0] = vmt_Tree
+  if0 z137 goto z137Error_50
+  goto z137End_51
+z137Error_50:
   error("null pointer")
-v137End_51:
-  new_node = v137
+z137End_51:
+  new_node = z137
   if0 new_node goto new_nodeError_52
   goto new_nodeEnd_53
 new_nodeError_52:
   error("null pointer")
 new_nodeEnd_53:
-  v160 = [new_node + 0]
-  v161 = [v160 + 48]
-  v162 = call v161(new_node v_key)
-  ntb = v162
+  z160 = [new_node + 0]
+  z161 = [z160 + 48]
+  z162 = call z161(new_node v_key)
+  ntb = z162
   current_node = this
-  v163 = 1
-  cont = v163
+  z163 = 1
+  cont = z163
   whileStart_54:
   if0 cont goto whileEnd_56
   whileBody_55:
@@ -428,53 +428,53 @@ new_nodeEnd_53:
 current_nodeError_57:
   error("null pointer")
 current_nodeEnd_58:
-  v164 = [current_node + 0]
-  v165 = [v164 + 12]
-  v166 = call v165(current_node)
-  key_aux = v166
-  v167 = v_key < key_aux
-  if0 v167 goto else_59
+  z164 = [current_node + 0]
+  z165 = [z164 + 12]
+  z166 = call z165(current_node)
+  key_aux = z166
+  z167 = v_key < key_aux
+  if0 z167 goto else_59
   if0 current_node goto current_nodeError_61
   goto current_nodeEnd_62
 current_nodeError_61:
   error("null pointer")
 current_nodeEnd_62:
-  v168 = [current_node + 0]
-  v169 = [v168 + 56]
-  v170 = call v169(current_node)
-  if0 v170 goto else_63
+  z168 = [current_node + 0]
+  z169 = [z168 + 56]
+  z170 = call z169(current_node)
+  if0 z170 goto else_63
   if0 current_node goto current_nodeError_65
   goto current_nodeEnd_66
 current_nodeError_65:
   error("null pointer")
 current_nodeEnd_66:
-  v171 = [current_node + 0]
-  v172 = [v171 + 20]
-  v173 = call v172(current_node)
-  current_node = v173
+  z171 = [current_node + 0]
+  z172 = [z171 + 20]
+  z173 = call z172(current_node)
+  current_node = z173
   goto ifend_64
   else_63:
-  v174 = 0
-  cont = v174
+  z174 = 0
+  cont = z174
   if0 current_node goto current_nodeError_67
   goto current_nodeEnd_68
 current_nodeError_67:
   error("null pointer")
 current_nodeEnd_68:
-  v175 = 1
-  v176 = [current_node + 0]
-  v177 = [v176 + 4]
-  v178 = call v177(current_node v175)
-  ntb = v178
+  z175 = 1
+  z176 = [current_node + 0]
+  z177 = [z176 + 4]
+  z178 = call z177(current_node z175)
+  ntb = z178
   if0 current_node goto current_nodeError_69
   goto current_nodeEnd_70
 current_nodeError_69:
   error("null pointer")
 current_nodeEnd_70:
-  v179 = [current_node + 0]
-  v180 = [v179 + 32]
-  v181 = call v180(current_node new_node)
-  ntb = v181
+  z179 = [current_node + 0]
+  z180 = [z179 + 32]
+  z181 = call z180(current_node new_node)
+  ntb = z181
   ifend_64:
   goto ifend_60
   else_59:
@@ -483,57 +483,57 @@ current_nodeEnd_70:
 current_nodeError_71:
   error("null pointer")
 current_nodeEnd_72:
-  v182 = [current_node + 0]
-  v183 = [v182 + 52]
-  v184 = call v183(current_node)
-  if0 v184 goto else_73
+  z182 = [current_node + 0]
+  z183 = [z182 + 52]
+  z184 = call z183(current_node)
+  if0 z184 goto else_73
   if0 current_node goto current_nodeError_75
   goto current_nodeEnd_76
 current_nodeError_75:
   error("null pointer")
 current_nodeEnd_76:
-  v185 = [current_node + 0]
-  v186 = [v185 + 24]
-  v187 = call v186(current_node)
-  current_node = v187
+  z185 = [current_node + 0]
+  z186 = [z185 + 24]
+  z187 = call z186(current_node)
+  current_node = z187
   goto ifend_74
   else_73:
-  v188 = 0
-  cont = v188
+  z188 = 0
+  cont = z188
   if0 current_node goto current_nodeError_77
   goto current_nodeEnd_78
 current_nodeError_77:
   error("null pointer")
 current_nodeEnd_78:
-  v189 = 1
-  v190 = [current_node + 0]
-  v191 = [v190 + 76]
-  v192 = call v191(current_node v189)
-  ntb = v192
+  z189 = 1
+  z190 = [current_node + 0]
+  z191 = [z190 + 76]
+  z192 = call z191(current_node z189)
+  ntb = z192
   if0 current_node goto current_nodeError_79
   goto current_nodeEnd_80
 current_nodeError_79:
   error("null pointer")
 current_nodeEnd_80:
-  v193 = [current_node + 0]
-  v194 = [v193 + 16]
-  v195 = call v194(current_node new_node)
-  ntb = v195
+  z193 = [current_node + 0]
+  z194 = [z193 + 16]
+  z195 = call z194(current_node new_node)
+  ntb = z195
   ifend_74:
   ifend_60:
   goto whileStart_54
   whileEnd_56:
-    v196 = 1
-    return v196
+    z196 = 1
+    return z196
 func Tree_Delete(this v_key)
   current_node = this
   parent_node = this
-  v197 = 1
-  cont = v197
-  v198 = 0
-  found = v198
-  v199 = 1
-  is_root = v199
+  z197 = 1
+  cont = z197
+  z198 = 0
+  found = z198
+  z199 = 1
+  is_root = z199
   whileStart_81:
   if0 cont goto whileEnd_83
   whileBody_82:
@@ -542,63 +542,63 @@ func Tree_Delete(this v_key)
 current_nodeError_84:
   error("null pointer")
 current_nodeEnd_85:
-  v200 = [current_node + 0]
-  v201 = [v200 + 12]
-  v202 = call v201(current_node)
-  key_aux = v202
-  v203 = v_key < key_aux
-  if0 v203 goto else_86
+  z200 = [current_node + 0]
+  z201 = [z200 + 12]
+  z202 = call z201(current_node)
+  key_aux = z202
+  z203 = v_key < key_aux
+  if0 z203 goto else_86
   if0 current_node goto current_nodeError_88
   goto current_nodeEnd_89
 current_nodeError_88:
   error("null pointer")
 current_nodeEnd_89:
-  v204 = [current_node + 0]
-  v205 = [v204 + 56]
-  v206 = call v205(current_node)
-  if0 v206 goto else_90
+  z204 = [current_node + 0]
+  z205 = [z204 + 56]
+  z206 = call z205(current_node)
+  if0 z206 goto else_90
   parent_node = current_node
   if0 current_node goto current_nodeError_92
   goto current_nodeEnd_93
 current_nodeError_92:
   error("null pointer")
 current_nodeEnd_93:
-  v207 = [current_node + 0]
-  v208 = [v207 + 20]
-  v209 = call v208(current_node)
-  current_node = v209
+  z207 = [current_node + 0]
+  z208 = [z207 + 20]
+  z209 = call z208(current_node)
+  current_node = z209
   goto ifend_91
   else_90:
-  v210 = 0
-  cont = v210
+  z210 = 0
+  cont = z210
   ifend_91:
   goto ifend_87
   else_86:
-  v211 = key_aux < v_key
-  if0 v211 goto else_94
+  z211 = key_aux < v_key
+  if0 z211 goto else_94
   if0 current_node goto current_nodeError_96
   goto current_nodeEnd_97
 current_nodeError_96:
   error("null pointer")
 current_nodeEnd_97:
-  v212 = [current_node + 0]
-  v213 = [v212 + 52]
-  v214 = call v213(current_node)
-  if0 v214 goto else_98
+  z212 = [current_node + 0]
+  z213 = [z212 + 52]
+  z214 = call z213(current_node)
+  if0 z214 goto else_98
   parent_node = current_node
   if0 current_node goto current_nodeError_100
   goto current_nodeEnd_101
 current_nodeError_100:
   error("null pointer")
 current_nodeEnd_101:
-  v215 = [current_node + 0]
-  v216 = [v215 + 24]
-  v217 = call v216(current_node)
-  current_node = v217
+  z215 = [current_node + 0]
+  z216 = [z215 + 24]
+  z217 = call z216(current_node)
+  current_node = z217
   goto ifend_99
   else_98:
-  v218 = 0
-  cont = v218
+  z218 = 0
+  cont = z218
   ifend_99:
   goto ifend_95
   else_94:
@@ -608,33 +608,33 @@ current_nodeEnd_101:
 current_nodeError_104:
   error("null pointer")
 current_nodeEnd_105:
-  v219 = [current_node + 0]
-  v220 = [v219 + 52]
-  v221 = call v220(current_node)
-  v223 = 1
-  v222 = v223
-  v224 = v222 - v221
-  if0 v224 goto and_false_106
+  z219 = [current_node + 0]
+  z220 = [z219 + 52]
+  z221 = call z220(current_node)
+  z223 = 1
+  z222 = z223
+  z224 = z222 - z221
+  if0 z224 goto and_false_106
   if0 current_node goto current_nodeError_108
   goto current_nodeEnd_109
 current_nodeError_108:
   error("null pointer")
 current_nodeEnd_109:
-  v226 = [current_node + 0]
-  v227 = [v226 + 56]
-  v228 = call v227(current_node)
-  v230 = 1
-  v229 = v230
-  v231 = v229 - v228
-  if0 v231 goto and_false_106
-  v225 = 1
+  z226 = [current_node + 0]
+  z227 = [z226 + 56]
+  z228 = call z227(current_node)
+  z230 = 1
+  z229 = z230
+  z231 = z229 - z228
+  if0 z231 goto and_false_106
+  z225 = 1
   goto and_end_107
   and_false_106:
-  v225 = 0
+  z225 = 0
   and_end_107:
-  if0 v225 goto else_110
-  v232 = 1
-  ntb = v232
+  if0 z225 goto else_110
+  z232 = 1
+  ntb = z232
   goto ifend_111
   else_110:
   if0 this goto thisError_112
@@ -642,10 +642,10 @@ current_nodeEnd_109:
 thisError_112:
   error("null pointer")
 thisEnd_113:
-  v233 = [this + 0]
-  v234 = [v233 + 28]
-  v235 = call v234(this parent_node current_node)
-  ntb = v235
+  z233 = [this + 0]
+  z234 = [z233 + 28]
+  z235 = call z234(this parent_node current_node)
+  ntb = z235
   ifend_111:
   goto ifend_103
   else_102:
@@ -654,19 +654,19 @@ thisEnd_113:
 thisError_114:
   error("null pointer")
 thisEnd_115:
-  v236 = [this + 0]
-  v237 = [v236 + 28]
-  v238 = call v237(this parent_node current_node)
-  ntb = v238
+  z236 = [this + 0]
+  z237 = [z236 + 28]
+  z238 = call z237(this parent_node current_node)
+  ntb = z238
   ifend_103:
-  v239 = 1
-  found = v239
-  v240 = 0
-  cont = v240
+  z239 = 1
+  found = z239
+  z240 = 0
+  cont = z240
   ifend_95:
   ifend_87:
-  v241 = 0
-  is_root = v241
+  z241 = 0
+  is_root = z241
   goto whileStart_81
   whileEnd_83:
     return found
@@ -676,19 +676,19 @@ func Tree_Remove(this p_node c_node)
 c_nodeError_116:
   error("null pointer")
 c_nodeEnd_117:
-  v242 = [c_node + 0]
-  v243 = [v242 + 56]
-  v244 = call v243(c_node)
-  if0 v244 goto else_118
+  z242 = [c_node + 0]
+  z243 = [z242 + 56]
+  z244 = call z243(c_node)
+  if0 z244 goto else_118
   if0 this goto thisError_120
   goto thisEnd_121
 thisError_120:
   error("null pointer")
 thisEnd_121:
-  v245 = [this + 0]
-  v246 = [v245 + 8]
-  v247 = call v246(this p_node c_node)
-  ntb = v247
+  z245 = [this + 0]
+  z246 = [z245 + 8]
+  z247 = call z246(this p_node c_node)
+  ntb = z247
   goto ifend_119
   else_118:
   if0 c_node goto c_nodeError_122
@@ -696,19 +696,19 @@ thisEnd_121:
 c_nodeError_122:
   error("null pointer")
 c_nodeEnd_123:
-  v248 = [c_node + 0]
-  v249 = [v248 + 52]
-  v250 = call v249(c_node)
-  if0 v250 goto else_124
+  z248 = [c_node + 0]
+  z249 = [z248 + 52]
+  z250 = call z249(c_node)
+  if0 z250 goto else_124
   if0 this goto thisError_126
   goto thisEnd_127
 thisError_126:
   error("null pointer")
 thisEnd_127:
-  v251 = [this + 0]
-  v252 = [v251 + 60]
-  v253 = call v252(this p_node c_node)
-  ntb = v253
+  z251 = [this + 0]
+  z252 = [z251 + 60]
+  z253 = call z252(this p_node c_node)
+  ntb = z253
   goto ifend_125
   else_124:
   if0 c_node goto c_nodeError_128
@@ -716,56 +716,56 @@ thisEnd_127:
 c_nodeError_128:
   error("null pointer")
 c_nodeEnd_129:
-  v254 = [c_node + 0]
-  v255 = [v254 + 12]
-  v256 = call v255(c_node)
-  auxkey1 = v256
+  z254 = [c_node + 0]
+  z255 = [z254 + 12]
+  z256 = call z255(c_node)
+  auxkey1 = z256
   if0 p_node goto p_nodeError_130
   goto p_nodeEnd_131
 p_nodeError_130:
   error("null pointer")
 p_nodeEnd_131:
-  v257 = [p_node + 0]
-  v258 = [v257 + 20]
-  v259 = call v258(p_node)
-  if0 v259 goto v259Error_132
-  goto v259End_133
-v259Error_132:
+  z257 = [p_node + 0]
+  z258 = [z257 + 20]
+  z259 = call z258(p_node)
+  if0 z259 goto z259Error_132
+  goto z259End_133
+z259Error_132:
   error("null pointer")
-v259End_133:
-  v260 = [v259 + 0]
-  v261 = [v260 + 12]
-  v262 = call v261(v259)
-  auxkey2 = v262
+z259End_133:
+  z260 = [z259 + 0]
+  z261 = [z260 + 12]
+  z262 = call z261(z259)
+  auxkey2 = z262
   if0 this goto thisError_134
   goto thisEnd_135
 thisError_134:
   error("null pointer")
 thisEnd_135:
-  v263 = [this + 0]
-  v264 = [v263 + 72]
-  v265 = call v264(this auxkey1 auxkey2)
-  if0 v265 goto else_136
+  z263 = [this + 0]
+  z264 = [z263 + 72]
+  z265 = call z264(this auxkey1 auxkey2)
+  if0 z265 goto else_136
   if0 p_node goto p_nodeError_138
   goto p_nodeEnd_139
 p_nodeError_138:
   error("null pointer")
 p_nodeEnd_139:
-  v266 = [this + 24]
-  v267 = [p_node + 0]
-  v268 = [v267 + 32]
-  v269 = call v268(p_node v266)
-  ntb = v269
+  z266 = [this + 24]
+  z267 = [p_node + 0]
+  z268 = [z267 + 32]
+  z269 = call z268(p_node z266)
+  ntb = z269
   if0 p_node goto p_nodeError_140
   goto p_nodeEnd_141
 p_nodeError_140:
   error("null pointer")
 p_nodeEnd_141:
-  v270 = 0
-  v271 = [p_node + 0]
-  v272 = [v271 + 4]
-  v273 = call v272(p_node v270)
-  ntb = v273
+  z270 = 0
+  z271 = [p_node + 0]
+  z272 = [z271 + 4]
+  z273 = call z272(p_node z270)
+  ntb = z273
   goto ifend_137
   else_136:
   if0 p_node goto p_nodeError_142
@@ -773,26 +773,26 @@ p_nodeEnd_141:
 p_nodeError_142:
   error("null pointer")
 p_nodeEnd_143:
-  v274 = [this + 24]
-  v275 = [p_node + 0]
-  v276 = [v275 + 16]
-  v277 = call v276(p_node v274)
-  ntb = v277
+  z274 = [this + 24]
+  z275 = [p_node + 0]
+  z276 = [z275 + 16]
+  z277 = call z276(p_node z274)
+  ntb = z277
   if0 p_node goto p_nodeError_144
   goto p_nodeEnd_145
 p_nodeError_144:
   error("null pointer")
 p_nodeEnd_145:
-  v278 = 0
-  v279 = [p_node + 0]
-  v280 = [v279 + 76]
-  v281 = call v280(p_node v278)
-  ntb = v281
+  z278 = 0
+  z279 = [p_node + 0]
+  z280 = [z279 + 76]
+  z281 = call z280(p_node z278)
+  ntb = z281
   ifend_137:
   ifend_125:
   ifend_119:
-  v282 = 1
-  return v282
+  z282 = 1
+  return z282
 func Tree_RemoveRight(this p_node c_node)
   whileStart_146:
   if0 c_node goto c_nodeError_149
@@ -800,10 +800,10 @@ func Tree_RemoveRight(this p_node c_node)
 c_nodeError_149:
   error("null pointer")
 c_nodeEnd_150:
-  v283 = [c_node + 0]
-  v284 = [v283 + 52]
-  v285 = call v284(c_node)
-  if0 v285 goto whileEnd_148
+  z283 = [c_node + 0]
+  z284 = [z283 + 52]
+  z285 = call z284(c_node)
+  if0 z285 goto whileEnd_148
   whileBody_147:
     if0 c_node goto c_nodeError_151
     goto c_nodeEnd_152
@@ -815,31 +815,31 @@ c_nodeEnd_152:
 c_nodeError_153:
   error("null pointer")
 c_nodeEnd_154:
-  v286 = [c_node + 0]
-  v287 = [v286 + 24]
-  v288 = call v287(c_node)
-  if0 v288 goto v288Error_155
-  goto v288End_156
-v288Error_155:
+  z286 = [c_node + 0]
+  z287 = [z286 + 24]
+  z288 = call z287(c_node)
+  if0 z288 goto z288Error_155
+  goto z288End_156
+z288Error_155:
   error("null pointer")
-v288End_156:
-  v289 = [v288 + 0]
-  v290 = [v289 + 12]
-  v291 = call v290(v288)
-  v292 = [c_node + 0]
-  v293 = [v292 + 68]
-  v294 = call v293(c_node v291)
-  ntb = v294
+z288End_156:
+  z289 = [z288 + 0]
+  z290 = [z289 + 12]
+  z291 = call z290(z288)
+  z292 = [c_node + 0]
+  z293 = [z292 + 68]
+  z294 = call z293(c_node z291)
+  ntb = z294
   p_node = c_node
   if0 c_node goto c_nodeError_157
   goto c_nodeEnd_158
 c_nodeError_157:
   error("null pointer")
 c_nodeEnd_158:
-  v295 = [c_node + 0]
-  v296 = [v295 + 24]
-  v297 = call v296(c_node)
-  c_node = v297
+  z295 = [c_node + 0]
+  z296 = [z295 + 24]
+  z297 = call z296(c_node)
+  c_node = z297
   goto whileStart_146
   whileEnd_148:
     if0 p_node goto p_nodeError_159
@@ -847,23 +847,23 @@ c_nodeEnd_158:
 p_nodeError_159:
   error("null pointer")
 p_nodeEnd_160:
-  v298 = [this + 24]
-  v299 = [p_node + 0]
-  v300 = [v299 + 16]
-  v301 = call v300(p_node v298)
-  ntb = v301
+  z298 = [this + 24]
+  z299 = [p_node + 0]
+  z300 = [z299 + 16]
+  z301 = call z300(p_node z298)
+  ntb = z301
   if0 p_node goto p_nodeError_161
   goto p_nodeEnd_162
 p_nodeError_161:
   error("null pointer")
 p_nodeEnd_162:
-  v302 = 0
-  v303 = [p_node + 0]
-  v304 = [v303 + 76]
-  v305 = call v304(p_node v302)
-  ntb = v305
-  v306 = 1
-  return v306
+  z302 = 0
+  z303 = [p_node + 0]
+  z304 = [z303 + 76]
+  z305 = call z304(p_node z302)
+  ntb = z305
+  z306 = 1
+  return z306
 func Tree_RemoveLeft(this p_node c_node)
   whileStart_163:
   if0 c_node goto c_nodeError_166
@@ -871,10 +871,10 @@ func Tree_RemoveLeft(this p_node c_node)
 c_nodeError_166:
   error("null pointer")
 c_nodeEnd_167:
-  v307 = [c_node + 0]
-  v308 = [v307 + 56]
-  v309 = call v308(c_node)
-  if0 v309 goto whileEnd_165
+  z307 = [c_node + 0]
+  z308 = [z307 + 56]
+  z309 = call z308(c_node)
+  if0 z309 goto whileEnd_165
   whileBody_164:
     if0 c_node goto c_nodeError_168
     goto c_nodeEnd_169
@@ -886,31 +886,31 @@ c_nodeEnd_169:
 c_nodeError_170:
   error("null pointer")
 c_nodeEnd_171:
-  v310 = [c_node + 0]
-  v311 = [v310 + 20]
-  v312 = call v311(c_node)
-  if0 v312 goto v312Error_172
-  goto v312End_173
-v312Error_172:
+  z310 = [c_node + 0]
+  z311 = [z310 + 20]
+  z312 = call z311(c_node)
+  if0 z312 goto z312Error_172
+  goto z312End_173
+z312Error_172:
   error("null pointer")
-v312End_173:
-  v313 = [v312 + 0]
-  v314 = [v313 + 12]
-  v315 = call v314(v312)
-  v316 = [c_node + 0]
-  v317 = [v316 + 68]
-  v318 = call v317(c_node v315)
-  ntb = v318
+z312End_173:
+  z313 = [z312 + 0]
+  z314 = [z313 + 12]
+  z315 = call z314(z312)
+  z316 = [c_node + 0]
+  z317 = [z316 + 68]
+  z318 = call z317(c_node z315)
+  ntb = z318
   p_node = c_node
   if0 c_node goto c_nodeError_174
   goto c_nodeEnd_175
 c_nodeError_174:
   error("null pointer")
 c_nodeEnd_175:
-  v319 = [c_node + 0]
-  v320 = [v319 + 20]
-  v321 = call v320(c_node)
-  c_node = v321
+  z319 = [c_node + 0]
+  z320 = [z319 + 20]
+  z321 = call z320(c_node)
+  c_node = z321
   goto whileStart_163
   whileEnd_165:
     if0 p_node goto p_nodeError_176
@@ -918,29 +918,29 @@ c_nodeEnd_175:
 p_nodeError_176:
   error("null pointer")
 p_nodeEnd_177:
-  v322 = [this + 24]
-  v323 = [p_node + 0]
-  v324 = [v323 + 32]
-  v325 = call v324(p_node v322)
-  ntb = v325
+  z322 = [this + 24]
+  z323 = [p_node + 0]
+  z324 = [z323 + 32]
+  z325 = call z324(p_node z322)
+  ntb = z325
   if0 p_node goto p_nodeError_178
   goto p_nodeEnd_179
 p_nodeError_178:
   error("null pointer")
 p_nodeEnd_179:
-  v326 = 0
-  v327 = [p_node + 0]
-  v328 = [v327 + 4]
-  v329 = call v328(p_node v326)
-  ntb = v329
-  v330 = 1
-  return v330
+  z326 = 0
+  z327 = [p_node + 0]
+  z328 = [z327 + 4]
+  z329 = call z328(p_node z326)
+  ntb = z329
+  z330 = 1
+  return z330
 func Tree_Search(this v_key)
   current_node = this
-  v331 = 1
-  cont = v331
-  v332 = 0
-  ifound = v332
+  z331 = 1
+  cont = z331
+  z332 = 0
+  ifound = z332
   whileStart_180:
   if0 cont goto whileEnd_182
   whileBody_181:
@@ -949,68 +949,68 @@ func Tree_Search(this v_key)
 current_nodeError_183:
   error("null pointer")
 current_nodeEnd_184:
-  v333 = [current_node + 0]
-  v334 = [v333 + 12]
-  v335 = call v334(current_node)
-  key_aux = v335
-  v336 = v_key < key_aux
-  if0 v336 goto else_185
+  z333 = [current_node + 0]
+  z334 = [z333 + 12]
+  z335 = call z334(current_node)
+  key_aux = z335
+  z336 = v_key < key_aux
+  if0 z336 goto else_185
   if0 current_node goto current_nodeError_187
   goto current_nodeEnd_188
 current_nodeError_187:
   error("null pointer")
 current_nodeEnd_188:
-  v337 = [current_node + 0]
-  v338 = [v337 + 56]
-  v339 = call v338(current_node)
-  if0 v339 goto else_189
+  z337 = [current_node + 0]
+  z338 = [z337 + 56]
+  z339 = call z338(current_node)
+  if0 z339 goto else_189
   if0 current_node goto current_nodeError_191
   goto current_nodeEnd_192
 current_nodeError_191:
   error("null pointer")
 current_nodeEnd_192:
-  v340 = [current_node + 0]
-  v341 = [v340 + 20]
-  v342 = call v341(current_node)
-  current_node = v342
+  z340 = [current_node + 0]
+  z341 = [z340 + 20]
+  z342 = call z341(current_node)
+  current_node = z342
   goto ifend_190
   else_189:
-  v343 = 0
-  cont = v343
+  z343 = 0
+  cont = z343
   ifend_190:
   goto ifend_186
   else_185:
-  v344 = key_aux < v_key
-  if0 v344 goto else_193
+  z344 = key_aux < v_key
+  if0 z344 goto else_193
   if0 current_node goto current_nodeError_195
   goto current_nodeEnd_196
 current_nodeError_195:
   error("null pointer")
 current_nodeEnd_196:
-  v345 = [current_node + 0]
-  v346 = [v345 + 52]
-  v347 = call v346(current_node)
-  if0 v347 goto else_197
+  z345 = [current_node + 0]
+  z346 = [z345 + 52]
+  z347 = call z346(current_node)
+  if0 z347 goto else_197
   if0 current_node goto current_nodeError_199
   goto current_nodeEnd_200
 current_nodeError_199:
   error("null pointer")
 current_nodeEnd_200:
-  v348 = [current_node + 0]
-  v349 = [v348 + 24]
-  v350 = call v349(current_node)
-  current_node = v350
+  z348 = [current_node + 0]
+  z349 = [z348 + 24]
+  z350 = call z349(current_node)
+  current_node = z350
   goto ifend_198
   else_197:
-  v351 = 0
-  cont = v351
+  z351 = 0
+  cont = z351
   ifend_198:
   goto ifend_194
   else_193:
-  v352 = 1
-  ifound = v352
-  v353 = 0
-  cont = v353
+  z352 = 1
+  ifound = z352
+  z353 = 0
+  cont = z353
   ifend_194:
   ifend_186:
   goto whileStart_180
@@ -1023,22 +1023,22 @@ func Tree_Print(this)
 thisError_201:
   error("null pointer")
 thisEnd_202:
-  v354 = [this + 0]
-  v355 = [v354 + 80]
-  v356 = call v355(this current_node)
-  ntb = v356
-  v357 = 1
-  return v357
+  z354 = [this + 0]
+  z355 = [z354 + 80]
+  z356 = call z355(this current_node)
+  ntb = z356
+  z357 = 1
+  return z357
 func Tree_RecPrint(this node)
   if0 node goto nodeError_203
   goto nodeEnd_204
 nodeError_203:
   error("null pointer")
 nodeEnd_204:
-  v358 = [node + 0]
-  v359 = [v358 + 56]
-  v360 = call v359(node)
-  if0 v360 goto else_205
+  z358 = [node + 0]
+  z359 = [z358 + 56]
+  z360 = call z359(node)
+  if0 z360 goto else_205
   if0 this goto thisError_207
   goto thisEnd_208
 thisError_207:
@@ -1049,36 +1049,36 @@ thisEnd_208:
 nodeError_209:
   error("null pointer")
 nodeEnd_210:
-  v361 = [node + 0]
-  v362 = [v361 + 20]
-  v363 = call v362(node)
-  v364 = [this + 0]
-  v365 = [v364 + 80]
-  v366 = call v365(this v363)
-  ntb = v366
+  z361 = [node + 0]
+  z362 = [z361 + 20]
+  z363 = call z362(node)
+  z364 = [this + 0]
+  z365 = [z364 + 80]
+  z366 = call z365(this z363)
+  ntb = z366
   goto ifend_206
   else_205:
-  v367 = 1
-  ntb = v367
+  z367 = 1
+  ntb = z367
   ifend_206:
   if0 node goto nodeError_211
   goto nodeEnd_212
 nodeError_211:
   error("null pointer")
 nodeEnd_212:
-  v368 = [node + 0]
-  v369 = [v368 + 12]
-  v370 = call v369(node)
-  print(v370)
+  z368 = [node + 0]
+  z369 = [z368 + 12]
+  z370 = call z369(node)
+  print(z370)
   if0 node goto nodeError_213
   goto nodeEnd_214
 nodeError_213:
   error("null pointer")
 nodeEnd_214:
-  v371 = [node + 0]
-  v372 = [v371 + 52]
-  v373 = call v372(node)
-  if0 v373 goto else_215
+  z371 = [node + 0]
+  z372 = [z371 + 52]
+  z373 = call z372(node)
+  if0 z373 goto else_215
   if0 this goto thisError_217
   goto thisEnd_218
 thisError_217:
@@ -1089,178 +1089,178 @@ thisEnd_218:
 nodeError_219:
   error("null pointer")
 nodeEnd_220:
-  v374 = [node + 0]
-  v375 = [v374 + 24]
-  v376 = call v375(node)
-  v377 = [this + 0]
-  v378 = [v377 + 80]
-  v379 = call v378(this v376)
-  ntb = v379
+  z374 = [node + 0]
+  z375 = [z374 + 24]
+  z376 = call z375(node)
+  z377 = [this + 0]
+  z378 = [z377 + 80]
+  z379 = call z378(this z376)
+  ntb = z379
   goto ifend_216
   else_215:
-  v380 = 1
-  ntb = v380
+  z380 = 1
+  ntb = z380
   ifend_216:
-  v381 = 1
-  return v381
+  z381 = 1
+  return z381
 func Tree_accept(this v)
-  v382 = 333
-  print(v382)
+  z382 = 333
+  print(z382)
   if0 v goto vError_221
   goto vEnd_222
 vError_221:
   error("null pointer")
 vEnd_222:
-  v383 = [v + 0]
-  v384 = [v383 + 0]
-  v385 = call v384(v this)
-  nti = v385
-  v386 = 0
-  return v386
+  z383 = [v + 0]
+  z384 = [z383 + 0]
+  z385 = call z384(v this)
+  nti = z385
+  z386 = 0
+  return z386
 func Visitor_visit(this n)
   if0 n goto nError_223
   goto nEnd_224
 nError_223:
   error("null pointer")
 nEnd_224:
-  v387 = [n + 0]
-  v388 = [v387 + 52]
-  v389 = call v388(n)
-  if0 v389 goto else_225
+  z387 = [n + 0]
+  z388 = [z387 + 52]
+  z389 = call z388(n)
+  if0 z389 goto else_225
   if0 n goto nError_227
   goto nEnd_228
 nError_227:
   error("null pointer")
 nEnd_228:
-  v390 = [n + 0]
-  v391 = [v390 + 24]
-  v392 = call v391(n)
-  [this + 8] = v392
-  v393 = [this + 8]
-  if0 v393 goto v393Error_229
-  goto v393End_230
-v393Error_229:
+  z390 = [n + 0]
+  z391 = [z390 + 24]
+  z392 = call z391(n)
+  [this + 8] = z392
+  z393 = [this + 8]
+  if0 z393 goto z393Error_229
+  goto z393End_230
+z393Error_229:
   error("null pointer")
-v393End_230:
-  v394 = [v393 + 0]
-  v395 = [v394 + 40]
-  v396 = call v395(v393 this)
-  nti = v396
+z393End_230:
+  z394 = [z393 + 0]
+  z395 = [z394 + 40]
+  z396 = call z395(z393 this)
+  nti = z396
   goto ifend_226
   else_225:
-  v397 = 0
-  nti = v397
+  z397 = 0
+  nti = z397
   ifend_226:
   if0 n goto nError_231
   goto nEnd_232
 nError_231:
   error("null pointer")
 nEnd_232:
-  v398 = [n + 0]
-  v399 = [v398 + 56]
-  v400 = call v399(n)
-  if0 v400 goto else_233
+  z398 = [n + 0]
+  z399 = [z398 + 56]
+  z400 = call z399(n)
+  if0 z400 goto else_233
   if0 n goto nError_235
   goto nEnd_236
 nError_235:
   error("null pointer")
 nEnd_236:
-  v401 = [n + 0]
-  v402 = [v401 + 20]
-  v403 = call v402(n)
-  [this + 4] = v403
-  v404 = [this + 4]
-  if0 v404 goto v404Error_237
-  goto v404End_238
-v404Error_237:
+  z401 = [n + 0]
+  z402 = [z401 + 20]
+  z403 = call z402(n)
+  [this + 4] = z403
+  z404 = [this + 4]
+  if0 z404 goto z404Error_237
+  goto z404End_238
+z404Error_237:
   error("null pointer")
-v404End_238:
-  v405 = [v404 + 0]
-  v406 = [v405 + 40]
-  v407 = call v406(v404 this)
-  nti = v407
+z404End_238:
+  z405 = [z404 + 0]
+  z406 = [z405 + 40]
+  z407 = call z406(z404 this)
+  nti = z407
   goto ifend_234
   else_233:
-  v408 = 0
-  nti = v408
+  z408 = 0
+  nti = z408
   ifend_234:
-  v409 = 0
-  return v409
+  z409 = 0
+  return z409
 func MyVisitor_visit(this n)
   if0 n goto nError_239
   goto nEnd_240
 nError_239:
   error("null pointer")
 nEnd_240:
-  v410 = [n + 0]
-  v411 = [v410 + 52]
-  v412 = call v411(n)
-  if0 v412 goto else_241
+  z410 = [n + 0]
+  z411 = [z410 + 52]
+  z412 = call z411(n)
+  if0 z412 goto else_241
   if0 n goto nError_243
   goto nEnd_244
 nError_243:
   error("null pointer")
 nEnd_244:
-  v413 = [n + 0]
-  v414 = [v413 + 24]
-  v415 = call v414(n)
-  [this + 8] = v415
-  v416 = [this + 8]
-  if0 v416 goto v416Error_245
-  goto v416End_246
-v416Error_245:
+  z413 = [n + 0]
+  z414 = [z413 + 24]
+  z415 = call z414(n)
+  [this + 8] = z415
+  z416 = [this + 8]
+  if0 z416 goto z416Error_245
+  goto z416End_246
+z416Error_245:
   error("null pointer")
-v416End_246:
-  v417 = [v416 + 0]
-  v418 = [v417 + 40]
-  v419 = call v418(v416 this)
-  nti = v419
+z416End_246:
+  z417 = [z416 + 0]
+  z418 = [z417 + 40]
+  z419 = call z418(z416 this)
+  nti = z419
   goto ifend_242
   else_241:
-  v420 = 0
-  nti = v420
+  z420 = 0
+  nti = z420
   ifend_242:
   if0 n goto nError_247
   goto nEnd_248
 nError_247:
   error("null pointer")
 nEnd_248:
-  v421 = [n + 0]
-  v422 = [v421 + 12]
-  v423 = call v422(n)
-  print(v423)
+  z421 = [n + 0]
+  z422 = [z421 + 12]
+  z423 = call z422(n)
+  print(z423)
   if0 n goto nError_249
   goto nEnd_250
 nError_249:
   error("null pointer")
 nEnd_250:
-  v424 = [n + 0]
-  v425 = [v424 + 56]
-  v426 = call v425(n)
-  if0 v426 goto else_251
+  z424 = [n + 0]
+  z425 = [z424 + 56]
+  z426 = call z425(n)
+  if0 z426 goto else_251
   if0 n goto nError_253
   goto nEnd_254
 nError_253:
   error("null pointer")
 nEnd_254:
-  v427 = [n + 0]
-  v428 = [v427 + 20]
-  v429 = call v428(n)
-  [this + 4] = v429
-  v430 = [this + 4]
-  if0 v430 goto v430Error_255
-  goto v430End_256
-v430Error_255:
+  z427 = [n + 0]
+  z428 = [z427 + 20]
+  z429 = call z428(n)
+  [this + 4] = z429
+  z430 = [this + 4]
+  if0 z430 goto z430Error_255
+  goto z430End_256
+z430Error_255:
   error("null pointer")
-v430End_256:
-  v431 = [v430 + 0]
-  v432 = [v431 + 40]
-  v433 = call v432(v430 this)
-  nti = v433
+z430End_256:
+  z431 = [z430 + 0]
+  z432 = [z431 + 40]
+  z433 = call z432(z430 this)
+  nti = z433
   goto ifend_252
   else_251:
-  v434 = 0
-  nti = v434
+  z434 = 0
+  nti = z434
   ifend_252:
-  v435 = 0
-  return v435
+  z435 = 0
+  return z435

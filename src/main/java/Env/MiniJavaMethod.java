@@ -1,6 +1,7 @@
 package Env;
 import java.util.Set;
 import java.util.LinkedHashSet;
+import java.util.HashMap;
 
 public class MiniJavaMethod {
 
@@ -9,6 +10,8 @@ public class MiniJavaMethod {
     public Set<Variable> localVars;
     private final String name;
     private final Variable returnType;
+    public final HashMap<String, String> renamedParams = new HashMap<>();
+    public final HashMap<String, String> tempVarTypes = new HashMap<>();
 
     public MiniJavaMethod(String name, Variable returnType){
         this.parameters = new LinkedHashSet<Variable>();

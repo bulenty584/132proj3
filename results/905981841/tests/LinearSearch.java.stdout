@@ -1,33 +1,33 @@
 func Main()
   y0 = 0
-  v0 = 12
-  v1 = alloc(v0)
-  v2 = 16
-  vmt_LS = alloc(v2)
-  v3 = @LS_Print
-  [vmt_LS + 0] = v3
-  v4 = @LS_Init
-  [vmt_LS + 4] = v4
-  v5 = @LS_Start
-  [vmt_LS + 8] = v5
-  v6 = @LS_Search
-  [vmt_LS + 12] = v6
-  [v1 + 0] = vmt_LS
-  if0 v1 goto v1Error_0
-  goto v1End_1
-v1Error_0:
+  z0 = 12
+  z1 = alloc(z0)
+  z2 = 16
+  vmt_LS = alloc(z2)
+  z3 = @LS_Print
+  [vmt_LS + 0] = z3
+  z4 = @LS_Init
+  [vmt_LS + 4] = z4
+  z5 = @LS_Start
+  [vmt_LS + 8] = z5
+  z6 = @LS_Search
+  [vmt_LS + 12] = z6
+  [z1 + 0] = vmt_LS
+  if0 z1 goto z1Error_0
+  goto z1End_1
+z1Error_0:
   error("null pointer")
-v1End_1:
-  if0 v1 goto v1Error_2
-  goto v1End_3
-v1Error_2:
+z1End_1:
+  if0 z1 goto z1Error_2
+  goto z1End_3
+z1Error_2:
   error("null pointer")
-v1End_3:
-  v7 = 10
-  v8 = [v1 + 0]
-  v9 = [v8 + 8]
-  v10 = call v9(v1 v7)
-  print(v10)
+z1End_3:
+  z7 = 10
+  z8 = [z1 + 0]
+  z9 = [z8 + 8]
+  z10 = call z9(z1 z7)
+  print(z10)
   return y0
 func LS_Start(this sz)
   if0 this goto thisError_4
@@ -35,216 +35,216 @@ func LS_Start(this sz)
 thisError_4:
   error("null pointer")
 thisEnd_5:
-  v11 = [this + 0]
-  v12 = [v11 + 4]
-  v13 = call v12(this sz)
-  aux01 = v13
+  z11 = [this + 0]
+  z12 = [z11 + 4]
+  z13 = call z12(this sz)
+  aux01 = z13
   if0 this goto thisError_6
   goto thisEnd_7
 thisError_6:
   error("null pointer")
 thisEnd_7:
-  v14 = [this + 0]
-  v15 = [v14 + 0]
-  v16 = call v15(this)
-  aux02 = v16
-  v17 = 9999
-  print(v17)
+  z14 = [this + 0]
+  z15 = [z14 + 0]
+  z16 = call z15(this)
+  aux02 = z16
+  z17 = 9999
+  print(z17)
   if0 this goto thisError_8
   goto thisEnd_9
 thisError_8:
   error("null pointer")
 thisEnd_9:
-  v18 = 8
-  v19 = [this + 0]
-  v20 = [v19 + 12]
-  v21 = call v20(this v18)
-  print(v21)
+  z18 = 8
+  z19 = [this + 0]
+  z20 = [z19 + 12]
+  z21 = call z20(this z18)
+  print(z21)
   if0 this goto thisError_10
   goto thisEnd_11
 thisError_10:
   error("null pointer")
 thisEnd_11:
-  v22 = 12
-  v23 = [this + 0]
-  v24 = [v23 + 12]
-  v25 = call v24(this v22)
-  print(v25)
+  z22 = 12
+  z23 = [this + 0]
+  z24 = [z23 + 12]
+  z25 = call z24(this z22)
+  print(z25)
   if0 this goto thisError_12
   goto thisEnd_13
 thisError_12:
   error("null pointer")
 thisEnd_13:
-  v26 = 17
-  v27 = [this + 0]
-  v28 = [v27 + 12]
-  v29 = call v28(this v26)
-  print(v29)
+  z26 = 17
+  z27 = [this + 0]
+  z28 = [z27 + 12]
+  z29 = call z28(this z26)
+  print(z29)
   if0 this goto thisError_14
   goto thisEnd_15
 thisError_14:
   error("null pointer")
 thisEnd_15:
-  v30 = 50
-  v31 = [this + 0]
-  v32 = [v31 + 12]
-  v33 = call v32(this v30)
-  print(v33)
-  v34 = 55
-  return v34
+  z30 = 50
+  z31 = [this + 0]
+  z32 = [z31 + 12]
+  z33 = call z32(this z30)
+  print(z33)
+  z34 = 55
+  return z34
 func LS_Print(this)
-  v35 = 1
-  j = v35
+  z35 = 1
+  j = z35
   whileStart_16:
-  v36 = [this + 8]
-  v37 = j < v36
-  if0 v37 goto whileEnd_18
+  z36 = [this + 8]
+  z37 = j < z36
+  if0 z37 goto whileEnd_18
   whileBody_17:
-    v38 = [this + 4]
-    v39 = [v38 + 0]
-    v40 = 4
-    v41 = 1
-    v42 = 0
-    v43 = v42 - v41
-    v44 = v43 < j
-    v45 = j < v39
-    v46 = v44 * v45
-    if0 v46 goto v46Error_19
-    goto v46End_20
-v46Error_19:
+    z38 = [this + 4]
+    z39 = [z38 + 0]
+    z40 = 4
+    z41 = 1
+    z42 = 0
+    z43 = z42 - z41
+    z44 = z43 < j
+    z45 = j < z39
+    z46 = z44 * z45
+    if0 z46 goto z46Error_19
+    goto z46End_20
+z46Error_19:
   error("array index out of bounds")
-v46End_20:
-  v47 = j * v40
-  v48 = v47 + v40
-  v49 = v38 + v48
-  v50 = [v49 + 0]
-  print(v50)
-  v51 = 1
-  v52 = j + v51
-  j = v52
+z46End_20:
+  z47 = j * z40
+  z48 = z47 + z40
+  z49 = z38 + z48
+  z50 = [z49 + 0]
+  print(z50)
+  z51 = 1
+  z52 = j + z51
+  j = z52
   goto whileStart_16
   whileEnd_18:
-    v53 = 0
-    return v53
+    z53 = 0
+    return z53
 func LS_Search(this num)
-  v54 = 1
-  j = v54
-  v55 = 0
-  ls01 = v55
-  v56 = 0
-  ifound = v56
+  z54 = 1
+  j = z54
+  z55 = 0
+  ls01 = z55
+  z56 = 0
+  ifound = z56
   whileStart_21:
-  v57 = [this + 8]
-  v58 = j < v57
-  if0 v58 goto whileEnd_23
+  z57 = [this + 8]
+  z58 = j < z57
+  if0 z58 goto whileEnd_23
   whileBody_22:
-    v59 = [this + 4]
-    v60 = [v59 + 0]
-    v61 = 4
-    v62 = 1
-    v63 = 0
-    v64 = v63 - v62
-    v65 = v64 < j
-    v66 = j < v60
-    v67 = v65 * v66
-    if0 v67 goto v67Error_24
-    goto v67End_25
-v67Error_24:
+    z59 = [this + 4]
+    z60 = [z59 + 0]
+    z61 = 4
+    z62 = 1
+    z63 = 0
+    z64 = z63 - z62
+    z65 = z64 < j
+    z66 = j < z60
+    z67 = z65 * z66
+    if0 z67 goto z67Error_24
+    goto z67End_25
+z67Error_24:
   error("array index out of bounds")
-v67End_25:
-  v68 = j * v61
-  v69 = v68 + v61
-  v70 = v59 + v69
-  v71 = [v70 + 0]
-  aux01 = v71
-  v72 = 1
-  v73 = num + v72
-  aux02 = v73
-  v74 = aux01 < num
-  if0 v74 goto else_26
-  v75 = 0
-  nt = v75
+z67End_25:
+  z68 = j * z61
+  z69 = z68 + z61
+  z70 = z59 + z69
+  z71 = [z70 + 0]
+  aux01 = z71
+  z72 = 1
+  z73 = num + z72
+  aux02 = z73
+  z74 = aux01 < num
+  if0 z74 goto else_26
+  z75 = 0
+  nt = z75
   goto ifend_27
   else_26:
-  v76 = aux01 < aux02
-  v78 = 1
-  v77 = v78
-  v79 = v77 - v76
-  if0 v79 goto else_28
-  v80 = 0
-  nt = v80
+  z76 = aux01 < aux02
+  z78 = 1
+  z77 = z78
+  z79 = z77 - z76
+  if0 z79 goto else_28
+  z80 = 0
+  nt = z80
   goto ifend_29
   else_28:
-  v81 = 1
-  ls01 = v81
-  v82 = 1
-  ifound = v82
-  v83 = [this + 8]
-  j = v83
+  z81 = 1
+  ls01 = z81
+  z82 = 1
+  ifound = z82
+  z83 = [this + 8]
+  j = z83
   ifend_29:
   ifend_27:
-  v84 = 1
-  v85 = j + v84
-  j = v85
+  z84 = 1
+  z85 = j + z84
+  j = z85
   goto whileStart_21
   whileEnd_23:
     return ifound
 func LS_Init(this sz)
   [this + 8] = sz
-  v87 = 1
-  v86 = sz + v87
-  v89 = 4
-  v88 = v86 * v89
-  v90 = alloc(v88)
-  if0 v90 goto v90Error_30
-  goto v90End_31
-v90Error_30:
+  z87 = 1
+  z86 = sz + z87
+  z89 = 4
+  z88 = z86 * z89
+  z90 = alloc(z88)
+  if0 z90 goto z90Error_30
+  goto z90End_31
+z90Error_30:
   error("null pointer")
-v90End_31:
-  [v90 + 0] = sz
-  [this + 4] = v90
-  v91 = 1
-  j = v91
-  v92 = [this + 8]
-  v93 = 1
-  v94 = v92 + v93
-  k = v94
+z90End_31:
+  [z90 + 0] = sz
+  [this + 4] = z90
+  z91 = 1
+  j = z91
+  z92 = [this + 8]
+  z93 = 1
+  z94 = z92 + z93
+  k = z94
   whileStart_32:
-  v95 = [this + 8]
-  v96 = j < v95
-  if0 v96 goto whileEnd_34
+  z95 = [this + 8]
+  z96 = j < z95
+  if0 z96 goto whileEnd_34
   whileBody_33:
-    v97 = 2
-    v98 = v97 * j
-    aux01 = v98
-    v99 = 3
-    v100 = k - v99
-    aux02 = v100
-    v101 = [this + 4]
-    v102 = aux01 + aux02
-    v103 = [v101 + 0]
-    v104 = 0
-    v105 = 1
-    v106 = v104 - v105
-    v107 = j < v103
-    v108 = v106 * v107
-    if0 v108 goto v108Error_35
-    goto v108End_36
-v108Error_35:
+    z97 = 2
+    z98 = z97 * j
+    aux01 = z98
+    z99 = 3
+    z100 = k - z99
+    aux02 = z100
+    z101 = [this + 4]
+    z102 = aux01 + aux02
+    z103 = [z101 + 0]
+    z104 = 0
+    z105 = 1
+    z106 = z104 - z105
+    z107 = j < z103
+    z108 = z106 * z107
+    if0 z108 goto z108Error_35
+    goto z108End_36
+z108Error_35:
   error("array index out of bounds")
-v108End_36:
-  v109 = 4
-  v110 = j * v109
-  v111 = v110 + v109
-  v112 = v101 + v111
-  [v112 + 0] = v102
-  v113 = 1
-  v114 = j + v113
-  j = v114
-  v115 = 1
-  v116 = k - v115
-  k = v116
+z108End_36:
+  z109 = 4
+  z110 = j * z109
+  z111 = z110 + z109
+  z112 = z101 + z111
+  [z112 + 0] = z102
+  z113 = 1
+  z114 = j + z113
+  j = z114
+  z115 = 1
+  z116 = k - z115
+  k = z116
   goto whileStart_32
   whileEnd_34:
-    v117 = 0
-    return v117
+    z117 = 0
+    return z117

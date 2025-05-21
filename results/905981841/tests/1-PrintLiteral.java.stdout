@@ -1,5 +1,5 @@
 func Main()
   y0 = 0
-  v0 = 12
-  print(v0)
+  z0 = 12
+  print(z0)
   return y0

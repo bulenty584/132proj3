@@ -1,7 +1,7 @@
 func Main()
   y0 = 0
-  v0 = 12
-  v1 = 21
-  v2 = v0 + v1
-  print(v2)
+  z0 = 12
+  z1 = 21
+  z2 = z0 + z1
+  print(z2)
   return y0

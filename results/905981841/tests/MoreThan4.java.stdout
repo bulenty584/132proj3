@@ -1,34 +1,34 @@
 func Main()
   y0 = 0
-  v0 = 4
-  v1 = alloc(v0)
-  v2 = 8
-  vmt_MT4 = alloc(v2)
-  v3 = @MT4_Start
-  [vmt_MT4 + 0] = v3
-  v4 = @MT4_Change
-  [vmt_MT4 + 4] = v4
-  [v1 + 0] = vmt_MT4
-  if0 v1 goto v1Error_0
-  goto v1End_1
-v1Error_0:
+  z0 = 4
+  z1 = alloc(z0)
+  z2 = 8
+  vmt_MT4 = alloc(z2)
+  z3 = @MT4_Start
+  [vmt_MT4 + 0] = z3
+  z4 = @MT4_Change
+  [vmt_MT4 + 4] = z4
+  [z1 + 0] = vmt_MT4
+  if0 z1 goto z1Error_0
+  goto z1End_1
+z1Error_0:
   error("null pointer")
-v1End_1:
-  if0 v1 goto v1Error_2
-  goto v1End_3
-v1Error_2:
+z1End_1:
+  if0 z1 goto z1Error_2
+  goto z1End_3
+z1Error_2:
   error("null pointer")
-v1End_3:
-  v5 = 1
-  v6 = 2
-  v7 = 3
-  v8 = 4
-  v9 = 5
-  v10 = 6
-  v11 = [v1 + 0]
-  v12 = [v11 + 0]
-  v13 = call v12(v1 v5 v6 v7 v8 v9 v10)
-  print(v13)
+z1End_3:
+  z5 = 1
+  z6 = 2
+  z7 = 3
+  z8 = 4
+  z9 = 5
+  z10 = 6
+  z11 = [z1 + 0]
+  z12 = [z11 + 0]
+  z13 = call z12(z1 z5 z6 z7 z8 z9 z10)
+  print(z13)
   return y0
 func MT4_Start(this p1 p2 p3 p4 p5 p6)
   print(p1)
@@ -42,10 +42,10 @@ func MT4_Start(this p1 p2 p3 p4 p5 p6)
 thisError_4:
   error("null pointer")
 thisEnd_5:
-  v14 = [this + 0]
-  v15 = [v14 + 4]
-  v16 = call v15(this p6 p5 p4 p3 p2 p1)
-  aux = v16
+  z14 = [this + 0]
+  z15 = [z14 + 4]
+  z16 = call z15(this p6 p5 p4 p3 p2 p1)
+  aux = z16
   return aux
 func MT4_Change(this p1 p2 p3 p4 p5 p6)
   print(p1)
@@ -54,5 +54,5 @@ func MT4_Change(this p1 p2 p3 p4 p5 p6)
   print(p4)
   print(p5)
   print(p6)
-  v17 = 0
-  return v17
+  z17 = 0
+  return z17

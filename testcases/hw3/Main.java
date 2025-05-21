@@ -1,27 +1,32 @@
 class Main {
-  public static void main(String[] args) {
-    B b;
-    b = new B();
-    System.out.println(b.start());  // Expected: 143 (100 + 43)
-  }
+    public static void main(String[] args) {
+        A a;
+        B b;
+        a = new B();  // upcast
+        b = new B();
+        System.out.println(a.init(b.set(42)));
+    }
 }
 
 class A {
-  public int foo() {
-    return 43;
-  }
+    int x;
+
+    public int init(int val) {
+        x = val;
+        return x;
+    }
+
+    public int set(int v) {
+        x = v + 1;
+        return x;
+    }
 }
 
 class B extends A {
-  public int foo() {
-    return 100;
-  }
+    int x;  // shadows A.x
 
-  public int start() {
-    return foo() + super_foo();
-  }
-
-  public int super_foo() {
-    return new A().foo();  // simulate super.foo() since MiniJava doesn't have it
-  }
+    public int set(int v) {
+        x = v + 2;
+        return x;
+    }
 }
